@@ -1,0 +1,142 @@
+.info-about-video {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 0.875rem;
+}
+.info-about-video-item {
+    margin-right: 3rem;
+}
+.info-about-video-item .price {
+    color: #ff5281;
+}
+.info-about-video-item .name {
+    color: #000;
+}
+.info-about-video-item .time {
+    color: #258FFC;
+}
+.info-about-video-item .name, .info-about-video-item .price, .info-about-video-item .time {
+    font-weight: 700;
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.cours .cours-header .h1 {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
+.cours .cours-program {
+    background: #F2F3FF;
+    margin-top: 4rem;
+    padding: 1rem 0 6rem;
+}
+.cours .cours-program .program-accordion .program-title {
+    background: #fff;
+    -webkit-box-shadow: 0px 7px 26px #EFEFEF;
+    box-shadow: 0px 7px 26px #EFEFEF;
+    border: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.8rem 2rem;
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+.cours .cours-program .program-accordion .program-title-group {
+    color: #258FFC;
+    font-weight: 700;
+}
+.cours .cours-program .program-accordion .program-title-group-number {
+    width: 2rem;
+    display: inline-block;
+    text-align: left;
+}
+.cours .cours-program .program-accordion .program-title-group {
+    color: #258FFC;
+    font-weight: 700;
+}
+.cours .cours-program .program-accordion .program-title .status.free {
+    background-color: #27CB00;
+}
+.cours .cours-program .program-accordion .program-title .status {
+    color: #fff;
+    padding: .1rem .5rem;
+}
+.cours .cours-program .program-accordion .status {
+    font-size: 0.75rem;
+    border-radius: .2rem;
+}
+.cours .cours-program .h4 {
+    margin: 1.5rem 0 2.5rem;
+}
+.cours .cours-program .program-accordion .card-body {
+    -webkit-box-shadow: 0px 2px 26px #EFEFEF;
+    box-shadow: 0px 2px 26px #EFEFEF;
+    padding: 0;
+    background-color: #fff;
+}
+.cours .cours-program .program-accordion .card-body ul {
+    padding: 0 0 0rem 0;
+    margin: 0rem;
+}
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+.cours .cours-program .program-accordion .card-body ul li {
+    list-style-type: none;
+    position: relative;
+    font-size: 0.875rem;
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #fff;
+}
+.cours .cours-program .program-accordion .card-body ul li a {
+    color: #707070;
+    display: block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+}
+.cours .cours-program-number {
+    width: 2.5rem;
+    display: inline-block;
+}
+.cours .cours-program .program-accordion .card-body ul li a:hover {
+    background: #dee2e6;
+}
+.cours .cours-program .program-accordion .card-body .status.free {
+    border: 1px solid #27CB00;
+    color: #27CB00;
+}
+.cours .cours-program .program-accordion .card-body .status {
+    padding: 0.04rem .5rem;
+    float: right;
+}
+.cours .cours-program .program-accordion .status {
+    font-size: 0.75rem;
+    border-radius: .2rem;
+}

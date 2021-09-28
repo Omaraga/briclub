@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400&display=swap');
+
+html{
+	background: #1E1D29;
+}
+body{
+	
+	font-family: 'Roboto', sans-serif;
+	color: #2C291D;
+	background: url(/img/invite/bg_logo_top.svg) no-repeat, url(/img/invite/bg_logo_bottom.svg) no-repeat bottom right;
+  	
+
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+
+}
+
+h1{
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 700;
+}
+
+.h5, h5{
+	font-size: 18px;
+}
+
+p{
+	font-weight: 400;
+	color: #fff;
+	margin: 0;
+	font-size: 12px;
+}
+
+section{
+	height: 90vh;
+}
+.premium{
+	color: #FFD466;
+}
+.basic{
+	color: #fff;
+}
+
+.container{
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.blk{
+	vertical-align: middle
+}
+.name{
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 0.03em;
+	line-height: 109%;
+}
+.blocks{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-top: 7.813rem;
+}
+.block_logo{
+	position: relative;
+	background: #222432;
+	border: 0.313rem solid #2E303F;
+	width: 13.125rem;
+	height: 13.125rem;
+	border-radius: 16px;
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: middle;
+    margin-right: 1%;
+}
+.block_logo::after{
+	content: '';
+	position: absolute;
+	border: 2px dashed #2E303F;
+	right: -11px;
+    height: 90%;
+}
+
+.vl {
+	position: relative;
+    border-left: 2px dashed #2E303F;
+    height: 11.25rem;
+    left: 19.19rem;;
+    top: -12.125rem;
+}
+.block_invitation{
+	background: #222432;
+	border: 0.313rem solid #2E303F;
+	width: 24.375rem;
+	height: 13.125rem;
+	border-radius: 16px;
+}
+.block_invitation2{
+	background: #222432;
+	border: 0.313rem solid #2E303F;
+	max-width: 24.375rem;
+	min-height: 13.125rem;
+	border-radius: 16px;
+	display: none;
+}
+.ss{
+	text-align: left;
+	margin: 0.875rem 0 0.75rem 0.5rem;
+}
+.reg{
+	width: 13.813rem;
+	height: 3rem;
+	background-color: #5460F5;
+	color: #fff;
+	border-radius: 4px;
+	border: none;
+	margin: 1.125rem 0 0.75rem 0.5rem;
+}
+
+footer{
+	margin-top: 3%;
+}
+.footer_block{
+	min-height: 5.813rem;
+	max-width: 18rem;
+	background: #2E303F;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+    vertical-align: middle;
+}
+
+.color_block1{
+	width: 3.75rem;
+	height: 3.75rem;
+	background: #FFD466;
+	border-radius: 8px;
+	background-image: url(/img/invite/money.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.color_block2{
+	width: 3.75rem;
+	height: 3.75rem;
+	background: #00EEA8;
+	border-radius: 8px;
+	background-image: url(/img/invite/arrow.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.footer_text{
+	margin-left: 1rem;
+}
+.block_translate{
+	width: 100%;
+	text-align: right;
+}
+.container #yt-widget[data-theme="dark"] .yt-servicelink, #yt-widget[data-theme="dark"] .yt-servicelink:first-letter{
+	display: none;
+}
+
+@media (max-width: 767px){
+	.block_logo{
+		display: none;
+	}
+	.block_invitation{
+	display: none;
+	}
+	.block_invitation2{
+		display: initial;
+	}
+	footer{
+	margin-top: 15%;
+	}
+	.block_invitation2 {
+    max-width: 100%;
+	}
+}
+
+@media (max-width: 425px){
+	.block_logo{
+		display: none;
+	}
+	.block_invitation{
+	display: none;
+	}
+	.block_invitation2{
+		display: initial;
+	}
+	footer{
+	margin-top: 15%;
+	}
+}
