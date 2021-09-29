@@ -25,64 +25,10 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWLNDDR"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<?php
-/*$flashes = Yii::$app->getSession()->getAllFlashes();
-if(!empty($flashes)){
-    foreach ($flashes as $flash) {*/?><!--
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <?/*=$flash*/?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    --><?/*}
 
-}
-Yii::$app->getSession()->removeAllFlashes();
-*/?>
-<?php echo $this->render('header'); ?>
+
         <?= $content ?>
 
-<?php echo $this->render('footer'); ?>
-
-
-<?php
-
-$this->registerJs('
-$(function(){
-    $(\'.modal1\').click(function(e){
-        $(".act").text(\'_title_\');
-        $("#TV").val(\'_value_\');
-    });
-    $(\'.modal2\').click(function(e){
-        $(".act").text(\'_title_\');
-        $("#TV").val(\'_value_\');
-    });
-    $(\'.modal3\').click(function(e){
-        $(".act").text(\'_title_\');
-        $("#TV").val(\'_value_\');
-    });
-    $(\'.modal4\').click(function(e){
-        $(".act").text(\'_title_\');
-        $("#TV").val(\'_value_\');
-    });
-    $(\'.modal5\').click(function(e){
-        $(".act").text(\'_title_\');
-        $("#TV").val(\'_value_\');
-    });
-    $(\'.modal6\').click(function(e){
-        $(".act").text(\'_title_\');
-        $("#TV").val(\'_value_\');
-    });
-});
-');
-?>
-
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 
 
 <?php $this->endBody() ?>

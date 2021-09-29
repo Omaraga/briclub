@@ -361,6 +361,12 @@ class MatrixRef extends \yii\db\ActiveRecord
                         User::plusBalans($bp_user['id'],90000);
                         User::plusBri($bp_user['id'],16750);
                         User::plusGrc($bp_user['id'],1150);
+
+                        $dohodCompany = new DohodCompany();
+                        $dohodCompany->user_id = $bp_user['id'];
+                        $dohodCompany->sum = 45000;
+                        $dohodCompany->save(false);
+
                         $action_bon = new Actions();
                         $action_bon->time = time();
                         $action_bon->status = 1;
@@ -370,6 +376,8 @@ class MatrixRef extends \yii\db\ActiveRecord
                         $action_bon->title = "Начислены бонусы за место на площадке ".$big_parent_matrix->platform_id." за пользователя ".$user['username']."[".$matrix['id']."]";
                         $action_bon->type = 7;
                         $action_bon->save();
+
+
                     }
                 }
                 $bp_user->save();
