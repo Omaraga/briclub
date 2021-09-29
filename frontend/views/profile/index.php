@@ -75,6 +75,19 @@ $withdraws = \common\models\Actions::find()->where(['user_id'=>$user['id']])->or
 $premium = \common\models\Premiums::findOne(['user_id' => Yii::$app->user->id]);
 $thisMonth = intval(date("m"));
 $type = 'year';
+$briTokens = \common\models\BriTokens::find()->where(['user_id' => $user->id])->one();
+if($briTokens){
+    $bri = $briTokens->balans;
+}else{
+    $bri = 0;
+}
+$grcTokens = \common\models\Tokens::find()->where(['user_id' => $user->id])->one();
+if($grcTokens){
+    $grc = $grcTokens->balans;
+}else{
+    $grc = 0;
+}
+
 //$this->registerJsFile('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',['depends'=>'yii\web\JqueryAsset']);
 
 
@@ -473,6 +486,17 @@ if(!empty($flashes)){
                                 <div class="block__center">
                                     <span class="h4 w7 mr-2">CV</span>
                                     <span class="h2 w7"><?=$user['w_balans']?></span>
+
+                                </div>
+                                <div class="block__center">
+                                    <span class="h4 w7 mr-2">BRI</span>
+                                    <span class="h2 w7"><?=$bri?></span>
+
+                                </div>
+                                <div class="block__center">
+                                    <span class="h4 w7 mr-2">GRC</span>
+                                    <span class="h2 w7"><?=$grc?></span>
+
                                 </div>
                                 <div class="block__bottom">
                                     <a href="/profile/perfect" class="">Купить CV</a>

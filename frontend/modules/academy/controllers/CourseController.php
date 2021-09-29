@@ -230,11 +230,11 @@ class CourseController extends BaseAcademyController
         if ($course->type == Courses::MLM){
             $referralForm->scenario = ReferralForm::SCENARIO_MLM;
             if ($level == 1){
-                $coursePrice =  103;
+                $coursePrice =  5000;
             }else if($level == 2){
-                $coursePrice = 300;
+                $coursePrice = 15000;
             }else if($level == 3){
-                $coursePrice = 1200;
+                $coursePrice = 45000;
             }else if($level == 4){
                 $coursePrice = 3600;
             }else if($level == 5){

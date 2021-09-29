@@ -455,9 +455,6 @@ if($premium != null && $premium->is_active == 1){
                         <option value="1" <? if($m == 1){echo "selected";} ?>>Матрица 1</option>
                         <option value="2" <? if($m == 2){echo "selected";} ?>>Матрица 2</option>
                         <option value="3" <? if($m == 3){echo "selected";} ?>>Матрица 3</option>
-                        <option value="4" <? if($m == 4){echo "selected";} ?>>Матрица 4</option>
-                        <option value="5" <? if($m == 5){echo "selected";} ?>>Матрица 5</option>
-                        <option value="6" <? if($m == 6){echo "selected";} ?>>Матрица 6</option>
                     </select>
                 </div>
 
@@ -538,9 +535,7 @@ if($premium != null && $premium->is_active == 1){
                                 <option value="1" <? if($m == 1){echo "selected";} ?>>Матрица 1</option>
                                 <option value="2" <? if($m == 2){echo "selected";} ?>>Матрица 2</option>
                                 <option value="3" <? if($m == 3){echo "selected";} ?>>Матрица 3</option>
-                                <option value="4" <? if($m == 4){echo "selected";} ?>>Матрица 4</option>
-                                <option value="5" <? if($m == 5){echo "selected";} ?>>Матрица 5</option>
-                                <option value="6" <? if($m == 6){echo "selected";} ?>>Матрица 6</option>
+
                             </select>
                         </div>
                         <h5 class="h5 mb-2 mt-2 mr-4 pl-0 col-12">Клоны (<?=count($mat_count)?>)</h5>

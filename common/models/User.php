@@ -31,6 +31,7 @@ use yii\web\IdentityInterface;
  * @property int $is_agent
  * @property int $parent_id
  * @property int $agent_status
+ * @property int $time_personal
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -382,5 +383,29 @@ class User extends ActiveRecord implements IdentityInterface
         }
         $user->save();
 
+    }
+
+    public static function plusBri($user_id, $sum){
+        $briTokens = BriTokens::find()->where(['user_id' => $user_id])->one();
+        if ($briTokens){
+            $briTokens->balans += $sum;
+        }else{
+            $briTokens = new BriTokens();
+            $briTokens->user_id = $user_id;
+            $briTokens->balans = $sum;
+        }
+        $briTokens->save();
+    }
+
+    public static function plusGrc($user_id, $sum){
+        $grcTokens = Tokens::find()->where(['user_id' => $user_id])->one();
+        if ($grcTokens){
+            $grcTokens->balans += $sum;
+        }else{
+            $grcTokens = new Tokens();
+            $grcTokens->user_id = $user_id;
+            $grcTokens->balans = $sum;
+        }
+        $grcTokens->save();
     }
 }

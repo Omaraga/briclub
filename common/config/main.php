@@ -28,7 +28,7 @@ return [
         ],*/
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=lseplatform',
+            'dsn' => 'mysql:host=localhost;dbname=briclub',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',

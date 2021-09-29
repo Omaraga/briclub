@@ -197,7 +197,7 @@ class ProfileController extends Controller
                     Yii::$app->getSession()->setFlash('danger', Yii::t('users', 'Ошибка!'));
                     return $this->redirect('/profile');
                 }else{
-                    $min_balans = 103;
+                    $min_balans = 5000;
                 }
             }
             $balans = $user['w_balans'];
@@ -206,103 +206,8 @@ class ProfileController extends Controller
 
                 $user->save();
 
-                if($program == 2){
-                    MatrixRef::plusToRefMatrix($user['id'],1,true,0,true,null,1);
-                    $content = $this->renderPartial('cert',[
-                        'sum'=>5000,
-                        'name'=>$user['username']
-                    ]);
-
-                    $pdf = new Pdf([
-                        // set to use core fonts only
-                        'mode' => Pdf::MODE_CORE,
-                        // A4 paper format
-                        'format' => Pdf::FORMAT_A4,
-                        // portrait orientation
-                        'orientation' => Pdf::ORIENT_PORTRAIT,
-                        // stream to browser inline
-                        'destination' => Pdf::DEST_BROWSER,
-                        // your html content input
-                        'content' => $content,
-                        'cssFile' => '@frontend/web/css/cert.css',
-                        'mode' => Pdf::MODE_UTF8,
-                        'marginLeft' =>0,
-                        'marginRight' =>0,
-                        'marginTop' =>0,
-                        'marginBottom' =>0,
-                    ]);
-                    //return $pdf->render();
-                    $rand = rand(900000,9000000);
-                    $dir = Yii::getAlias('@frontend/web/certs/');
-                    $fileName = $rand . '.pdf';
-                    $mpdf = $pdf->api;
-                    $stylesheet = "
-                    .cr-content{
-                overflow: hidden;
-                height: 100%;
-                width: 100%;
-                background-image: url(\"/img/akt.jpg\");
-                background-size: contain;
-                position: relative;
-            }
-            .cr-name{
-                padding-top: 635px!important;
-                padding-left: 130px!important;
-                //display: inline-block;
-                //text-align: center;
-                font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;
-                font-weight: lighter;
-                color: #265883;
-                font-size: 20px;
-            }
-            .cr-id{
-                padding-top: 150px!important;
-                text-align: center;
-                font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;
-                font-weight: lighter;
-                color: #265883;
-                display: block;
-                font-size: 20px;
-            }
-            .cr-sum{
-                padding-top: 55px!important;
-                padding-left: 580px!important;
-                font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;
-                font-weight: lighter;
-                color: #265883;
-                display: block;
-                font-size: 16px;
-            }
-            .cr-per{
-                padding-top: 15px!important;
-                padding-left: 330px!important;
-                font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;
-                font-weight: lighter;
-                color: #265883;
-                display: block;
-                font-size: 12px;
-            }
-            .cr-date{
-                padding-top: 180px!important;
-                padding-left: 339px!important;
-                font-family: Calibri, Candara, Segoe, \"Segoe UI\", Optima, Arial, sans-serif;
-                font-weight: lighter;
-                color: #265883;
-                display: block;
-                font-size: 12px;
-            }
-        ";
-                    $mpdf->WriteHtml($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
-                    $mpdf->WriteHtml($content);
-                    $mpdf->Output($dir . $fileName); // call the mpdf api output as needed
-
-                    $link = '/certs/'. $fileName;
-                    $act = new Acts();
-                    $act->user_id = $user['id'];
-                    $act->time = time();
-                    $act->link = $link;
-                    $act->save();
-                    Acts::sendEmail($user['id'],$link);
+                if($program == 2) {
+                    MatrixRef::plusToRefMatrix($user['id'], 1, true, 0, true, null, 1);
                 }
 
 
