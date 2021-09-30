@@ -5,6 +5,7 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('users', 'RESET_PASSWORD');
 $this->params['breadcrumbs'][] = $this->title;
+<<<<<<< HEAD
 $this->registerJsFile('/js/fa-fa.js',['depends'=>'yii\web\JqueryAsset']);
 $this->registerJsFile('/js/register.js',['depends'=>'yii\web\JqueryAsset']);
 
@@ -19,6 +20,16 @@ $this->registerJsFile('/js/register.js',['depends'=>'yii\web\JqueryAsset']);
     <div class="fon__reg">
         <div class="reg__header">
             <h3 class="text-white">Новый пароль</h3>
+=======
+$this->registerJsFile('/js/register.js',['depends'=>'yii\web\JqueryAsset']);
+
+?>
+
+<div class="register-center-block">
+    <div class="register-content fon-main txt-white">
+        <div class="register-name center">
+            <h4>Новый пароль</h4>
+>>>>>>> aa49538389d73e3488bc54db558d0d1ae282551a
         </div>
         <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
         <p class="">Введите новые данные для пароля</p>

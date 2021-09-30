@@ -8,7 +8,10 @@ use yii\bootstrap\ActiveForm;
 $this->title = Yii::t('users', 'EMAIL_CONFIRMATION');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> aa49538389d73e3488bc54db558d0d1ae282551a
 <div id="login-full-wrapper">
     <div class="container">
         <div class="row">

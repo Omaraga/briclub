@@ -9,7 +9,6 @@ $this->registerJs("$('.eye').click(function(e){
         e.preventDefault()
         let isShow = $(this).attr('attr-show')
         console.log(isShow)
-
         if(isShow == 1){
             $(this).children().removeClass('fa-eye-slash').addClass('fa-eye')
             $(this).attr('attr-show','2')
@@ -19,10 +18,13 @@ $this->registerJs("$('.eye').click(function(e){
             $(this).attr('attr-show','1')
             $(this).parent().find('input').attr('type', 'password')
         }
-
     })");
+<<<<<<< HEAD
 $this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css');
 $this->registerJsFile('/js/fa-fa.js',['depends'=>'yii\web\JqueryAsset']);
+=======
+
+>>>>>>> aa49538389d73e3488bc54db558d0d1ae282551a
 ?>
 <?
 $flashes = Yii::$app->session->allFlashes;
@@ -36,6 +38,7 @@ if(!empty($flashes)){
         </div>
     <?}}
 ?>
+<<<<<<< HEAD
     <style>
         body {
             background: #E5E5E5 !important;
@@ -80,6 +83,19 @@ if(!empty($flashes)){
 
         <?= $form->field($model, 'email',['options'=>['class'=>'form-group field']])->textInput(['placeholder'=>'E-mail или логин','id'=>'exampleInputEmail1','aria-describedby'=>'emailHelp',['options'=>['class'=>'form-control']]])->label('Email',['class'=>'form-label text__small']) ?>
         <?= $form->field($model, 'password',['options'=>['class'=>'form-group field position-relative'],'template' => '{label} {input}<a class="eye" href="" attr-show="1"><i class="fas fa-eye-slash"></i></a>{error}{hint}'])->passwordInput(['placeholder'=>'Пароль','id'=>'exampleInputPassword1', ['options'=>['class'=>'form-control']]])->label('Пароль',['class'=>'form-label text__small']) ?>
+=======
+
+
+    <div class="register-center-block">
+    <div class="register-content fon-main txt-white">
+        <div class="register-name center">
+            <h4>Войти</h4>
+        </div>
+        <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'login-form','options'=>['data-pjax'=>true]]); ?>
+
+        <?= $form->field($model, 'email',['options'=>['class'=>'form-group']])->textInput(['placeholder'=>'E-mail или логин','id'=>'exampleInputEmail1','aria-describedby'=>'emailHelp','class'=>'form-control input'])->label('Email',['class'=>'form-label text__small']) ?>
+        <?= $form->field($model, 'password',['options'=>['class'=>'form-group position-relative'],'template' => '{label} {input}<a class="eye" href="" attr-show="1"><i class="fas fa-eye-slash"></i></a>{error}{hint}'])->passwordInput(['placeholder'=>'Пароль','id'=>'exampleInputPassword1', 'class'=>'form-control input'])->label('Пароль',['class'=>'form-label text__small']) ?>
+>>>>>>> aa49538389d73e3488bc54db558d0d1ae282551a
 
 
         <div class="">
