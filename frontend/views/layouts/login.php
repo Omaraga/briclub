@@ -26,7 +26,6 @@ $this->registerJsFile('/js/fa-fa.js',['depends'=>'yii\web\JqueryAsset']);
         <!-- Google fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <title><?= Html::encode($this->title) ?></title>
         <link href="/css/signup.css" rel="stylesheet">
         <?php $this->head() ?>

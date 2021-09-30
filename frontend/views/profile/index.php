@@ -1,3 +1,7 @@
+<?php
+
+
+?>
 <main class="d-flex">
     <main class="d-flex">
         <div class="main-content" id="main">

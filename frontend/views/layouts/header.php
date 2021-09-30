@@ -11,6 +11,18 @@ $activated = false;
 if ($user->activ == 1){
     $activated = true;
 }
+
+$menuItems = [];
+array_push($menuItems, ['name' => 'Профиль', 'icon' => '<i class="fa fa-home" aria-hidden="true"></i>', 'url' => '/', 'access' => false]);
+array_push($menuItems, ['name' => 'Портфель', 'icon' => '<i class="fa fa-home" aria-hidden="true"></i>', 'url' => '/', 'access' => true]);
+array_push($menuItems, ['name' => 'Подарки', 'icon' => '<i></i>', 'url' => '/', 'access' => true]);
+array_push($menuItems, ['name' => 'Активность', 'icon' => '<i></i>', 'url' => '/', 'access' => true]);
+array_push($menuItems, ['name' => 'Система', 'icon' => '<i></i>', 'url' => '/', 'access' => true]);
+array_push($menuItems, ['name' => 'Основатели', 'icon' => '<i></i>', 'url' => '/', 'access' => true]);
+array_push($menuItems, ['name' => 'Статистика', 'icon' => '<i></i>', 'url' => '/', 'access' => true]);
+array_push($menuItems, ['name' => 'Мероприятия', 'icon' => '<i></i>', 'url' => '/', 'access' => false]);
+array_push($menuItems, ['name' => 'Документы', 'icon' => '<i></i>', 'url' => '/', 'access' => false]);
+array_push($menuItems, ['name' => 'Техподдержка', 'icon' => '<i></i>', 'url' => '/', 'access' => false]);
 $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
 ?>
 <header class="between">
@@ -19,7 +31,13 @@ $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
     </div>
     <div class="top center">
         <div class="top-item center mr-3"><img src="/img/setting.svg" alt=""></div>
-        <div class="top-item center"><img src="/img/bell.svg" alt=""></div>
+        <div class="top-item center mr-3"><img src="/img/bell.svg" alt=""></div>
+        <div class="top-item center">
+            <form action="/site/logout" method="post">
+                <button type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+            </form>
+
+        </div>
     </div>
 </header>
 <div class="d-flex">
@@ -34,91 +52,17 @@ $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
         </div>
         <nav>
             <ul class="list">
-                <li class="list-item">
-                    <a class="list-link" href="/">
-                        <img src="/img/sidebar/house.svg" alt="">
-                        <h6>Профиль</h6>
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="/img/sidebar/house.svg" alt="">
-                        <h6>Портфель</h6>
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="./img/sidebar/house.svg" alt="">
-                        <h6>Подарки</h6>
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="./img/sidebar/house.svg" alt="">
-                        <h6>Активность</h6>
-
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="./img/sidebar/house.svg" alt="">
-                        <h6>Матрица</h6>
-
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="./img/sidebar/house.svg" alt="">
-                        <h6>Личники</h6>
-
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="./img/sidebar/house.svg" alt="">
-                        <h6>Статистика</h6>
-
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="./img/sidebar/house.svg" alt="">
-                        <h6>Мероприятия</h6>
-
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="./img/sidebar/house.svg" alt="">
-                        <h6>Новости</h6>
-
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="./img/sidebar/house.svg" alt="">
-                        <h6>Документы</h6>
-
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
-                <li class="list-item">
-                    <a class="list-link" href="#">
-                        <img src="./img/sidebar/house.svg" alt="">
-                        <h6>Тех поддержка</h6>
-
-                    </a>
-                    <div class="list-item-line"></div>
-                </li>
+                <?foreach ($menuItems as $item):?>
+                <?if(!$item['access'] || ($activated)):?>
+                    <li class="list-item">
+                        <a class="list-link" href="<?=$item['url'];?>">
+                            <?=$item['icon'];?>
+                            <h6><?=$item['name'];?></h6>
+                        </a>
+                        <div class="list-item-line"></div>
+                    </li>
+                <?endif;?>
+                <?endforeach;?>
             </ul>
         </nav>
     </div>

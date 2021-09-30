@@ -374,6 +374,7 @@ button{
     margin-bottom: 16px;
     border-top: 1px solid #04805B;
 }
+
 .sidebar .user-block img{
     width: 100px;
     height: 100px;
@@ -413,7 +414,7 @@ button{
     color: #fff;
     cursor: pointer;
 }
-.sidebar nav .list-link img{
+.sidebar nav .list-link i{
     margin-left: 35px;
     margin-right: 10px;
 }
