@@ -15,17 +15,20 @@ $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
 ?>
 <header class="between">
     <div class="logo">
-        <img src="/img/logo.svg" alt="">
+        <a href="/"><img src="/img/logo.svg" alt=""></a>
     </div>
     <div class="top center">
-        <div class="top-item center me-3"><img src="/img/setting.svg" alt=""></div>
+        <div class="top-item center mr-3"><img src="/img/setting.svg" alt=""></div>
         <div class="top-item center"><img src="/img/bell.svg" alt=""></div>
     </div>
 </header>
 <div class="d-flex">
     <div class="sidebar txt-white d-none d-lg-block">
         <div class="user-block">
-            <img class="user-img" src="img/user.svg" alt="фото пользователя">
+            <div class="user-img center">
+                <h3 class="w7"><?=mb_substr($user['firstname'],0 , 1)?></h3>
+                <h3 class="w7"><?=mb_substr($user['lastname'], 0, 1)?></h3>
+            </div>
             <h5 class="w7"><?=$user->fio;?></h5>
             <h5 class="w4"><?=$user->email;?></h5>
         </div>
