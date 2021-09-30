@@ -7,14 +7,11 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('users', 'EMAIL_CONFIRMATION');
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile('/css/signup.css');
 ?>
-<style>
-    body {
-        background: url(/img/register/reg-img.svg)no-repeat center;
-        background-size: cover;
-    }
-</style>
+<<<<<<< HEAD
+
+=======
+>>>>>>> aa49538389d73e3488bc54db558d0d1ae282551a
 <div id="login-full-wrapper">
     <div class="container">
         <div class="row">
@@ -24,17 +21,17 @@ $this->registerCssFile('/css/signup.css');
                         <div class="row">
                             <div class="col-xs-12">
                                 <header id="login-header">
-                                    <div class="center">
-                                        <img src="/img/logo.svg" alt="">
+                                    <div id="login-logo">
+                                        Best Road Invest
                                     </div>
                                 </header>
                                 <div id="login-box-inner">
                                     <?php $form = ActiveForm::begin(['id' => 'retry-confirm-email-form']); ?>
-                                    <?= $form->field($model, 'email')->textInput(['placeholder'=>'E-mail', 'class'=>'input'])->label(false) ?>
+                                    <?= $form->field($model, 'email')->textInput(['placeholder'=>'E-mail'])->label(false) ?>
                                     <div class="form-group">
                                         <div class="g-recaptcha" data-sitekey="6Le_8x4UAAAAAI1-lV1rwMepHkh7PbrlrsEz5LUt"></div>
                                     </div>
-                                    <input class="btn fon-btn-green" type="submit" value="<?=Yii::t('users', 'SEND')?>">
+                                    <input class="btn btn-success" type="submit" value="<?=Yii::t('users', 'SEND')?>">
                                     <?php ActiveForm::end(); ?>
 
                                 </div>
