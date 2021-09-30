@@ -9,30 +9,10 @@ use yii\captcha\Captcha;
 
 $this->title = Yii::t('users', 'REQUEST_PASSWORD_RESET');
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile('/css/signup.css');
 ?>
-<style>
-    body {
-        background: url(/img/register/reg-img.svg)no-repeat center;
-        background-size: cover;
-    }
-    .form-control{
-        width: 100%;
-        height: 40px;
-        border-radius: 4px;
 
-        padding-left: 16px;
-
-        background: #292344;
-        color: #fff;
-        border: 1px solid #292344;
-    }
-
-</style>
 <div class="register-center-block">
-    <div class="center">
-        <img src="/img/logo.svg" alt="">
-    </div>
+
     <div class="register-content fon-main txt-white">
         <div class="register-name center">
             <h4>Восстановление пароля</h4>
@@ -42,7 +22,7 @@ $this->registerCssFile('/css/signup.css');
             <div class="">
                 <div class="checkbox__group mt-4">
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-4">{image}</div><div class="col-6 ml-1">{input}</div></div>',
+                        'template' => '<div class="row"><div class="col-5">{image}</div><div class="col-7">{input}</div></div>',
                     ])->label(false) ?>
                 </div>
 
@@ -52,7 +32,7 @@ $this->registerCssFile('/css/signup.css');
                 </div>
 
                 <div class=" mt-1">
-                    <input class="fon-btn-green btn__small" type="submit" value="<?=Yii::t('users', 'SEND')?>" style="width: 100%;">
+                    <input class="btn fon-btn-green btn__small" type="submit" value="<?=Yii::t('users', 'SEND')?>" style="width: 100%;">
                 </div>
 
                 <div class="center-line mt-4">

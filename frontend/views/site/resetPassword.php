@@ -5,22 +5,11 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('users', 'RESET_PASSWORD');
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile('/css/signup.css');
-$this->registerJsFile('/js/fa-fa.js',['depends'=>'yii\web\JqueryAsset']);
 $this->registerJsFile('/js/register.js',['depends'=>'yii\web\JqueryAsset']);
 
 ?>
-<style>
-    body {
-        background: url(/img/register/reg-img.svg)no-repeat center;
-        background-size: cover;
-    }
-</style>
 
 <div class="register-center-block">
-    <div class="center">
-        <img src="/img/logo.svg" alt="">
-    </div>
     <div class="register-content fon-main txt-white">
         <div class="register-name center">
             <h4>Новый пароль</h4>

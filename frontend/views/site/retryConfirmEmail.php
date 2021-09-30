@@ -7,14 +7,7 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('users', 'EMAIL_CONFIRMATION');
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile('/css/signup.css');
 ?>
-<style>
-    body {
-        background: url(/img/register/reg-img.svg)no-repeat center;
-        background-size: cover;
-    }
-</style>
 <div id="login-full-wrapper">
     <div class="container">
         <div class="row">
