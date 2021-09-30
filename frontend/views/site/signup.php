@@ -9,6 +9,7 @@ use yii\web\View;
 
 $this->title = "Регистрация";
 $this->registerCssFile('https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css');
+$this->registerCssFile('/css/signup.css');
 
 $countries = \common\models\Countries::find()->all();
 $c_list = array();
@@ -46,7 +47,8 @@ $this->registerJsFile('/js/register.js',['depends'=>'yii\web\JqueryAsset']);
 ?>
     <style>
         body {
-            background: #E5E5E5 !important;
+            background: url(/img/register/reg-img.svg)no-repeat center;
+            background-size: cover;
         }
         .password-control {
         //position: absolute;
@@ -89,18 +91,24 @@ if(!empty($flashes)){
 ?>
 
 
-    <div class="box__reg">
-        <div class="fon__reg">
-            <div class="reg__header">
-                <h3 class="text-dark">Регистрация</h3>
+    <div class="register-center-block">
+		<div class="center">
+            <img src="/img/logo.svg" alt="">
+        </div>
+        <div class="register-content fon-main txt-white">
+            <div class="register-name center">
+                <h4>Регистрация</h4>
             </div>
-            <div class="ellipsises mt-5">
-                <ul class="ellipsises__list">
-                    <li class="active" attr-id="1">1</li>
-                    <li class="" attr-id="2">2</li>
-                    <li class="" attr-id="3">3</li>
-                </ul>
-            </div>
+            <div class="register-body">
+
+                <div class="ellipsises between mt-5">
+                    <ul class="ellipsises__list list-group list-group-horizontal mb-3">
+                        <li class="elips center active ml-lg-3" attr-id="1"><h4>1</h4></li>
+                        <li class="elips center ml-lg-5" attr-id="2"><h4>2</h4></li>
+                        <li class="elips center ml-lg-5" attr-id="3"><h4>3</h4></li>
+                    </ul>
+                </div>
+
             <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'signup-form','options'=>['data-pjax'=>true, 'class'=>'form__regs'],'fieldConfig' => ['errorOptions' => ['encode' => false, 'class' => 'help-block']]]); ?>
             <div class="reg-tabs" tab-id="1">
                 <?
@@ -114,26 +122,26 @@ if(!empty($flashes)){
                 <?}
 
                 ?>
-                <?= $form->field($model, 'fn',['options'=>['class'=>'form-group field']])->textInput(['placeholder'=>'Имя','id'=> 'exampleInputFirstName','class'=>'form-control text__small','attr-curr-page'=>'1'])->label('Имя',['class'=>'form-label text__small']) ?>
-                <?= $form->field($model, 'ln',['options'=>['class'=>'form-group field']])->textInput(['placeholder'=>'Фамилия','id'=> 'exampleInputLastName','class'=>'form-control text__small','attr-curr-page'=>'1'])->label('Фамилия',['class'=>'form-label text__small']) ?>
-                <?= $form->field($model, 'country_id',['options'=>['class'=>'form-group field']])->dropDownList($c_list,['class'=>'form-control text__small'])->label('Страна',['class'=>'form-label text__small']) ?>
+                <?= $form->field($model, 'fn',['options'=>['class'=>'form-group field']])->textInput(['placeholder'=>'Имя','id'=> 'exampleInputFirstName','class'=>'form-control input text__small','attr-curr-page'=>'1'])->label('Имя',['class'=>'form-label text__small']) ?>
+                <?= $form->field($model, 'ln',['options'=>['class'=>'form-group field']])->textInput(['placeholder'=>'Фамилия','id'=> 'exampleInputLastName','class'=>'form-control input text__small','attr-curr-page'=>'1'])->label('Фамилия',['class'=>'form-label text__small']) ?>
+                <?= $form->field($model, 'country_id',['options'=>['class'=>'form-group field']])->dropDownList($c_list,['class'=>'form-control input text__small'])->label('Страна',['class'=>'form-label text__small']) ?>
                 <div class="row modale__body-button mt-4 justify-content-end">
-                    <button class="btn fon-grey col-4 button-navigate-next" type="button" attr-curr-page="1" disabled="true">Продолжить</button>
+                    <button class="btn btn-normal fon-btn-green col-4 button-navigate-next" type="button" attr-curr-page="1" disabled="true">Продолжить</button>
                 </div>
             </div>
             <div class="reg-tabs" tab-id="2">
-                <?= $form->field($model, 'email',['enableAjaxValidation' => true, 'options'=>[  'class'=>'form-group field']])->textInput(['placeholder'=>'E-mail','id'=>'exampleInputEmail','class'=>'form-control text__small','attr-curr-page'=>'2'])->label('Email',['class'=>'form-label text__small']) ?>
-                <?= $form->field($model, 'username',['enableAjaxValidation' => true, 'options'=>['class'=>'form-group field']])->textInput(['placeholder'=>'Придумайте логин', 'id'=>'exampleInputLogin','class'=>'form-control text__small','attr-curr-page'=>'2'])->label('Логин',['class'=>'form-label text__small']) ?>
-                <?= $form->field($model, 'phone',['options'=>['class'=>'form-group field']])->textInput(['placeholder'=>'Номер телефона','id'=>'exampleInputPhone','class'=>'form-control text__small','attr-curr-page'=>'2'])->label('Номер',['class'=>'form-label text__small']) ?>
+                <?= $form->field($model, 'email',['enableAjaxValidation' => true, 'options'=>[  'class'=>'form-group field']])->textInput(['placeholder'=>'E-mail','id'=>'exampleInputEmail','class'=>'form-control input text__small','attr-curr-page'=>'2'])->label('Email',['class'=>'form-label text__small']) ?>
+                <?= $form->field($model, 'username',['enableAjaxValidation' => true, 'options'=>['class'=>'form-group field']])->textInput(['placeholder'=>'Придумайте логин', 'id'=>'exampleInputLogin','class'=>'form-control input text__small','attr-curr-page'=>'2'])->label('Логин',['class'=>'form-label text__small']) ?>
+                <?= $form->field($model, 'phone',['options'=>['class'=>'form-group field']])->textInput(['placeholder'=>'Номер телефона','id'=>'exampleInputPhone','class'=>'form-control input text__small','attr-curr-page'=>'2'])->label('Номер',['class'=>'form-label text__small']) ?>
 
                 <div class="row modale__body-button mt-4 justify-content-end">
-                    <button class="btn col-3 me-2 button-navigate-back" type="button" attr-curr-page="2">Назад</button>
-                    <button class="btn fon-grey col-4 button-navigate-next" type="button" attr-curr-page="2" disabled="true">Продолжить</button>
+                    <button class="btn txt-green col-3 me-2 button-navigate-back" type="button" attr-curr-page="2">Назад</button>
+                    <button class="btn btn-normal fon-btn-green col-4 button-navigate-next" type="button" attr-curr-page="2" disabled="true">Продолжить</button>
                 </div>
             </div>
             <div class="reg-tabs" tab-id="3">
-                <?= $form->field($model, 'password',['options'=>['class'=>'form-group field position-relative'],'template' => '{label} {input}<a class="eye" href="" attr-show="1"><i class="fas fa-eye-slash"></i></a>{error}{hint}'])->passwordInput(['placeholder'=>'Пароль','id'=>'exampleInputPassword','class'=>'form-control text__small'])->label('Придумайте пароль',['class'=>'form-label text__small']) ?>
-                <?= $form->field($model, 'password_repeat',['options'=>['class'=>'form-group field position-relative'],'template' => '{label} {input}<a class="eye" href="" attr-show="1"><i class="fas fa-eye-slash"></i></a>{error}{hint}'])->passwordInput(['placeholder'=>'Повторите пароль','id'=>'exampleInputPasswordConfirm','class'=>'form-control text__small'])->label('Повторите пароль',['class'=>'form-label text__small']) ?>
+                <?= $form->field($model, 'password',['options'=>['class'=>'form-group field position-relative'],'template' => '{label} {input}<a class="eye" href="" attr-show="1"><i class="fas fa-eye-slash"></i></a>{error}{hint}'])->passwordInput(['placeholder'=>'Пароль','id'=>'exampleInputPassword','class'=>'form-control input text__small'])->label('Придумайте пароль',['class'=>'form-label text__small']) ?>
+                <?= $form->field($model, 'password_repeat',['options'=>['class'=>'form-group field position-relative'],'template' => '{label} {input}<a class="eye" href="" attr-show="1"><i class="fas fa-eye-slash"></i></a>{error}{hint}'])->passwordInput(['placeholder'=>'Повторите пароль','id'=>'exampleInputPasswordConfirm','class'=>'form-control input text__small'])->label('Повторите пароль',['class'=>'form-label text__small']) ?>
 
                 <label for="checkbox__label1" class="checkbox__reg">
                     <input required name="agree" class=""  id="policy" type="checkbox"><span class="text__small">Я ознакомился и принимаю <a href="<?=\common\models\Documents::findOne(5)['link']?>" target="_blank">клиентское соглашение</a></span>
@@ -143,21 +151,21 @@ if(!empty($flashes)){
                 </label>
 
                 <div class="d-flex justify-content-end modale__body-button mt-4">
-                    <button class="btn col-3 me-2 button-navigate-back" type="button" attr-curr-page="2">Назад</button>
+                    <button class="btn txt-green col-3 me-2 button-navigate-back" type="button" attr-curr-page="2">Назад</button>
                     <?
                     if(empty($ref)){
                         echo Html::button('Продолжить', [
                             'type' => 'submit',
                             'id' => 'regbutton',
                             'disabled' => 'disabled',
-                            'class' => 'btn fon-grey',
+                            'class' => 'btn btn-normal fon-btn-green',
                         ]);
                     }else{
                         echo Html::button('Продолжить', [
                             'type' => 'submit',
                             'id' => 'regbutton',
                             'disabled' => 'disabled',
-                            'class' => 'btn fon-grey ',
+                            'class' => 'btn btn-normal fon-btn-green ',
                         ]);
                     }
                     ?>
@@ -167,10 +175,11 @@ if(!empty($flashes)){
 
 
             <?php \yii\widgets\ActiveForm::end(); ?>
-            <div class=" text-center mt-4 text__small">
-                <p class="">У вас есть аккаунт? <a href="/site/login">Войти</a></p>
+            <div class="center-line mt-4">
+                <p class="txt-A3D1">У вас есть аккаунт? <a class="txt-green w4" href="/site/login">Войти</a></p>
             </div>
         </div>
+    </div>
     </div>
 
 
