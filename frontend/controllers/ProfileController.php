@@ -88,7 +88,6 @@ class ProfileController extends Controller
         var_dump($response->data);
         exit;*/
 
-        $this->layout = "main-bg";
         $user_db = User::findOne(Yii::$app->user->identity['id']);
 
         $activ = null;
