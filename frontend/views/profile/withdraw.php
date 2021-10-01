@@ -16,113 +16,137 @@ $this->registerJs('
 ');
 //$this->registerJsFile('/js/jquery.maskedinput.min.js',['depends'=>'yii\web\JqueryAsset']);
 
-?> mb-3
-
-    <main class="replenish">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="col-lg-9 mt-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="/img/payment/output.svg" alt="">
-                            <h1 class="h1 w7 text ml-3">Вывод средств</h1>
-                        </div>
-                        <small>
-                            Уважаемый пользователь! Вывод средств осуществляется только на верифицированные платежные
-                            системы.
-                            <br>
-                            Компания предостерегает, в случае перевода средств с аккаунта на аккаунт для вывода,<br>
-                            каждый пользователь несет личную ответственность.
-                        </small>
-                    </div>
-
-                    <div class="col-lg-9 mt-4 ">
-                        <div class="block__fon block-pv mb-4">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <img src="\img/main/bPV.svg" alt="">
-                                    <span class="text-white w5">Агентский баланс</span>
-                                </div>
-                                <img src="\img/replenish/PV.svg" alt="">
-                            </div>
-                            <div class="mt-5">
-                                <span class="h4 w7 text-white mr-2">PV</span>
-                                <span class="h2 w7 text-white"><?= $user['p_balans']; ?></span>
-                            </div>
-                        </div>
-                        <ul class="nav nav-tabs mt-3 mb-5" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                   aria-controls="home" aria-selected="true">PerfectMoney</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" href="/profile/withdraw?system=3" role="tab"
-                                   aria-controls="profile" aria-selected="false">Payeer</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h2 class="h2 mb-0">Введите сумму вывода</h2>
-                                <p>Комиссия: 3%</p>
-                                <?
-                                if (!empty($error)) {
-                                    ?>
-                                    <p class="alert-danger"><?= $error ?></p>
-                                <? } ?>
-                                <?
-                                if (!empty($success)) {
-                                    ?>
-                                    <p class="alert-success"><?= $success ?></p>
-                                <? } ?>
-                                <? if (!empty($pretrans)) {
-
-                                    ?>
-                                    <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'form-withdraw']); ?>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group mt-3">
-                                                <p>Код подтверждения перевода был отправлен на вашу электронную
-                                                    почту</p>
-                                                <p>Сумма <?= $pretrans['sum'] ?></p>
-                                            </div>
-                                            <div class="form-group">
-                                                <?= $form->field($code, 'code')->textInput(['placeholder' => 'Введите код'])->label(false); ?>
-                                            </div>
-                                            <input class="btn btn__small btn__blue button mt-4 col-md-8 mb-5" type="submit"
-                                                   value="<?= Yii::t('users', 'Подтвердить') ?>">
-                                        </div>
-                                    </div>
-                                    <?php \yii\widgets\ActiveForm::end(); ?>
-                                <? } else { ?>
-                                    <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'form-withdraw-perfect']); ?>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group mt-3">
-                                                <?= $form->field($model, 'account')->textInput(['placeholder' => 'Введите счет'])->widget(\yii\widgets\MaskedInput::className(), [
-                                                    'mask' => 'U9999999[9]',
-                                                ])->label(false); ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <?= $form->field($model, 'sum')->textInput(['placeholder' => 'Введите сумму. Не меньше $10.'])->label(false); ?>
-                                            </div>
-                                            <?= $form->field($model, 'system_id')->hiddenInput(['value' => 2])->label(false); ?>
-                                            <input class="btn btn__small btn__blue button mt-4 col-md-8 mb-5" type="submit"
-                                                   value="<?= Yii::t('users', 'Вывод') ?>">
-                                        </div>
-                                    </div>
-                                    <?php \yii\widgets\ActiveForm::end(); ?>
-                                <? } ?>
-
-                            </div>
-                        </div>
-
-                    </div>
+?>
+<link href="/css/style.css" rel="stylesheet">
+<style>
+    @media screen and (max-width: 430px) {
+        .form-control{
+            width: 100%!important;
+        }
+    }
+</style>
+<main class="payment">
+        <div class="fon-gray-300 box">
+            <div class="banner center">
+                <div class="rows text-center">
+                    <h5 class="mb-2">Вывод средсв</h5>
+                    <h3>PV <?= $user['p_balans']; ?></h3>
                 </div>
-
             </div>
+            <p class="txt-mini txt-A3D1 margin-bot-50">Уважаемый пользователь! Вывод средств осуществляется только на верифицированные платежные системы.
+                Компания предостерегает, в случае перевода средств с аккаунта на аккаунт для вывода, каждый пользователь несет личную ответственность.</p>
+
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Perfect Money</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Payeer</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <h5 class="w7 margin-top-38">Введите сумму вывода</h5>
+                    <p class="txt-mini margin-bot-24">Комиссия 3%</p>
+
+                    <?
+                    if (!empty($error)) {
+                        ?>
+                        <p class="alert-danger"><?= $error ?></p>
+                    <? } ?>
+                    <?
+                    if (!empty($success)) {
+                        ?>
+                        <p class="alert-success"><?= $success ?></p>
+                    <? } ?>
+                    <? if (!empty($pretrans)) {
+
+                        ?>
+                        <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'form-withdraw']); ?>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group mt-3">
+                                    <p class="txt-mini">Код подтверждения перевода был отправлен на вашу электронную почту</p>
+                                    <p>Сумма <?= $pretrans['sum'] ?></p>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->field($code, 'code')->textInput(['placeholder' => 'Введите код'])->label(false); ?>
+                                </div>
+                                <input class="btn btn__small btn__blue button mt-4 col-md-8 mb-5" type="submit"
+                                       value="<?= Yii::t('users', 'Подтвердить') ?>">
+                            </div>
+                        </div>
+                        <?php \yii\widgets\ActiveForm::end(); ?>
+                    <? } else { ?>
+                        <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'form-withdraw-perfect']); ?>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group mt-3">
+                                    <?= $form->field($model, 'account')->textInput(['placeholder' => 'Введите счет'])->widget(\yii\widgets\MaskedInput::className(), [
+                                        'mask' => 'U9999999[9]',
+                                    ])->label(false); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->field($model, 'sum')->textInput(['placeholder' => 'Введите сумму'])->label(false); ?>
+                                </div>
+                                <?= $form->field($model, 'system_id')->hiddenInput(['value' => 2])->label(false); ?>
+                                <button type="submit">Вывести</button>
+                            </div>
+                        </div>
+                        <?php \yii\widgets\ActiveForm::end(); ?>
+                    <? } ?>
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <h5 class="w7 margin-top-38">Введите сумму вывода</h5>
+                    <p class="txt-mini margin-bot-24">Комиссия 3%</p>
+                    <?
+                    if (!empty($error)) {
+                        ?>
+                        <p class="alert-danger"><?= $error ?></p>
+                    <? } ?>
+                    <?
+                    if (!empty($success)) {
+                        ?>
+                        <p class="alert-success"><?= $success ?></p>
+                    <? } ?>
+                    <? if (!empty($pretrans)) {
+
+                        ?>
+                        <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'form-withdraw']); ?>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group mt-3">
+                                    <p class="txt-mini">Код подтверждения перевода был отправлен на вашу электронную почту</p>
+                                    <p>Сумма <?= $pretrans['sum'] ?></p>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->field($code, 'code')->textInput(['placeholder' => 'Введите код'])->label(false); ?>
+                                </div>
+                                <input class="btn btn__small btn__blue button mt-4 col-md-8 mb-5" type="submit"
+                                       value="<?= Yii::t('users', 'Подтвердить') ?>">
+                            </div>
+                        </div>
+                        <?php \yii\widgets\ActiveForm::end(); ?>
+                    <? } else { ?>
+                        <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'form-withdraw-perfect']); ?>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group mt-3">
+                                    <?= $form->field($model, 'account')->textInput(['placeholder' => 'Введите счет'])->widget(\yii\widgets\MaskedInput::className(), [
+                                        'mask' => 'U9999999[9]',
+                                    ])->label(false); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->field($model, 'sum')->textInput(['placeholder' => 'Введите сумму. Не меньше $10.'])->label(false); ?>
+                                </div>
+                                <?= $form->field($model, 'system_id')->hiddenInput(['value' => 2])->label(false); ?>
+                                <button type="submit">Вывести</button>
+                            </div>
+                        </div>
+                        <?php \yii\widgets\ActiveForm::end(); ?>
+                    <? } ?>
+                </div>
+            </div>
+        </div>
     </main>
 
-
-<?
-echo \frontend\components\LoginWidget::widget();
-?>
