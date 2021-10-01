@@ -9,4 +9,7 @@ class MainController extends \yii\web\Controller
         return $this->render('index');
     }
 
+    public function actionDocs(){
+        return $this->render('docs');
+    }
 }
