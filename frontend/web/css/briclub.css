@@ -35,7 +35,7 @@ p{
 
 
 
-a{text-decoration: none;}
+a{text-decoration: none!important;}
 ul{
     list-style: none;
     padding: 0;
@@ -51,6 +51,8 @@ ul{
 .txt-AAA{color: #AAAAAA;}
 .txt-green-100{color: #039C6F;}
 .txt-99A1{color:#99A1FF;}
+.txt-6A7{color: #6A70B5;}
+.txt-A78{color: #A78B8B;}
 
 
 .fon-page{
@@ -73,6 +75,9 @@ ul{
 }
 .fon-gray-300{
     background: #1A2233;
+}
+.fon-gray-400{
+    background: #2F3046;
 }
 .fon-green-200{
     background: #02A651;
@@ -355,12 +360,6 @@ button{
     padding-top: 30px;
     padding-bottom: 30px;
 }
-.sidebar .logo{
-    padding-left: 50px;
-    padding-bottom: 30px;
-    margin-bottom: 35px;
-    border-bottom: 1px solid #212025;
-}
 .sidebar .user-block{
     display: flex;
     flex-direction: column;
@@ -374,7 +373,6 @@ button{
     margin-bottom: 16px;
     border-top: 1px solid #04805B;
 }
-
 .sidebar .user-block img{
     width: 100px;
     height: 100px;
@@ -434,6 +432,9 @@ header{
     background: #0B071D;
     z-index: 1;
 }
+header .logo{
+
+}
 header .top{
     padding-top: 24px;
     margin-bottom: 70px;
@@ -446,9 +447,18 @@ header .top-item{
     cursor: pointer;
 }
 .main-content{
-
     width: 100%;
     margin: 0 24px 0 16px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-top: 1px solid rgba(2, 166, 81, 1);
+    border-image:
+            linear-gradient(
+                    to bottom,
+                    rgba(2, 166, 81, 1),
+                    rgba(2, 166, 81, 0)
+            ) 1 100%;
 }
 .main-block{
     padding: 35px 30px;
@@ -462,16 +472,27 @@ header .top-item{
     height: 0!important;
 }
 .main-block .main-list .list-item{
-    width: 20%;
+    width: 100%;
     text-align: center;
 
     padding-bottom: 20px;
-    margin-bottom: 64px;
-
-    border-bottom: 8px solid #232B3D;
+}
+.main-block .main-list .active{
+    color: #fff !important;
+}
+.main-block .main-list .list-item .green{
+    background: url(/img/main/green.svg)no-repeat center!important;
+    background-size: cover!important;
+}
+.main-block .main-list .list-item .blue{
+    background: url(/img/main/blue.svg)no-repeat center!important;
+    background-size: cover!important;
 }
 .main-block .main-list .list-item .list-item_line{
     width: 100%;
+    height: 8px;
+    margin-top: 30px;
+    background: #232B3D;
 }
 .main-block .block-CV {
     width: 200px;
@@ -552,6 +573,13 @@ header .top-item{
     background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(111, 184, 200, 0.2) 0%, rgba(110, 191, 244, 0.0447917) 77.08%, rgba(70, 144, 213, 0) 100%);
     backdrop-filter: blur(80px);
     border-radius: 8px;
+}
+.before .cards img{
+    margin-right: 25px;
+}
+.before .cards li{
+    width: 345px;
+    margin-bottom: 24px;
 }
 .before .cards-block{
     width: 270px;
@@ -649,6 +677,103 @@ aside .date .circle{
 }
 
 
+
+
+.payment{
+    display: flex;
+}
+.payment-block{
+    padding: 64px 0 0 64px;
+}
+.payment .block-img{
+    width: 600px;
+    height: 400px;
+
+    padding: 48px;
+
+    background: url(/img/payment/main-img.svg)no-repeat center;
+    background-size: cover;
+}
+.payment a{
+    color: #fff;
+}
+.payment .block-img .body .tab-content{
+    margin-top: 80px;
+}
+.payment .block-img .body .tab-pane a{
+    padding: 13px 48px;
+    background: #2A8373;
+    border-radius: 4px;
+}
+.payment .blocks-img {
+    width: 400px;
+    height: 220px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: center;
+    padding-bottom: 27px;
+
+    background: url(/img/payment/main-img2.svg)no-repeat center;
+    background-size: cover;
+}
+.payment .fon-main{
+    width: 560px;
+
+    padding: 24px 32px;
+    margin-left: 45px;
+    margin-top: 140px;
+}
+.payment .fon-main .line{
+    width: 100%;
+    height: 60px;
+
+    padding: 10px 22px;
+    margin-bottom: 16px;
+
+    background: #0F182B;
+    border-radius: 8px;
+}
+.payment .box{
+    width: 560px;
+    height: 640px;
+    padding: 140px 32px 32px 32px;
+    position: relative;
+    border-radius: 8px;
+    margin-left: 64px;
+    margin-top: 160px;
+}
+.payment .box .banner{
+    position: absolute;
+    top: -85px;
+    right: 80px;
+    width: 400px;
+    height: 180px;
+    background: url(/img/payment/main-img-mini.svg)no-repeat center;
+}
+.payment .tab-content input{
+    width: 340px;
+    height: 40px;
+    padding: 12px 16px;
+    border: none;
+    color:#fff;
+    background: #292344;
+    border-radius: 4px;
+}
+.payment .tab-content button{
+    width: 170px;
+    height: 48px;
+    border: none;
+    color:#fff;
+    background: #2A8373;
+    border-radius: 4px;
+}
+
+
+
+
+
 @media screen and (max-width: 1387px) {
     .main-block .cards{
         width: 100%;
@@ -661,6 +786,21 @@ aside .date .circle{
     .img-bottom{
         display: none;
     }
+    .payment-blocks{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .payment-block{
+        padding-left: 16px;
+    }
+    .payment {
+        flex-direction: column;
+    }
+    .payment .fon-main{
+        margin-top: 38px;
+        margin-left: 16px;
+    }
 }
 @media screen and (max-width: 992px) {
     header{
@@ -671,6 +811,9 @@ aside .date .circle{
     }
     aside{
         margin-top: 100px;
+    }
+    .payment-block{
+        padding: 130px 16px 0 16px;
     }
 }
 @media screen and (max-width: 768px) {
@@ -702,6 +845,21 @@ aside .date .circle{
     .main-block .main-list .list-item{
         min-width: 120px;
     }
+    .payment-block{
+        width: 100%;
+        padding: 130px 16px 0 16px;
+    }
+    .payment .block-img{
+        width: 100%;
+    }
+    .payment .box {
+        width: 94%;
+        margin-top: 215px;
+        margin-left: 16px;
+    }
+    .payment .box .banner {
+        right: 151px;
+    }
 }
 @media screen and (max-width: 575px){
     .register-content {
@@ -714,6 +872,12 @@ aside .date .circle{
     .invate .invate-block{
         width: 100%;
         padding: 65px 10px;
+    }
+    .payment .fon-main{
+        width: 100%;
+        margin: 0 16px;
+        padding: 24px 16px;
+        margin-top: 32px;
     }
 }
 @media screen and (max-width: 400px){
@@ -728,6 +892,9 @@ aside .date .circle{
     }
     .activity-block {
         width: 270px;
+    }
+    .before .cards li{
+        width: 100%;
     }
 }
 

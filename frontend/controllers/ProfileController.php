@@ -108,9 +108,7 @@ class ProfileController extends Controller
                 $start = true;
             }
         }
-        if (!$activ){
-            return $this->redirect('/library');
-        }
+
 
 
         if(isset(Yii::$app->request->userIP)){
