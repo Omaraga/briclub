@@ -28,10 +28,12 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  * @property float $w_balans read-only
+ * @property float $p_balans read-only
  * @property int $is_agent
  * @property int $parent_id
  * @property int $agent_status
  * @property int $time_personal
+ * @property int $rank_id
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -385,6 +387,10 @@ class User extends ActiveRecord implements IdentityInterface
 
     }
 
+    /**
+     * @param $user_id
+     * @param $sum
+     */
     public static function plusBri($user_id, $sum){
         $briTokens = BriTokens::find()->where(['user_id' => $user_id])->one();
         if ($briTokens){
@@ -397,6 +403,10 @@ class User extends ActiveRecord implements IdentityInterface
         $briTokens->save();
     }
 
+    /**
+     * @param $user_id
+     * @param $sum
+     */
     public static function plusGrc($user_id, $sum){
         $grcTokens = Tokens::find()->where(['user_id' => $user_id])->one();
         if ($grcTokens){
@@ -408,4 +418,32 @@ class User extends ActiveRecord implements IdentityInterface
         }
         $grcTokens->save();
     }
+
+    /**
+     * @param string $type
+     * @return float|int|mixed|string|null
+     */
+    public function getBalance($type = 'pv'){
+        if ($type == 'pv'){
+            return $this->p_balans;
+        }else if($type == 'cv'){
+            return $this->w_balans;
+        }else if($type == 'grc'){
+            $grcTokens = Tokens::find()->where(['user_id' => $this->id])->one();
+            if ($grcTokens){
+                return $grcTokens->balans;
+            }else{
+                return 0;
+            }
+        }else if($type == 'bri'){
+            $briTokens = BriTokens::find()->where(['user_id' => $this->id])->one();
+            if ($briTokens){
+                return $briTokens->balans;
+            }else{
+                return 0;
+            }
+        }
+        return 0;
+    }
+
 }

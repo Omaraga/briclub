@@ -1,9 +1,256 @@
 <?php
-/* @var $this yii\web\View */
-?>
-<h1>main/index</h1>
+/* @var $this yii\web\View*/
+/* @var $user common\models\User*/
+/* @var $selRank common\models\UserRank*/
+/* @var $rankList common\models\UserRank[]*/
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+$this->title = 'BRIClub';
+$url = 'https://briclub.com';
+$this->registerJsFile('https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js');
+$this->registerJsFile('https://yastatic.net/share2/share.js');
+?>
+<main class="d-flex">
+    <main class="d-flex">
+        <div class="main-content" id="main">
+            <div class="main-block">
+
+                <div class="main-list txt-5F7">
+                    <?foreach ($rankList as $rank):?>
+                        <div class="list-item">
+                            <h6><a href="/?selRankId=<?=$rank->id?>" class="txt-5F7 <?=($rank->id == $selRank->id)?'active':'';?>"><?=$rank->title;?></a></h6>
+                            <div class="list-item_line <?=($user->rank_id >= $rank->id)?'green':'';?> <?=($user->rank_id < $selRank->id && $selRank->id == $rank->id)?'blue':'';?>"></div>
+                        </div>
+                    <?endforeach;?>
+                </div>
+
+                <div class="scroll">
+
+                    <div class="row mb-4">
+                        <div class="col mb-3">
+                            <div class="cards mx-auto">
+                                <h6 class="mb-3">Баланс</h6>
+                                <div class="center-line mb-3">
+                                    <div class="block-CV center">
+                                        <h4 class="w7">CV <span class="ml-2"><?=$user->w_balans;?></span></h4>
+                                    </div>
+                                    <div class="block-PV center ml-3">
+                                        <h4 class="w7">PV</h4>
+                                    </div>
+                                </div>
+                                <a href="/" class="fon-gray-800 py-2 px-4 text-white" style="border-radius: 4px;">Мои балансы</a>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="cards mx-auto">
+                                <h6 class="mb-3">Капитал в <span class="w7">клубе</span></h6>
+
+                                <div class="fon-main between p-3 item-card">
+                                    <img src="img/main/cards-img.svg" alt="">
+                                    <div class="rows">
+                                        <p class="txt-mini">Капитал с системы</p>
+                                        <h4 class="w5">pv <?=$selRank->fund;?></h4>
+                                    </div>
+                                </div>
+
+                                <div class="fon-main between p-3 mt-3 item-card mb-4">
+                                    <img src="img/main/cards-img.svg" alt="">
+                                    <div class="rows">
+                                        <p class="txt-mini"><?=($selRank->dividends > 0)?'Дивиденты в год':'Дивиденты не доступны'?></p>
+                                        <h4 class="w5">pv <?=$selRank->dividends;?></h4>
+                                    </div>
+                                </div>
+                                <a href="#" class="fon-btn-blue-100 py-2 px-4 text-white" style="border-radius: 4px;" data-toggle="modal" data-target="#staticBackdrop">Пригласить в клуб</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="cards mx-auto">
+                                <h5 class="mb-3">Мои акции</h5>
+                                <div class="banner item-card">
+                                    <div class="banner-header between">
+                                        <div class="d-flex">
+                                            <img src="img/main/banner-bri.svg" alt="">
+                                            <h5 class="w7 center ml-2">BRI</h5>
+                                        </div>
+                                        <p class="text-mini">1 BRI = 2$</p>
+                                    </div>
+                                    <h4 class="w7"><?=number_format($user->getBalance('bri'),2,'.', '');?> BRI</h4>
+                                    <h5 class="w5 txt-AAA"><?=$user->getBalance('bri')*2;?> $</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col margin-top-38">
+                            <div class="cards mx-auto">
+                                <div class="banner banner-2 item-card">
+                                    <div class="banner-header between">
+                                        <div class="d-flex">
+                                            <img src="img/main/banner-grc.svg" alt="">
+                                            <h5 class="w7 center ml-2">GRC</h5>
+                                        </div>
+                                        <p class="text-mini">1 GRC = 10$</p>
+                                    </div>
+                                    <h4 class="w7"><?=number_format($user->getBalance('grc'),2,'.', '');?> GRC</h4>
+                                    <h5 class="w5 txt-AAA"><?=$user->getBalance('grc') * 10;?> $</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="cards mx-auto">
+                                <h6 class="w5 activity-title">Мероприятия</h6>
+                                <div class="activity fon-main one">
+                                    <div class="activity-block">
+                                        <div class="rows mb-3">
+                                            <h4 class="w7">22</h4>
+                                            <h6>сентября</h6>
+                                        </div>
+                                        <div class="rows">
+                                            <h6 class="txt-green">Бизнес завтрак</h6>
+                                            <h5 class="w7">Инвестируйте в свое будущее</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3" style="margin-top: 78px;">
+                            <a href="">
+                                <div class="cards mx-auto text-white">
+                                    <div class="activity fon-main two">
+                                        <div class="activity-block">
+                                            <div class="rows mb-3">
+                                                <h4 class="w7">22</h4>
+                                                <h6>сентября</h6>
+                                            </div>
+                                            <div class="rows">
+                                                <h6 class="txt-green">Бизнес завтрак</h6>
+                                                <h5 class="w7">Инвестируйте в свое будущее</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <aside class="fon-main px-3" id="aside">
+            <div>
+                <h6 class="mb-2">Доступно мне</h6>
+
+                <div class="cardes fon-gray-300 between">
+                    <div class="d-flex align-iteml-center">
+                        <div class="circle fon-gray-200 mr-2 mb-1"></div>
+                        <h6>Онлайн мастер класс</h6>
+                    </div>
+                    <div class="date center rows">
+                        <h6>22.09</h6>
+                        <h6>18:00</h6>
+                        <div class="circle center">1</div>
+                    </div>
+                </div>
+
+                <div class="cardes fon-gray-300 between">
+                    <div class="d-flex align-iteml-center">
+                        <div class="circle fon-green-200 mr-2 mb-1"></div>
+                        <h6>Онлайн мастер класс</h6>
+                    </div>
+                    <div class="date center rows">
+                        <h6>22.09</h6>
+                        <h6>18:00</h6>
+                        <div class="circle center">1</div>
+                    </div>
+                </div>
+
+                <div class="cardes fon-gray-300 between">
+                    <div class="d-flex align-iteml-center">
+                        <div class="circle fon-green-200 mr-2 mb-1"></div>
+                        <h6>Онлайн мастер класс</h6>
+                    </div>
+                    <div class="date center rows">
+                        <h6>22.09</h6>
+                        <h6>18:00</h6>
+                        <div class="circle center">1</div>
+                    </div>
+                </div>
+
+                <div class="cardes fon-gray-300 between">
+                    <div class="d-flex align-iteml-center">
+                        <div class="circle fon-green-200 mr-2 mb-1"></div>
+                        <h6>Онлайн мастер класс</h6>
+                    </div>
+                    <div class="date center rows">
+                        <h6>22.09</h6>
+                        <h6>18:00</h6>
+                        <div class="circle center">1</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 margin-bot-32">
+
+                <h6 class="mb-3">Мои подарки</h6>
+
+                <div class="cardes fon-aside-card-100 between">
+                    <div>
+                        <h6>Страховка Каско</h6>
+                    </div>
+                    <div class="date center">
+                        <p>1</p>
+                    </div>
+                </div>
+
+                <div class="cardes fon-green-400 between">
+                    <div>
+                        <h6>Портфель акции</h6>
+                    </div>
+                    <div class="date center">
+                        <p>2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+                <h6 class="mb-3">Календарь событий</h6>
+
+
+            </div>
+
+        </aside>
+    </main>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <span class="modal-title w5" id="staticBackdropLabel">Поделиться реферальной ссылкой</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <a class="referal-link" id="referalLink"><?=$url?></a>
+                <div class="">
+                    <i class="fa fa-copy" aria-hidden="true"></i>
+                    <button class="btn btn-link" onclick="copy('referalLink')">Копировать</button>
+                </div>
+                </p>
+
+
+                <div class="btn__group">
+                    <p class="w5 text-dark">Поделиться в:</p>
+                    <div class="ya-share2" data-title="Реферальная ссылка Briclub.com" data-url="<?=$url?>" data-services="vkontakte,facebook,twitter,viber,whatsapp,skype,telegram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
