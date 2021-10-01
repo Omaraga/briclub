@@ -56,7 +56,7 @@ class ProfileController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','block','unblock','withdrawcancel', 'get-course','verification','favorites','settings','courses','structure','actions','withdraw','activ','transfer','withdraws','perfect','bonus','bonus-global','refs','refs-global','matrix','children','getnewplatform','getnewplatformstart','tickets','documents','global','start', 'promo', 'pay-bill', 'user-bills', 'view-document','statistic', 'theme', 'delete-avatar', 'upload-avatar', 'convert', 'insurance','insurance-change-status','upload-file'],
+                        'actions' => ['index','block','unblock','withdrawcancel', 'get-course','verification','favorites','settings','courses','structure','actions','withdraw','activ','transfer','withdraws','perfect','bonus','bonus-global','refs','refs-global','matrix','children','getnewplatform','getnewplatformstart','tickets','documents','global','start', 'promo', 'pay-bill', 'user-bills', 'view-document','statistic', 'theme', 'delete-avatar', 'upload-avatar', 'convert', 'insurance','insurance-change-status','upload-file', 'payment', 'balance'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -1753,4 +1753,17 @@ class ProfileController extends Controller
 
         return json_encode($response);
     }
+
+    public function actionPayment($program=null){
+
+        return $this->render('payment', [
+        ]);
+    }
+
+    public function actionBalance(){
+
+        return $this->render('balance', [
+        ]);
+    }
+
 }
