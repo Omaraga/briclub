@@ -9,7 +9,6 @@ if(!Yii::$app->user->isGuest){
 $withdraws = \common\models\Actions::find()->where(['user_id'=>$user['id']])->orderBy('id desc')->limit(4)->all();
 
 ?>
-<link href="/css/style.css" rel="stylesheet">
 <main class="payment">
     <div class="payment-page">
         <div class="payment-block">
@@ -21,7 +20,7 @@ $withdraws = \common\models\Actions::find()->where(['user_id'=>$user['id']])->or
                         <a class=" margin-top-38" href="\profile/perfect">Пополнить баланс</a>
                     </div>
                 </div>
-                <div class="blocks-img">
+                <div class="blocks-img blocks-img2">
                     <div class="rows">
                         <h3 class="w7">PV <?=$user->p_balans?></h3>
                         <div class="center-line margin-top-38">

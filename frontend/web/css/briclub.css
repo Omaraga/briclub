@@ -32,7 +32,9 @@ p{
 .txt-mini{
     font-size: 14px;
 }
-
+.txt-minimal{
+    font-size: 12px;
+}
 
 
 a{text-decoration: none!important;}
@@ -726,6 +728,10 @@ aside .date .circle{
 
     background: url(/img/payment/main-img2.svg)no-repeat center;
     background-size: cover;
+}
+.payment .blocks-img2 {
+
+    background: url(/img/payment/main-img22.svg)no-repeat center;
 }
 .payment .fon-main{
     width: 560px;

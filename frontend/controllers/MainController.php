@@ -39,5 +39,8 @@ class MainController extends \yii\web\Controller
         ]);
     }
 
+    public function actionDocs(){
+        return $this->render('docs', []);
+    }
 
 }
