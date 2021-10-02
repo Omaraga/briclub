@@ -66,4 +66,5 @@ class UserRank extends \yii\db\ActiveRecord
             $user->save();
         }
     }
+
 }

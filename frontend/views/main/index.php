@@ -19,7 +19,7 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                     <?foreach ($rankList as $rank):?>
                         <div class="list-item">
                             <h6><a href="/?selRankId=<?=$rank->id?>" class="txt-5F7 <?=($rank->id == $selRank->id)?'active':'';?>"><?=$rank->title;?></a></h6>
-                            <div class="list-item_line <?=($user->rank_id >= $rank->id)?'green':'';?> <?=($user->rank_id < $selRank->id && $selRank->id == $rank->id)?'blue':'';?>"></div>
+                            <div class="list-item_line <?=($user->rank_id < $rank->id && $selRank->id >= $rank->id)?'blue':'';?> <?=($user->rank_id >= $rank->id)?'green':'';?>"></div>
                         </div>
                     <?endforeach;?>
                 </div>
