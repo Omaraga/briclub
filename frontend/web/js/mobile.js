@@ -9,13 +9,21 @@ $('.focus').click(function(e){
         $(this).attr('attr-show', 0)
     }
 
-})
+});
+$('#notification-button').click(function (e){
+    e.preventDefault();
+    $('.notification').fadeIn(1000);
+});
+$('#notification-close').click(function (e){
+    e.preventDefault();
+    $('.notification').fadeOut(700);
+});
 $(document).mouseup(function (e){ // событие клика по веб-документу
     var mobileMenu = $(".focus"); // тут указываем ID элемента
     if (!mobileMenu.is(e.target) // если клик был не по нашему блоку
         && mobileMenu.has(e.target).length === 0) { // и не по его дочерним элементам
         $('.block__icon').hide(); // скрываем его
-        $(mobileMenu).attr('attr-show', 0)
+        $(mobileMenu).attr('attr-show', 0);
     }
 });
 $(".left__box-item a").click(function() {

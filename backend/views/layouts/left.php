@@ -61,6 +61,7 @@ use common\models\User;
 
                     ['label' => 'Новости', 'icon' => 'file-code-o', 'url' => ['/news'], 'visible' => User::isAccess('moderator')],
                     ['label' => 'Мероприятия', 'icon' => 'file-code-o', 'url' => ['/events'], 'visible' => User::isAccess('moderator')],
+                    ['label' => 'Спикеры', 'icon' => 'file-code-o', 'url' => ['/spikers'], 'visible' => User::isAccess('moderator')],
                     ['label' => 'Страны', 'icon' => 'file-code-o', 'url' => ['/countries'], 'visible' => User::isAccess('admin')],
                     ['label' => 'Документы', 'icon' => 'file-code-o', 'url' => ['/documents'], 'visible' => User::isAccess('moderator')],
                     ['label' => 'Балансы', 'icon' => 'file-code-o', 'url' => ['/balanses'], 'visible' => User::isAccess('admin')],

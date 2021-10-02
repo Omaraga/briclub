@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Events;
+use common\models\EventsAndRoles;
 use common\models\News;
 use Yii;
 use common\models\Actions;
@@ -86,8 +87,18 @@ class EventsController extends Controller
                     $link = '/'.$dir2 . $fileName;
                 }
             }
+
             $model->link = $link;
             $model->save();
+            if ($model->roleList){
+                foreach ($model->roleList as $role){
+                    $eventRole = new EventsAndRoles();
+                    $eventRole->event_id = $model->id;
+                    $eventRole->role_id = $role;
+                    $eventRole->save();
+
+                }
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -105,6 +116,7 @@ class EventsController extends Controller
      */
     public function actionUpdate($id)
     {
+        /* @var $model Events*/
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
@@ -127,6 +139,17 @@ class EventsController extends Controller
             }
             $model->link = $link;
             $model->save();
+            if ($model->roleList){
+                foreach ($model->roleList as $role){
+                    if (!EventsAndRoles::isHasPare($model, $role)){
+                        $eventRole = new EventsAndRoles();
+                        $eventRole->event_id = $model->id;
+                        $eventRole->role_id = $role;
+                        $eventRole->save();
+                    }
+
+                }
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -148,6 +171,7 @@ class EventsController extends Controller
 
         return $this->redirect(['index']);
     }
+
 
     /**
      * Finds the Actions model based on its primary key value.

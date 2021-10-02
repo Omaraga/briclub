@@ -32,7 +32,10 @@
         "karpoff/yii2-crop-image-upload": "*",
         "mihaildev/yii2-ckeditor": "*",
         "mihaildev/yii2-elfinder": "*",
+        "kartik-v/yii2-widget-timepicker": "*",
+        "kartik-v/yii2-widget-datetimepicker": "*",
         "phpoffice/phpspreadsheet": "^1.18"
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use phpDocumentor\Reflection\Types\Integer;
 use Yii;
 
 /**
@@ -41,5 +42,18 @@ class EventsAndRoles extends \yii\db\ActiveRecord
             'event_id' => 'Event ID',
             'role_id' => 'Role ID',
         ];
+    }
+
+    public static function getEventRoles(Events $event){
+        return EventsAndRoles::find()->where(['event_id' => $event->id])->all();
+    }
+
+    public static function isHasPare(Events $event, $role){
+        $obj = EventsAndRoles::find()->where(['event_id' => $event->id, 'role_id' => $role])->one();
+        if ($obj){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
