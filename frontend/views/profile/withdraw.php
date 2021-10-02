@@ -17,7 +17,6 @@ $this->registerJs('
 //$this->registerJsFile('/js/jquery.maskedinput.min.js',['depends'=>'yii\web\JqueryAsset']);
 
 ?>
-<link href="/css/style.css" rel="stylesheet">
 <style>
     @media screen and (max-width: 430px) {
         .form-control{

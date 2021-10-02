@@ -4,7 +4,6 @@ $user = User::findOne(Yii::$app->user->identity['id']);
 
 
 ?>
-<link href="/css/style.css" rel="stylesheet">
 <main class="payment d-flex">
     <div class="payment-block">
         <h4 class="w7 margin-bot-50">Оплата титула клуба <span class="txt-green-100">Резидент</span> </h4>

@@ -32,7 +32,9 @@ p{
 .txt-mini{
     font-size: 14px;
 }
-
+.txt-minimal{
+    font-size: 12px;
+}
 
 
 a{text-decoration: none!important;}
@@ -478,7 +480,7 @@ header .top-item{
     padding-bottom: 20px;
 }
 .main-block .main-list .active{
-    color: #fff !important;
+    color: #fff;
 }
 .main-block .main-list .list-item .green{
     background: url(/img/main/green.svg)no-repeat center!important;
@@ -705,6 +707,7 @@ aside .date .circle{
     background: #2A8373;
     border-radius: 4px;
 }
+
 .payment .blocks-img {
     width: 400px;
     height: 220px;
@@ -717,6 +720,10 @@ aside .date .circle{
 
     background: url(/img/payment/main-img2.svg)no-repeat center;
     background-size: cover;
+}
+.payment .blocks-img2 {
+
+    background: url(/img/payment/main-img22.svg)no-repeat center;
 }
 .payment .fon-main{
     width: 560px;
@@ -770,7 +777,25 @@ aside .date .circle{
     border-radius: 4px;
 }
 
+.notifications{
+    width: 330px;
+    height: 400px;
+    background: #110D23;
+    border-radius: 5px;
+    position: absolute;
+    right: 105px;
+    top: 60px;
+    padding: 0 16px;
+}
+.notifications__activitiy{
+    width: 100%;
+    height: 60px;
+    padding: 10px 22px;
+    background: #0F182B;
+    border-radius: 8px;
+    margin-top: 31px;
 
+}
 
 
 
@@ -803,9 +828,6 @@ aside .date .circle{
     }
 }
 @media screen and (max-width: 992px) {
-    header{
-        position: fixed;
-    }
     .main-content{
         margin: 100px 0px 0 0px;
     }
@@ -815,6 +837,13 @@ aside .date .circle{
     .payment-block{
         padding: 130px 16px 0 16px;
     }
+    .header_width{
+        position: fixed;
+    }
+    .notifications{
+        right: 0;
+    }
+
 }
 @media screen and (max-width: 768px) {
     aside{
@@ -878,6 +907,11 @@ aside .date .circle{
         margin: 0 16px;
         padding: 24px 16px;
         margin-top: 32px;
+    }
+    .notifications{
+        width: 100%;
+        top: 95px;
+        overflow-y: scroll;
     }
 }
 @media screen and (max-width: 400px){
