@@ -1,5 +1,6 @@
 <?php
 use common\models\User;
+$this->title = "Оплата системы";
 $user = User::findOne(Yii::$app->user->identity['id']);
 
 
