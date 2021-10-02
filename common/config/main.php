@@ -30,7 +30,7 @@ return [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=briclub',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
         ],
 		

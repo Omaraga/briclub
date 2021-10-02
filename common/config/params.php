@@ -1,7 +1,7 @@
 <?php
 return [
-    'adminEmail' => 'noreply@shanyrakplus.com',
-    'supportEmail' => 'noreply@shanyrakplus.com',
+    'adminEmail' => 'omaraga@mail.ru',
+    'supportEmail' => 'omaraga@mail.ru',
     'user.passwordResetTokenExpire' => 3600,
     'public_password' => '0aa5a6e159d2d68b42ac4c217cb71589',
     'public_id' => 'pk_e20442adc77519a57bf082958b2ac',
