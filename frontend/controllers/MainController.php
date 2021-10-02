@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 use common\models\BriTokens;
+use common\models\Events;
 use common\models\Tokens;
 use common\models\User;
 use common\models\UserRank;
@@ -27,10 +28,14 @@ class MainController extends \yii\web\Controller
         $selRank = UserRank::findOne($selRankId);
 
         $rankList = UserRank::find()->all();
+        $events = Events::find()->all();
+        $userEvents = Events::getUserEvents($user);
         return $this->render('index', [
             'user' => $user,
             'selRank' => $selRank,
             'rankList' => $rankList,
+            'events' => $events,
+            'userEvents' => $userEvents,
         ]);
     }
 

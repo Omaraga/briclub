@@ -6,7 +6,7 @@ use common\models\UserPlatforms;
 $menu = Yii::$app->controller->action->id;
 $controller = Yii::$app->controller->id;
 $user = User::findOne(Yii::$app->user->identity['id']);
-
+$actions = \common\models\Actions::find()->where(['user_id' => $user->id])->all();
 $activated = false;
 if ($user->activ == 1){
     $activated = true;
@@ -25,13 +25,51 @@ array_push($menuItems, ['name' => 'Документы', 'icon' => '<i class="fa 
 array_push($menuItems, ['name' => 'Техподдержка', 'icon' => '<i class="fa fa-wrench" aria-hidden="true"></i>', 'url' => '/', 'access' => false]);
 $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
 ?>
+<div class="notification">
+    <div class="container">
+        <div class="row top">
+            <div class="col-10">
+                <span class="ml-5">Новых уведомлении: <?=sizeof($actions);?></span>
+            </div>
+            <div class="col-1"><a href="#" style="color: #fff;" id="notification-close">X</a></div>
+        </div>
+        <div class="row notification-body">
+            <?foreach ($actions as $action):?>
+            <div class="col-12">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="message-title"><?=$action->title;?> </p>
+                        </div>
+                        <div class="col-4">
+                            <span class="grey"><?=date('d.m.Y',$action->time);?></span>
+                        </div>
+                    </div>
+
+                    <p class="content"><?=$action->title;?></p>
+                </div>
+            </div>
+            <?endforeach;?>
+        </div>
+        <div class="row bottom">
+            <div class="col-12">
+                <a href="/profile/actions">Показать все</a>
+            </div>
+        </div>
+    </div>
+</div>
 <header class="between">
     <div class="logo">
         <a href="/"><img src="/img/logo.svg" alt=""></a>
     </div>
     <div class="top center">
         <div class="top-item center mr-3"><img src="/img/setting.svg" alt=""></div>
-        <div class="top-item center mr-3"><img src="/img/bell.svg" alt=""></div>
+        <div class="top-item center mr-3">
+            <a href="" id="notification-button"><img src="/img/bell.svg" alt="">
+                <?if(sizeof($actions) > 0):?>
+                <span id="notification-bell"><?=sizeof($actions)?></span>
+                <?endif;?>
+            </a></div>
         <div class="top-item center">
             <form action="/site/logout" method="post">
                 <button type="submit" style="border: none; background: transparent; color: #ffffff;font-size: 1.3rem"><i class="fa fa-sign-out" aria-hidden="true" ></i></button>

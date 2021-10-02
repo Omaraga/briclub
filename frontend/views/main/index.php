@@ -3,6 +3,8 @@
 /* @var $user common\models\User*/
 /* @var $selRank common\models\UserRank*/
 /* @var $rankList common\models\UserRank[]*/
+/* @var $events common\models\Events[]*/
+/* @var $userEvents common\models\Events[]*/
 
 $this->title = 'BRIClub';
 $url = 'https://briclub.com';
@@ -37,7 +39,7 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                                         <h4 class="w7">PV</h4>
                                     </div>
                                 </div>
-                                <a href="/" class="fon-gray-800 py-2 px-4 text-white" style="border-radius: 4px;">Мои балансы</a>
+                                <a href="/profile/balance" class="fon-gray-800 py-2 px-4 text-white" style="border-radius: 4px;">Мои балансы</a>
                             </div>
                         </div>
 
@@ -101,41 +103,28 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                     </div>
 
                     <div class="row">
-                        <div class="col">
-                            <div class="cards mx-auto">
-                                <h6 class="w5 activity-title">Мероприятия</h6>
-                                <div class="activity fon-main one">
-                                    <div class="activity-block">
-                                        <div class="rows mb-3">
-                                            <h4 class="w7">22</h4>
-                                            <h6>сентября</h6>
-                                        </div>
-                                        <div class="rows">
-                                            <h6 class="txt-green">Бизнес завтрак</h6>
-                                            <h5 class="w7">Инвестируйте в свое будущее</h5>
+                        <div class="col-12">
+                            <h6 class="w5 activity-title">Мероприятия</h6>
+                        </div>
+                        <?foreach ($events as $event):?>
+                            <?$date = $event->getStartDate();?>
+                            <div class="col-6 mb-4">
+                                <div class="cards mx-auto">
+                                    <div class="activity fon-main one" style="background: url('<?=$event->getImg();?>') no-repeat center; background-size: contain;">
+                                        <div class="activity-block">
+                                            <div class="rows mb-3">
+                                                <h4 class="w7"><?=$date['day'];?></h4>
+                                                <h6><?=$date['monthRus'];?></h6>
+                                            </div>
+                                            <div class="rows">
+                                                <h6 class="txt-green"><?=$event->getTypeName();?></h6>
+                                                <h5 class="w7"><?=$event->title?></h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col mb-3" style="margin-top: 78px;">
-                            <a href="">
-                                <div class="cards mx-auto text-white">
-                                    <div class="activity fon-main two">
-                                        <div class="activity-block">
-                                            <div class="rows mb-3">
-                                                <h4 class="w7">22</h4>
-                                                <h6>сентября</h6>
-                                            </div>
-                                            <div class="rows">
-                                                <h6 class="txt-green">Бизнес завтрак</h6>
-                                                <h5 class="w7">Инвестируйте в свое будущее</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        <?endforeach;?>
                     </div>
 
                 </div>
@@ -144,54 +133,20 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
         <aside class="fon-main px-3" id="aside">
             <div>
                 <h6 class="mb-2">Доступно мне</h6>
-
-                <div class="cardes fon-gray-300 between">
-                    <div class="d-flex align-iteml-center">
-                        <div class="circle fon-gray-200 mr-2 mb-1"></div>
-                        <h6>Онлайн мастер класс</h6>
+                <?foreach ($userEvents as $event):?>
+                    <?$date = $event->getStartDate();?>
+                    <div class="cardes fon-gray-300 between">
+                        <div class="d-flex align-iteml-center">
+                            <div class="circle fon-gray-200 mr-2 mb-1"></div>
+                            <h6><?=$event->getTypeName();?></h6>
+                        </div>
+                        <div class="date center rows">
+                            <h6><?=$date['dayMonth'];?></h6>
+                            <h6><?=$date['time'];?></h6>
+                            <div class="circle center">1</div>
+                        </div>
                     </div>
-                    <div class="date center rows">
-                        <h6>22.09</h6>
-                        <h6>18:00</h6>
-                        <div class="circle center">1</div>
-                    </div>
-                </div>
-
-                <div class="cardes fon-gray-300 between">
-                    <div class="d-flex align-iteml-center">
-                        <div class="circle fon-green-200 mr-2 mb-1"></div>
-                        <h6>Онлайн мастер класс</h6>
-                    </div>
-                    <div class="date center rows">
-                        <h6>22.09</h6>
-                        <h6>18:00</h6>
-                        <div class="circle center">1</div>
-                    </div>
-                </div>
-
-                <div class="cardes fon-gray-300 between">
-                    <div class="d-flex align-iteml-center">
-                        <div class="circle fon-green-200 mr-2 mb-1"></div>
-                        <h6>Онлайн мастер класс</h6>
-                    </div>
-                    <div class="date center rows">
-                        <h6>22.09</h6>
-                        <h6>18:00</h6>
-                        <div class="circle center">1</div>
-                    </div>
-                </div>
-
-                <div class="cardes fon-gray-300 between">
-                    <div class="d-flex align-iteml-center">
-                        <div class="circle fon-green-200 mr-2 mb-1"></div>
-                        <h6>Онлайн мастер класс</h6>
-                    </div>
-                    <div class="date center rows">
-                        <h6>22.09</h6>
-                        <h6>18:00</h6>
-                        <div class="circle center">1</div>
-                    </div>
-                </div>
+                <?endforeach;?>
             </div>
 
             <div class="mt-5 margin-bot-32">
