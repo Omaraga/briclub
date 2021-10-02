@@ -12,7 +12,6 @@ $this->registerJsFile('https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js');
 $this->registerJsFile('https://yastatic.net/share2/share.js');
 ?>
 <main class="d-flex">
-    <main class="d-flex">
         <div class="main-content" id="main">
             <div class="main-block">
 
@@ -26,8 +25,8 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                 </div>
 
                 <div class="scroll">
-
-                    <div class="row mb-4">
+                    <?if($selRank->id <= $user->rank_id):?>
+                        <div class="row mb-4">
                         <div class="col mb-3">
                             <div class="cards mx-auto">
                                 <h6 class="mb-3">Баланс</h6>
@@ -57,7 +56,7 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
 
                                 <div class="fon-main between p-3 mt-3 item-card mb-4">
                                     <img src="img/main/cards-img.svg" alt="">
-                                    <div class="rows">
+                                    <div class="rows <?=($selRank->dividends > 0)?'':'txt-A78B'?>">
                                         <p class="txt-mini"><?=($selRank->dividends > 0)?'Дивиденты в год':'Дивиденты не доступны'?></p>
                                         <h4 class="w5">pv <?=$selRank->dividends;?></h4>
                                     </div>
@@ -66,7 +65,34 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                             </div>
                         </div>
                     </div>
+                    <?else:?>
+                        <div class="row mb-4">
+                        <div class="col">
+                            <div class="cards mx-auto">
+                                <h5 class="mb-3">Средний капитал</h5>
+                                <div class="line item-card flex-line">
+                                    <img src="/img/main/main-line.svg" alt="">
+                                    <div class="rows ms-3">
+                                        <p class="txt mini">Капитал с системы</p>
+                                        <h4 class="w7">PV <?=$selRank->fund;?></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col margin-top-38">
+                            <div class="cards mx-auto">
+                                <div class="line item-card flex-line">
+                                    <img src="/img/main/main-line.svg" alt="">
+                                    <div class="rows ms-3 <?=($selRank->dividends > 0)?'':'txt-A78B'?>">
+                                        <p class="txt-mini"><?=($selRank->dividends > 0)?'Дивиденты в год':'Дивиденты не доступны'?></p>
+                                        <h4 class="w5">pv <?=$selRank->dividends;?></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?endif;?>
                     <div class="row">
                         <div class="col">
                             <div class="cards mx-auto">
@@ -180,7 +206,6 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
             </div>
 
         </aside>
-    </main>
 </main>
 
 <!-- Modal -->
