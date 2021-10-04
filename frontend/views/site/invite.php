@@ -5,61 +5,19 @@
 
 $this->registerJsFile('https://translate.yandex.net/website-widget/v1/widget.js?widgetId=ytWidgetDesk&pageLang=ru&widgetTheme=dark&autoMode=false');
 ?>
-
-<div class="all-page">
-    <div class="block-top" style="height: 100px;">
-        <div class="container">
-            <div class="d-flex pt-3 justify-content-between">
-                <div>
-                    <img src="/img/academy/ref-logo.svg" alt="">
-                </div>
-                <div class="d-none d-md-block">
-                    <img src="/img/academy/ref-img-group.svg" alt="">
-                </div>
-            </div>
+<main class="center invate fon-page">
+    <div class="invate-block">
+        <h6 class="mb-2">Вас приглашает</h6>
+        <h2 class="w3 margin-bot-50"><?=$userParent['fio'];?></h2>
+        <hr class="margin-bot-50">
+        <h4 class="w3 margin-bot-32">в закрытый <span class="w5">Бизнес - клуб </span> премиального уровня</h4>
+        <img src="/img/invate/logo.svg" alt="" class="invate-logo margin-bot-50">
+        <div>
+            <a href="/site/signup?referal=<?=$userParent['username'];?>" class="invate-btn fon-green-500">Зарегистрироваться</a>
         </div>
     </div>
-
-    <section class="mt-5" style="display: flex; margin-top: 140px; align-items: center;">
-        <div class="container">
-            <div style="display: flex; flex-wrap: wrap; align-items: center; margin-top: 68px;">
-                <div class="welcome-title">
-                    <h3 class="w7">Рады приветствовать вас в LSE platform</h3>
-                    <h4 class="welcome-text w5"><span class="text-primary"><?=$userParent['fio'];?></span> рекомендует вам освоить
-                        профессию MLM Предприниматель и принять участие в партнерской программе.</h4>
-                    <a class="btn yellow border-none w7 mt-5 center" href="/site/signup?referal=<?=$userParent['username'];?>">Зарегистрироваться</a>
-                </div>
-                <div class="welcome-img-group">
-                    <div class="welcome-banner">
-                        <div class="welcome-banner_header">
-                            <h3 class="w7">MLM Предприниматель</h3>
-                            <button class="btn-white">Рекомендуемые</button>
-                        </div>
-                        <div class="welcome-banner_body">
-                            <h5>У нас можно научиться новой профессии или получить новые навыки.
-                                Наши программы нацелены на практику, мы следим за актуальностью материал</h5>
-
-                            <div class="welcome_group-list">
-                                <ul class="welcome-banner_body-list">
-                                    <li><span>Длительность</span></li>
-                                    <li><span>Формат обучение</span></li>
-                                    <li><span>Практика</span></li>
-                                </ul>
-                                <ul>
-                                    <li><span class="w6">12 месяцев</span></li>
-                                    <li><span class="w6">Онлайн</span></li>
-                                    <li><span class="w6">Предусмотрена</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-</div>
-
+</main>
+<img src="/img/invate/main-img-bottom.svg" alt="" class="img-bottom">
+<img src="/img/invate/main-img-top.svg" alt="" class="img-top">
 
 
