@@ -44,12 +44,13 @@ class BritestController extends \yii\web\Controller
         $list['total_bri'] = BriTokens::find()->sum('balans');
         $list['total_bri_users'] = BriTokens::find()->count();
         $list['complete_third'] = MatrixRef::find()->where(['slots' => 4, 'platform_id' => 3])->count();
-        $list['third'] = MatrixRef::find()->where(['platform_id' => 3])->count();
+        $list['third'] = MatrixRef::find()->where(['platform_id' => 3])->andWhere(['<', 'slots', 4])->count();
         $list['complete_second'] = MatrixRef::find()->where(['slots' => 4, 'platform_id' => 2])->count();
-        $list['second'] = MatrixRef::find()->where(['platform_id' => 2])->count();
+        $list['second'] = MatrixRef::find()->where(['platform_id' => 2])->andWhere(['<', 'slots', 4])->count();
         $list['complete_first'] = MatrixRef::find()->where(['slots' => 4, 'platform_id' => 1])->count();
-        $list['first'] = MatrixRef::find()->where(['platform_id' => 1])->count();
+        $list['first'] = MatrixRef::find()->where(['platform_id' => 1])->andWhere(['<', 'slots', 4])->count();
         $list['user_branch'] = User::find()->where(['parent_id' => null])->all();
+        $list['user_amount'] = User::find()->count();
 
         return $this->render('view', [
             'list' => $list,

@@ -25,6 +25,9 @@ class Tickets extends \yii\db\ActiveRecord
     const PAYMENT_STATUS_NOT = 0;
     const PAYMENT_STATUS_NEED_PAY = 1;
     const PAYMENT_STATUS_PAYED = 2;
+    const STATUS_CLOSE = 1;
+    const STATUS_ANSWERED = 2;
+    const STATUS_WORK = 3;
     /**
      * {@inheritdoc}
      */

@@ -9,9 +9,12 @@ use Yii;
  *
  * @property int $id
  * @property string $title
+ * @property string $title_rod
  * @property int $position
  * @property string $fund
  * @property string $dividends
+ * @property float $bri_tokens
+ * @property float $grc_tokens
  */
 class UserRank extends \yii\db\ActiveRecord
 {

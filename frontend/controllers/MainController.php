@@ -22,6 +22,9 @@ class MainController extends \yii\web\Controller
     {
         /* @var $user User*/
         $user = Yii::$app->user->identity;
+        if ($user->activ != 1){
+            return $this->redirect('/main/active');
+        }
         if (!$selRankId){
             UserRank::setRank($user);
             $selRankId = $user->rank_id;
@@ -38,6 +41,16 @@ class MainController extends \yii\web\Controller
             'events' => $events,
             'userEvents' => $userEvents,
         ]);
+    }
+
+    public function actionActive(){
+        $user = Yii::$app->user->identity;
+        $events = Events::find()->all();
+        return $this->render('active', [
+            'user' => $user,
+            'events' => $events
+        ]);
+
     }
 
     public function actionEvents($id = null){
