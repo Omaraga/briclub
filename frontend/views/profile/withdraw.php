@@ -5,16 +5,7 @@
 use yii\httpclient\Client;
 use yii\web\View;
 
-
 $this->title = "Вывод средств";
-//$this->registerCssFile('https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css');
-if (!Yii::$app->user->isGuest) {
-    $user = \common\models\User::findOne(Yii::$app->user->identity['id']);
-}
-$this->registerJs('
-   
-');
-//$this->registerJsFile('/js/jquery.maskedinput.min.js',['depends'=>'yii\web\JqueryAsset']);
 
 ?>
 <style>

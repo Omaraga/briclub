@@ -1,9 +1,6 @@
 <?php
 use common\models\User;
 $this->title = "Оплата системы";
-$user = User::findOne(Yii::$app->user->identity['id']);
-
-
 ?>
 <main class="payment d-flex">
     <div class="payment-block">

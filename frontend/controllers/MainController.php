@@ -61,7 +61,10 @@ class MainController extends \yii\web\Controller
      * @return string
      */
     public function actionDocs(){
-        return $this->render('docs', []);
+        $docs = \common\models\Documents::find()->where(['type'=>1,'status'=>1])->orderBy('order asc')->all();
+        return $this->render('docs', [
+            'docs'=>$docs,
+        ]);
     }
 
 

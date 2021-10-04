@@ -559,6 +559,7 @@ class ProfileController extends Controller
             'success' => $success,
             'code' => $code,
             'pretrans' => $pretrans,
+            'user'=>$user,
         ]);
     }
     public function actionWithdrawcancel($id)
@@ -1295,14 +1296,21 @@ class ProfileController extends Controller
     }
 
     public function actionPayment($program=null){
-
+        $user=Yii::$app->user->identity;
         return $this->render('payment', [
+            'user'=>$user,
         ]);
     }
 
     public function actionBalance(){
-
+        $user=Yii::$app->user->identity;
+        if (\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $withdraws = \common\models\Actions::find()->where(['user_id'=>$user['id']])->orderBy('id desc')->limit(4)->all();
         return $this->render('balance', [
+            'user'=>$user,
+            'withdraws'=>$withdraws,
         ]);
     }
 
