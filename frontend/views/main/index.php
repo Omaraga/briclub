@@ -10,6 +10,13 @@ $this->title = 'BRIClub';
 $url = 'https://briclub.com';
 $this->registerJsFile('https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js');
 $this->registerJsFile('https://yastatic.net/share2/share.js');
+//$selRank это таб на главном чей ранг он смотрит
+//$futureSel - для определения открыт ли непрошедший ранг
+if($selRank->id > $user->rank_id){
+    $futureSel = true;
+}else{
+    $futureSel=false;
+}
 ?>
 <main class="d-flex">
         <div class="main-content" id="main">
@@ -32,10 +39,10 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                                 <h6 class="mb-3">Баланс</h6>
                                 <div class="center-line mb-3">
                                     <div class="block-CV center">
-                                        <h4 class="w7">CV <span class="ml-2"><?=$user->w_balans;?></span></h4>
+                                        <h4 class="w7">PV <span class="ml-2"><?=$user->p_balans;?></span></h4>
                                     </div>
                                     <div class="block-PV center ml-3">
-                                        <h4 class="w7">PV</h4>
+                                        <h4 class="w7">CV</h4>
                                     </div>
                                 </div>
                                 <a href="/profile/balance" class="fon-gray-800 py-2 px-4 text-white" style="border-radius: 4px;">Мои балансы</a>
@@ -69,7 +76,7 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                         <div class="row mb-4">
                         <div class="col">
                             <div class="cards mx-auto">
-                                <h5 class="mb-3">Средний капитал</h5>
+                                <h5 class="mb-3">Средний капитал <span style="color: #02A651;"><?=$selRank->title_rod;?></span></h5>
                                 <div class="line item-card flex-line">
                                     <img src="/img/main/main-line.svg" alt="">
                                     <div class="rows ms-3">
@@ -93,10 +100,11 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                         </div>
                     </div>
                     <?endif;?>
+
                     <div class="row">
                         <div class="col">
                             <div class="cards mx-auto">
-                                <h5 class="mb-3">Мои акции</h5>
+                                <h5 class="mb-3"><?=($futureSel)?'Количество акции <span style="color: #02A651;">'.$selRank->title_rod.'</span>':'Мои акции';?></h5>
                                 <div class="banner item-card">
                                     <div class="banner-header between">
                                         <div class="d-flex">
@@ -105,8 +113,13 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                                         </div>
                                         <p class="text-mini">1 BRI = 2$</p>
                                     </div>
-                                    <h4 class="w7"><?=number_format($user->getBalance('bri'),2,'.', '');?> BRI</h4>
-                                    <h5 class="w5 txt-AAA"><?=$user->getBalance('bri')*2;?> $</h5>
+                                    <?if($futureSel):?>
+                                        <h4 class="w7"><?=number_format($selRank->bri_tokens,2,'.', '');?> BRI</h4>
+                                        <h5 class="w5 txt-AAA"><?=$selRank->bri_tokens*2;?> $</h5>
+                                    <?else:?>
+                                        <h4 class="w7"><?=number_format($user->getBalance('bri'),2,'.', '');?> BRI</h4>
+                                        <h5 class="w5 txt-AAA"><?=$user->getBalance('bri')*2;?> $</h5>
+                                    <?endif;?>
                                 </div>
                             </div>
                         </div>
@@ -121,13 +134,20 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                                         </div>
                                         <p class="text-mini">1 GRC = 10$</p>
                                     </div>
-                                    <h4 class="w7"><?=number_format($user->getBalance('grc'),2,'.', '');?> GRC</h4>
-                                    <h5 class="w5 txt-AAA"><?=$user->getBalance('grc') * 10;?> $</h5>
+                                    <?if($futureSel):?>
+                                        <h4 class="w7"><?=number_format($selRank->grc_tokens,2,'.', '');?> GRC</h4>
+                                        <h5 class="w5 txt-AAA"><?=$selRank->grc_tokens*10;?> $</h5>
+                                    <?else:?>
+                                        <h4 class="w7"><?=number_format($user->getBalance('grc'),2,'.', '');?> GRC</h4>
+                                        <h5 class="w5 txt-AAA"><?=$user->getBalance('grc') * 10;?> $</h5>
+                                    <?endif;?>
+
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <?if(!$futureSel):?>
                     <div class="row">
                         <div class="col-12">
                             <h6 class="w5 activity-title">Мероприятия</h6>
@@ -152,6 +172,7 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
                             </div>
                         <?endforeach;?>
                     </div>
+                    <?endif;?>
 
                 </div>
             </div>
@@ -200,7 +221,7 @@ $this->registerJsFile('https://yastatic.net/share2/share.js');
 
             <div>
 
-                <h6 class="mb-3">Календарь событий</h6>
+<!--                <h6 class="mb-3">Календарь событий</h6>-->
 
 
             </div>

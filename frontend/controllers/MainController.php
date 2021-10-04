@@ -3,14 +3,10 @@
 namespace frontend\controllers;
 use common\models\BriTokens;
 use common\models\Events;
-use common\models\EventType;
-use common\models\EventsAndRoles;
 use common\models\Tokens;
 use common\models\User;
 use common\models\UserRank;
 use Yii;
-use yii\base\Event;
-
 class MainController extends \yii\web\Controller
 {
     public function beforeAction($action)
@@ -26,6 +22,9 @@ class MainController extends \yii\web\Controller
     {
         /* @var $user User*/
         $user = Yii::$app->user->identity;
+        if ($user->activ != 1){
+            return $this->redirect('/main/active');
+        }
         if (!$selRankId){
             UserRank::setRank($user);
             $selRankId = $user->rank_id;
@@ -44,32 +43,18 @@ class MainController extends \yii\web\Controller
         ]);
     }
 
-    public function actionEvents($id = null){
+    public function actionActive(){
         $user = Yii::$app->user->identity;
         $events = Events::find()->all();
-        $eventType = EventType::find()->all();
-        $userEvents = Events::getUserEvents($user);
+        return $this->render('active', [
+            'user' => $user,
+            'events' => $events
+        ]);
 
-        if(!$id){
-            return $this->render('events',
-            [
-                'user' => $user,
-                'events' => $events,
-                'eventType' => $eventType,
-                'userEvents' => $userEvents,
-            ]
-            );
-        }else{
-            return $this->render('event',
-                [
-                    'user' => $user,
-                    'events' => $events,
-                    'eventType' => $eventType,
-                    'userEvents' => $userEvents,
+    }
 
-                ]
-            );
-        }
+    public function actionEvents($id = null){
+
     }
 
     /**
@@ -78,5 +63,6 @@ class MainController extends \yii\web\Controller
     public function actionDocs(){
         return $this->render('docs', []);
     }
+
 
 }

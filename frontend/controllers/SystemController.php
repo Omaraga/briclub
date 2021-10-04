@@ -1,13 +1,7 @@
 <?php
 
 namespace frontend\controllers;
-
-use common\models\User;
-use common\models\UserRank;
 use Yii;
-use common\models\ActionTypes;
-use common\models\Actions;
-
 class SystemController extends \yii\web\Controller
 {
     public function beforeAction($action)
@@ -31,21 +25,7 @@ class SystemController extends \yii\web\Controller
      * @return string
      */
     public function actionStatistic(){
-        if(Yii::$app->user->isGuest){
-            return $this->redirect('/site/login');
-        }
-        $user = Yii::$app->user->identity;
-        $nextrank = UserRank::find()->where(['id'=>($user['rank_id']+1)])->one();
-        $rank = UserRank::find()->where(['id'=>$user['rank_id']])->one();
-        $actionTypes = ActionTypes::find()->all();
-        $actions = Actions::find()->where(['user_id'=>$user['id']])->andWhere(['type'=>7])->sum('sum');
-        return $this->render('statistic', [
-            'user'=>$user,
-            'nextrank'=>$nextrank,
-            'rank'=>$rank,
-            'actionTypes'=>$actionTypes,
-            'actions'=>$actions,
-        ]);
+        return $this->render('statistic');
     }
 
 }

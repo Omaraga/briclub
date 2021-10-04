@@ -32,9 +32,7 @@ p{
 .txt-mini{
     font-size: 14px;
 }
-.txt-minimal{
-    font-size: 12px;
-}
+
 
 
 a{text-decoration: none!important;}
@@ -54,10 +52,14 @@ ul{
 .txt-green-100{color: #039C6F;}
 .txt-99A1{color:#99A1FF;}
 .txt-6A7{color: #6A70B5;}
+.txt-gray{color:#706C82;}
 .txt-A78{color: #A78B8B;}
 .txt-A78B{color:#A78B8B;}
 .txt-B8B6{color: #B8B6B6;}
-
+.txt-green-200{color: #02A651;}
+.txt-yallow{color:#F8BE36;}
+.txt-blue{color:#4B8DE4;}
+.txt-blue-200{color: #349DA8;}
 
 
 .fon-page{
@@ -96,6 +98,11 @@ ul{
 .fon-green-400{
     background: linear-gradient(90deg, #0BA360 0%, #3CBA92 100%);
 }
+.fon-red-100{
+    background: #F52C00;
+}
+.fon-yallow-100{background:#F8BE36;}
+.fon-blue-100{background:#4B8DE4;}
 .fon-btn-green{
     background: #2A8373;
     color: #fff;
@@ -409,12 +416,20 @@ button{
     display: none;
     background: linear-gradient(180deg, rgba(2, 166, 81, 0) 1.56%, #02A651 52.08%, rgba(2, 166, 81, 0) 100%);
 }
-.sidebar nav .list-item:hover .list-link{
+.sidebar nav li.active .list-link{
     background: #211E37;
 }
+.sidebar nav li.active .list-item-line{
+    display: block;
+}
+
 .sidebar nav .list-item:hover .list-item-line{
     display: block;
 }
+.sidebar nav .list-item:hover .list-link{
+    background: #211E37;
+}
+
 .sidebar nav .list-link{
     width: 100%;
     height: 48px;
@@ -445,9 +460,6 @@ header{
     background: #0B071D;
     z-index: 1;
 }
-header .logo{
-
-}
 header .top{
     padding-top: 24px;
     margin-bottom: 70px;
@@ -473,16 +485,6 @@ header .top-item{
 .main-content{
     width: 100%;
     margin: 0 24px 0 16px;
-
-    border-width: 1px;
-    border-style: solid;
-    border-top: 1px solid rgba(2, 166, 81, 1);
-    border-image:
-            linear-gradient(
-                    to bottom,
-                    rgba(2, 166, 81, 1),
-                    rgba(2, 166, 81, 0)
-            ) 1 100%;
 }
 .main-block{
     padding: 35px 30px;
@@ -752,10 +754,6 @@ aside .date .circle{
     background: url(/img/payment/main-img2.svg)no-repeat center;
     background-size: cover;
 }
-.payment .blocks-img2 {
-
-    background: url(/img/payment/main-img22.svg)no-repeat center;
-}
 .payment .fon-main{
     width: 560px;
 
@@ -868,6 +866,7 @@ aside .date .circle{
     background: #00CDA8;
     border-radius: 4px;
 }
+
 
 .merop a{
     color: #fff;
@@ -1006,6 +1005,140 @@ aside .date .circle{
 
 
 
+.support button{
+    width: 227px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+}
+.support .line{
+    width: 80%;
+    background: #0F182B;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px 16px;
+}
+.support .line:hover{
+    background: #263554;
+}
+
+.support .circle{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.support .block{
+    width: 576px;
+    height: 615px;
+    padding: 48px;
+    background: #110D23;
+    border: 1px solid #192233;
+    border-radius: 4px;
+}
+.support .block .box{
+    width: 100%;
+    height: 400px;
+}
+.support .block .box div{
+    width: 100%;
+}
+.support .block .box input{
+    width: 100%;
+    height: 40px;
+    background: #0B071D;
+    border: 1px solid #192233;
+    border-radius: 4px;
+    margin-top: 12px;
+    padding: 11px 16px;
+    color: #fff;
+}
+.support .block .box .input-form-text input{
+    width: 100%;
+    height: 80px;
+    background: #0B071D;
+    border: 1px solid #192233;
+    border-radius: 4px;
+    margin-top: 12px;
+    padding: 11px 16px;
+    color: #fff;
+}
+.support .block .box .input-form-massege input{
+    width: 100%;
+    height: 48px;
+    background: #0B071D;
+    border: 1px solid #192233;
+    border-radius: 4px;
+    margin-top: 12px;
+    padding: 11px 16px;
+    color: #fff;
+}
+.support .block .box button{
+    width: 48px;
+    height: 48px;
+}
+
+
+
+
+.settings .block-img{
+    width: 555px;
+    height: 120px;
+    padding: 28px 24px;
+    background: url(/img/settings/main-img.png)no-repeat center;
+    background-size: cover;
+}
+.settings  .img-user{
+    width: 64px;
+    height: 64px;
+
+    background: #655F81;
+    border-radius: 4px;
+}
+.settings .input-form input{
+    width: 360px;
+    height: 40px;
+    background: #292344;
+    border: 1px solid #192233;
+    border-radius: 4px;
+    margin-top: 12px;
+    padding: 11px 16px;
+    color: #fff;
+}
+.settings .input-form{
+    margin-bottom: 32px;
+}
+.settings button{
+    width: 135px;
+    height: 40px;
+
+    background: #2A8373;
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+}
+.settings .line{
+    width: 360px;
+    height: 55px;
+
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    background: #161C2B;
+    border-radius: 4px;
+}
+.settings .circle{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+
+
+
+
+
 @media screen and (max-width: 1387px) {
     .main-block .cards{
         width: 100%;
@@ -1054,11 +1187,12 @@ aside .date .circle{
     header{
         position: fixed;
     }
-    .main-content{
-        margin: 100px 0px 0 0px;
+    main{
+        margin-top: 125px;
+        padding: 0 16px;
     }
-    aside{
-        margin-top: 100px;
+    .main-content{
+        margin: 0px 0px 0 0px;
     }
     .payment-block{
         padding: 130px 16px 0 16px;
@@ -1088,9 +1222,6 @@ aside .date .circle{
     }
     main{
         width: 100%;
-    }
-    .main-content{
-        margin: 100px 0px 0 0px;
     }
     .before{
         padding: 0px 16px 0 24px;
@@ -1129,6 +1260,9 @@ aside .date .circle{
     .activity .activity-line .hiden2{
         display: none;
     }
+    .support .block {
+        width: 540px;
+    }
 }
 @media screen and (max-width: 575px){
     .register-content {
@@ -1151,6 +1285,14 @@ aside .date .circle{
     .activity .activity-line{
         height: 67px;
     }
+    .merop .cards{
+        width: 100%;
+        margin-right: 0;
+    }
+    .support .block {
+        width: 100%;
+        padding: 40px 16px;
+    }
 }
 @media screen and (max-width: 400px){
     .main-content{
@@ -1168,7 +1310,10 @@ aside .date .circle{
     .before .cards li{
         width: 100%;
     }
-    .merop .cards{
+    .before{
+        padding: 0px;
+    }
+    .merop .merop-content .banner{
         width: 100%;
         margin-right: 0;
     }
