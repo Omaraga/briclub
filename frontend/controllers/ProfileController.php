@@ -1233,54 +1233,18 @@ class ProfileController extends Controller
                 $model->country_id = Yii::$app->request->post()["VerificationForm"]['country_id'];
                 $model->time = time();
 
-                $file1 = UploadedFile::getInstance($verificationForm, 'file1');
-                $file2 = UploadedFile::getInstance($verificationForm, 'file2');
-                $file3 = UploadedFile::getInstance($verificationForm, 'file3');
-
-
-                if($file1){
-                    $verificationForm->file1 = $file1;
-                    if ($verificationForm->validate(['file1'])) {
-
-                        $rand = rand(900000,9000000);
-                        $dir = Yii::getAlias('@frontend/web/docs/verification/');
-                        $dir2 = Yii::getAlias('docs/verification/');
-                        $fileName = $rand . '.' . $verificationForm->file1->extension;
-                        $verificationForm->file1->saveAs($dir . $fileName);
-                        $verificationForm->file1 = $fileName; // без этого ошибка
-                        $link1 = '/'.$dir2 . $fileName;
+                if (Yii::$app->session->has('verification')){
+                    $filesArr = Yii::$app->session->get('verification');
+                    if (isset($filesArr['file1'])){
+                        $model->doc1 = $filesArr['file1'];
                     }
-                    $model->doc1 = $link1;
-                }
-
-                if($file2){
-                    $verificationForm->file2 = $file2;
-                    if ($verificationForm->validate(['file2'])) {
-
-                        $rand = rand(900000,9000000);
-                        $dir = Yii::getAlias('@frontend/web/docs/verification/');
-                        $dir2 = Yii::getAlias('docs/verification/');
-                        $fileName = $rand . '.' . $verificationForm->file2->extension;
-                        $verificationForm->file2->saveAs($dir . $fileName);
-                        $verificationForm->file2 = $fileName; // без этого ошибка
-                        $link2 = '/'.$dir2 . $fileName;
+                    if (isset($filesArr['file2'])){
+                        $model->doc2 = $filesArr['file2'];
                     }
-                    $model->doc2 = $link2;
-                }
-
-                if($file3){
-                    $verificationForm->file3 = $file3;
-                    if ($verificationForm->validate(['file3'])) {
-
-                        $rand = rand(900000,9000000);
-                        $dir = Yii::getAlias('@frontend/web/docs/verification/');
-                        $dir2 = Yii::getAlias('docs/verification/');
-                        $fileName = $rand . '.' . $verificationForm->file3->extension;
-                        $verificationForm->file3->saveAs($dir . $fileName);
-                        $verificationForm->file3 = $fileName; // без этого ошибка
-                        $link3 = '/'.$dir2 . $fileName;
+                    if (isset($filesArr['file3'])){
+                        $model->doc3 = $filesArr['file3'];
                     }
-                    $model->doc3 = $link3;
+                    Yii::$app->session->remove('verification');
                 }
                 $model->stage = Verifications::STAGE_USER_DATA_WAIT_VALID;
                 if ($model->save()) {
@@ -1299,20 +1263,12 @@ class ProfileController extends Controller
                 $model->address = Yii::$app->request->post()["VerificationForm"]['address'];
                 $model->city = Yii::$app->request->post()["VerificationForm"]['city'];
                 $model->post_index = Yii::$app->request->post()["VerificationForm"]['postIndex'];
-                $file4 = UploadedFile::getInstance($verificationForm, 'file4');
-                if($file4){
-                    $verificationForm->file4 = $file4;
-                    if ($verificationForm->validate(['file4'])) {
-
-                        $rand = rand(900000,9000000);
-                        $dir = Yii::getAlias('@frontend/web/docs/verification/');
-                        $dir2 = Yii::getAlias('docs/verification/');
-                        $fileName = $rand . '.' . $verificationForm->file4->extension;
-                        $verificationForm->file4->saveAs($dir . $fileName);
-                        $verificationForm->file4 = $fileName; // без этого ошибка
-                        $link4 = '/'.$dir2 . $fileName;
+                if (Yii::$app->session->has('verification')){
+                    $filesArr = Yii::$app->session->get('verification');
+                    if (isset($filesArr['file4'])){
+                        $model->doc4 = $filesArr['file4'];
                     }
-                    $model->doc4 = $link4;
+                    Yii::$app->session->remove('verification');
                 }
 
                 $model->stage = Verifications::STAGE_ADDRESS_WAIT_VALID;
