@@ -20,14 +20,13 @@
             <div class="block">
                 <div class="between">
                     <div class="rows">
-                        <h3 class="w7 mb-2">PV <span><?=$rank->fund?></span></h3>
+                        <h3 class="w7 mb-2">PV <span><?=$actions?></span></h3>
                         <h5>Капитал с системы</h5>
                     </div>
                     <img src="/img/statistic/card-img.svg" alt="">
                 </div>
                 <div class="info mt-5">
-                    <p class="txt-mini mb-2">Ожидаемый капитал с системы: <span class="txt-mini w7
-                    txt-green-100"><?=$rank->title?></span></p>
+                    <p class="txt-mini mb-2">Ожидаемый капитал с системы: <span class="txt-mini w7  txt-green-100"><?=$nextrank->title?></span></p>
                     <div class="progres mb-3"><div class="bar"></div></div>
                     <div class="between">
                         <p class="txt-mini">1/7</p>

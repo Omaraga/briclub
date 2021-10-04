@@ -41,7 +41,11 @@ class MainController extends \yii\web\Controller
     }
 
     public function actionEvents($id = null){
-
+        if(!$id){
+            return $this->render('events');
+        }else{
+            return $this->render('event');
+        }
     }
 
     /**

@@ -846,6 +846,67 @@ aside .date .circle{
     border-radius: 4px;
 }
 
+.merop a{
+    color: #fff;
+}
+.merop-content{
+    width: 100%;
+}
+.merop .cards{
+    width: 320px;
+    height: 265px;
+
+    padding: 8px;
+    margin-right: 55px;
+    margin-bottom: 50px;
+
+    border-radius: 8px;
+
+}
+.merop .info{
+    width: 95px;
+    height: 25px;
+    border-radius: 4px;
+    margin-bottom: 65px;
+}
+.merop .one{
+    background: url(/img/merop/one.png)no-repeat center;
+    background-size: cover;
+}
+.merop .cards .content{
+    width: 100%;
+    background: rgba(17, 13, 35, 0.9);
+    border-radius: 8px;
+    padding: 10px;
+}
+.merop .merop-content .text{
+    width: 590px;
+}
+.merop .merop-content .banner-block{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.merop .merop-content .banner{
+    width: 320px;
+    height: 120px;
+    background: url(/img/merop/banner.png)no-repeat center;
+    padding: 16px;
+}
+.merop .merop-content .banner img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.merop .merop-content .main-img{
+    max-width: 695px;
+    max-height: 310px;
+}
+.merop .merop-content .banner-one{
+    margin-right: 40px;
+    margin-bottom: 24px;
+}
+
 /*Notification start*/
 .notification{
     position: absolute;
@@ -926,6 +987,9 @@ aside .date .circle{
     .main-block .cards{
         width: 100%;
     }
+    .merop .merop-content .main-img{
+        width: 590px;
+    }
 }
 @media screen and (max-width: 1313px) {
     .before{
@@ -948,6 +1012,19 @@ aside .date .circle{
     .payment .fon-main{
         margin-top: 38px;
         margin-left: 16px;
+    }
+    .merop .merop-content .text{
+        width: 98%;
+    }
+}
+@media screen and (max-width: 1213px){
+    .merop .merop-content .main-img{
+        width: 490px;
+    }
+}
+@media screen and (max-width: 1115px){
+    .merop .merop-content .main-img{
+        width: 390px;
     }
 }
 @media screen and (max-width: 992px) {
@@ -973,6 +1050,9 @@ aside .date .circle{
     }
     .activity .activity-line{
         width: 98%;
+    }
+    .merop .merop-content .main-img{
+        width: 100%;
     }
 }
 @media screen and (max-width: 768px) {
@@ -1064,6 +1144,10 @@ aside .date .circle{
     }
     .before .cards li{
         width: 100%;
+    }
+    .merop .cards{
+        width: 100%;
+        margin-right: 0;
     }
 }
 
