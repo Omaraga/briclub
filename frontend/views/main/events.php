@@ -1,72 +1,39 @@
+<?php
+if ($userEvents )
+$access = 'green-200';
+$access = 'gray-500';
+$access = 'red-100';
+
+
+?>
+
+
 <main class="merop blocks-top">
 
     <div class="merop-content">
         <h4 class="w7 mb-4">Мероприятия</h4>
 
         <div class="around flex-wrap">
-            <a href="#">
+            <?foreach($events as $event):?>
+                <?$date = $event->getStartDate();?>
+                <a href="#">
                 <div class="cards one">
-                    <div class="info fon-gray-500 center">прошедший</div>
+                    <div class="info fon-green-200 center"><?=$access?></div>
                     <div class="content rows">
                         <div class="rows">
-                            <h4 class="w7 mb-1">27</h4>
-                            <h6>Сентябрь</h6>
+                            <h4 class="w7 mb-1"><?=$date['day'];?></h4>
+                            <h6><?=$date['monthRus'];?></h6>
                         </div>
                         <div class="mt-3">
-                            <h6 class="txt-green-100">Онлайн мастер класс</h6>
-                            <h5 class="w7">Инвестируйте в свое будущее</h5>
+                            <h6 class="txt-green-100"><?=$event->getTypeName();?></h6>
+                            <h5 class="w7"><?=$event['title']?></h5>
                         </div>
                     </div>
                 </div>
             </a>
+            <?endforeach;?>
 
-            <a href="#">
-                <div class="cards one">
-                    <div class="info fon-green-200 center">доступно</div>
-                    <div class="content rows">
-                        <div class="rows">
-                            <h4 class="w7 mb-1">27</h4>
-                            <h6>Сентябрь</h6>
-                        </div>
-                        <div class="mt-3">
-                            <h6 class="txt-green-100">Онлайн мастер класс</h6>
-                            <h5 class="w7">Инвестируйте в свое будущее</h5>
-                        </div>
-                    </div>
-                </div>
-            </a>
 
-            <a href="#">
-                <div class="cards one">
-                    <div class="info fon-gray-500 center">прошедший</div>
-                    <div class="content rows">
-                        <div class="rows">
-                            <h4 class="w7 mb-1">27</h4>
-                            <h6>Сентябрь</h6>
-                        </div>
-                        <div class="mt-3">
-                            <h6 class="txt-green-100">Онлайн мастер класс</h6>
-                            <h5 class="w7">Инвестируйте в свое будущее</h5>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#">
-                <div class="cards one">
-                    <div class="info fon-red-100 center">доступно</div>
-                    <div class="content rows">
-                        <div class="rows">
-                            <h4 class="w7 mb-1">27</h4>
-                            <h6>Сентябрь</h6>
-                        </div>
-                        <div class="mt-3">
-                            <h6 class="txt-green-100">Онлайн мастер класс</h6>
-                            <h5 class="w7">Инвестируйте в свое будущее</h5>
-                        </div>
-                    </div>
-                </div>
-            </a>
         </div>
     </div>
 

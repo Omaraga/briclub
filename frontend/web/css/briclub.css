@@ -56,6 +56,8 @@ ul{
 .txt-6A7{color: #6A70B5;}
 .txt-A78{color: #A78B8B;}
 .txt-A78B{color:#A78B8B;}
+.txt-B8B6{color: #B8B6B6;}
+
 
 
 .fon-page{
@@ -81,6 +83,9 @@ ul{
 }
 .fon-gray-400{
     background: #2F3046;
+}
+.fon-gray-500{
+    background: rgba(140, 142, 173, 0.5);
 }
 .fon-green-200{
     background: #02A651;
@@ -148,6 +153,11 @@ ul{
 .flex-line{
     display: flex;
     align-items: center;
+}
+.blocks-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 .rows{
     display: flex;
@@ -449,6 +459,17 @@ header .top-item{
     border-radius: 4px;
     cursor: pointer;
 }
+.border-gradient{
+    border-width: 1px;
+    border-style: solid;
+    border-top: 1px solid rgba(2, 166, 81, 1);
+    border-image:
+            linear-gradient(
+                    to bottom,
+                    rgba(2, 166, 81, 1),
+                    rgba(2, 166, 81, 0)
+            ) 1 100%;
+}
 .main-content{
     width: 100%;
     margin: 0 24px 0 16px;
@@ -571,7 +592,9 @@ header .top-item{
 }
 
 
-
+.before .main-content{
+    padding-left: 18px;
+}
 .before .cards{
     width: 100%;
     min-height: 260px;

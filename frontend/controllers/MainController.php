@@ -3,10 +3,14 @@
 namespace frontend\controllers;
 use common\models\BriTokens;
 use common\models\Events;
+use common\models\EventType;
+use common\models\EventsAndRoles;
 use common\models\Tokens;
 use common\models\User;
 use common\models\UserRank;
 use Yii;
+use yii\base\Event;
+
 class MainController extends \yii\web\Controller
 {
     public function beforeAction($action)
@@ -41,10 +45,30 @@ class MainController extends \yii\web\Controller
     }
 
     public function actionEvents($id = null){
+        $user = Yii::$app->user->identity;
+        $events = Events::find()->all();
+        $eventType = EventType::find()->all();
+        $userEvents = Events::getUserEvents($user);
+
         if(!$id){
-            return $this->render('events');
+            return $this->render('events',
+            [
+                'user' => $user,
+                'events' => $events,
+                'eventType' => $eventType,
+                'userEvents' => $userEvents,
+            ]
+            );
         }else{
-            return $this->render('event');
+            return $this->render('event',
+                [
+                    'user' => $user,
+                    'events' => $events,
+                    'eventType' => $eventType,
+                    'userEvents' => $userEvents,
+
+                ]
+            );
         }
     }
 
