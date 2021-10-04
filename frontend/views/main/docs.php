@@ -1,5 +1,4 @@
 <?php
-$docs = \common\models\Documents::find()->where(['type'=>1,'status'=>1])->orderBy('order asc')->all();
 
 ?>
 <style>

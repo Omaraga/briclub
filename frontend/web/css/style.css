@@ -32,7 +32,9 @@ p{
 .txt-mini{
     font-size: 14px;
 }
-
+.txt-minimal{
+    font-size: 12px;
+}
 
 
 a{text-decoration: none!important;}
@@ -52,14 +54,7 @@ ul{
 .txt-green-100{color: #039C6F;}
 .txt-99A1{color:#99A1FF;}
 .txt-6A7{color: #6A70B5;}
-.txt-gray{color:#706C82;}
 .txt-A78{color: #A78B8B;}
-.txt-A78B{color:#A78B8B;}
-.txt-B8B6{color: #B8B6B6;}
-.txt-green-200{color: #02A651;}
-.txt-yallow{color:#F8BE36;}
-.txt-blue{color:#4B8DE4;}
-.txt-blue-200{color: #349DA8;}
 
 
 .fon-page{
@@ -81,13 +76,10 @@ ul{
     background: #5A5A5A;
 }
 .fon-gray-300{
-    background: #1A2233;
+    background: #1A2233;   
 }
 .fon-gray-400{
     background: #2F3046;
-}
-.fon-gray-500{
-    background: rgba(140, 142, 173, 0.5);
 }
 .fon-green-200{
     background: #02A651;
@@ -98,11 +90,6 @@ ul{
 .fon-green-400{
     background: linear-gradient(90deg, #0BA360 0%, #3CBA92 100%);
 }
-.fon-red-100{
-    background: #F52C00;
-}
-.fon-yallow-100{background:#F8BE36;}
-.fon-blue-100{background:#4B8DE4;}
 .fon-btn-green{
     background: #2A8373;
     color: #fff;
@@ -160,11 +147,6 @@ ul{
 .flex-line{
     display: flex;
     align-items: center;
-}
-.blocks-top{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
 }
 .rows{
     display: flex;
@@ -346,7 +328,7 @@ button{
 }
 .elips{
     width: 64px;
-    height: 64px;
+    height: 64px; 
 
     border-radius: 50%;
     border-top: 1px solid #2A8373;
@@ -416,23 +398,15 @@ button{
     display: none;
     background: linear-gradient(180deg, rgba(2, 166, 81, 0) 1.56%, #02A651 52.08%, rgba(2, 166, 81, 0) 100%);
 }
-.sidebar nav li.active .list-link{
-    background: #211E37;
-}
-.sidebar nav li.active .list-item-line{
-    display: block;
-}
-
-.sidebar nav .list-item:hover .list-item-line{
-    display: block;
-}
 .sidebar nav .list-item:hover .list-link{
     background: #211E37;
 }
-
+.sidebar nav .list-item:hover .list-item-line{
+    display: block;
+}
 .sidebar nav .list-link{
     width: 100%;
-    height: 48px;
+    height: 48px; 
 
     display: flex;
     align-items: center;
@@ -460,6 +434,9 @@ header{
     background: #0B071D;
     z-index: 1;
 }
+header .logo{
+
+}
 header .top{
     padding-top: 24px;
     margin-bottom: 70px;
@@ -471,20 +448,19 @@ header .top-item{
     border-radius: 4px;
     cursor: pointer;
 }
-.border-gradient{
-    border-width: 1px;
-    border-style: solid;
-    border-top: 1px solid rgba(2, 166, 81, 1);
-    border-image:
-            linear-gradient(
-                    to bottom,
-                    rgba(2, 166, 81, 1),
-                    rgba(2, 166, 81, 0)
-            ) 1 100%;
-}
 .main-content{
     width: 100%;
     margin: 0 24px 0 16px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-top: 1px solid rgba(2, 166, 81, 1);
+    border-image: 
+      linear-gradient(
+        to bottom, 
+        rgba(2, 166, 81, 1),
+      rgba(2, 166, 81, 0)
+      ) 1 100%;
 }
 .main-block{
     padding: 35px 30px;
@@ -505,9 +481,6 @@ header .top-item{
 }
 .main-block .main-list .active{
     color: #fff;
-}
-.main-block .main-list a:hover{
-    color: #5F738B;
 }
 .main-block .main-list .list-item .green{
     background: url(/img/main/green.svg)no-repeat center!important;
@@ -541,11 +514,11 @@ header .top-item{
 .main-block .cards .one{
     background: url(/img/main/1.png)no-repeat center;
     background-size: contain;
-}
+} 
 .main-block .cards .two{
     background: url(/img/main/2.png)no-repeat center;
     background-size: contain;
-}
+} 
 .main-block .item-card{
     min-width: 282px;
 }
@@ -556,18 +529,13 @@ header .top-item{
     padding: 16px;
 
     background: linear-gradient(90deg, #09203F 0%, #537895 100%);
-    border-radius: 8px;
+    border-radius: 8px; 
 }
 .banner-2{
     background: linear-gradient(90deg, #0250C5 0%, #D43F8D 100%)!important;
 }
 .main-block .banner-header{
     margin-bottom: 14px;
-}
-.main-block .line{
-    background: #110D23;
-    border-radius: 8px;
-    padding: 18px 16px;
 }
 .main-block .activity{
     width: 320px;
@@ -594,9 +562,7 @@ header .top-item{
 }
 
 
-.before .main-content{
-    padding-left: 18px;
-}
+
 .before .cards{
     width: 100%;
     min-height: 260px;
@@ -740,7 +706,7 @@ aside .date .circle{
     padding: 13px 48px;
     background: #2A8373;
     border-radius: 4px;
-}
+}  
 .payment .blocks-img {
     width: 400px;
     height: 220px;
@@ -753,9 +719,6 @@ aside .date .circle{
 
     background: url(/img/payment/main-img2.svg)no-repeat center;
     background-size: cover;
-}
-.blocks-img2{
-    background: url(/img/payment/main-img22.svg)no-repeat center!important;
 }
 .payment .fon-main{
     width: 560px;
@@ -784,13 +747,11 @@ aside .date .circle{
     margin-top: 160px;
 }
 .payment .box .banner{
+    position: absolute;
+    top: -85px;
+    right: 80px;
     width: 400px;
     height: 180px;
-
-    margin: 0 auto;
-    margin-top: -220px;
-    margin-bottom: 48px;
-
     background: url(/img/payment/main-img-mini.svg)no-repeat center;
 }
 .payment .tab-content input{
@@ -811,343 +772,31 @@ aside .date .circle{
     border-radius: 4px;
 }
 
-
-
-
-.activity-line{
-    width: 90%;
-    height: 56px;
-    padding: 22px 30px;
-    background: #0F182A;
-}
-.activity-line:hover{
-    background: #263554;
-    border-radius: 4px 4px 0px 0px;
-}
-.activity .activity-line .hiden{
-    display: none;
-}
-.activity .activity-line .hiden2{
-    display: block;
-}
-
-
-
-
-
-.statistic .block{
-    width: 420px;
-    height: 300px;
-
-    background: linear-gradient(104.25deg, rgba(58, 53, 81, 0.2) 0%, rgba(45, 40, 69, 0.2) 100%), rgba(241, 241, 241, 0.1);
-    box-shadow: inset 0px 0.5px 2px rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(8px);
-
-    margin-top: 32px;
-    padding: 32px;
-
-    border-radius: 4px;
-}
-.statistic .info{
-    width: 100%;
-    height: 110px;
-
-    padding: 24px 16px 0 16px;
-
-    background: #212F4A;
-    border-radius: 8px;
-}
-.statistic .progres{
-    width: 100%;
-    height: 8px;
-    background: #494040;
-    border-radius: 4px;
-}
-.statistic .bar{
-    width: 25%;
-    height: 8px;
-    background: #00CDA8;
-    border-radius: 4px;
-}
-
-
-.merop a{
-    color: #fff;
-}
-.merop-content{
-    width: 100%;
-}
-.merop .cards{
-    width: 320px;
-    height: 265px;
-
-    padding: 8px;
-    margin-right: 55px;
-    margin-bottom: 50px;
-
-    border-radius: 8px;
-
-}
-.merop .info{
-    width: 95px;
-    height: 25px;
-    border-radius: 4px;
-    margin-bottom: 65px;
-}
-.merop .one{
-    background: url(/img/merop/one.png)no-repeat center;
-    background-size: cover;
-}
-.merop .cards .content{
-    width: 100%;
-    background: rgba(17, 13, 35, 0.9);
-    border-radius: 8px;
-    padding: 10px;
-}
-.merop .merop-content .text{
-    width: 590px;
-}
-.merop .merop-content .banner-block{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.merop .merop-content .banner{
-    width: 320px;
-    height: 120px;
-    background: url(/img/merop/banner.png)no-repeat center;
-    padding: 16px;
-}
-.merop .merop-content .banner img{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-}
-.merop .merop-content .main-img{
-    max-width: 695px;
-    max-height: 310px;
-}
-.merop .merop-content .banner-one{
-    margin-right: 40px;
-    margin-bottom: 24px;
-}
-
-/*Notification start*/
-.notification{
-    position: absolute;
-    z-index: 100;
-    display: none;
-    right: 4rem;
-    top:4rem;
-    width: 331px;
-    height: 420px;
-    background: #110D23;
-    box-shadow: 0px 10px 10px rgba(84, 96, 245, 0.07);
-    color: #ffffff;
-    border-radius: 4px;
-    padding-top: 21px;
-
-}
-.notification .top{
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 15px;
-    color: #FBFBFB;
-    text-align: center;
-    margin-bottom: 31px;
-}
-.notification .card .message-title {
-    font-weight: 500;
-}
-.notification .card{
-    background: #192233;
-    border-radius: 8px;
-    padding:16px;
-    font-size: 12px;
-    margin-bottom: 16px;
-}
-.notification .card span.grey{
-    color: #929292;
-    text-align: right;
-}
-.notification .card .content{
-    color: #BBB0B0;
-}
-.notification .bottom{
-    text-align: center;
-    padding: 10px;
-}
-.notification-body{
-    height: 300px;
-    overflow-y: scroll;
-}
-.notification ::-webkit-scrollbar {
-    display: none;
-}
-
-
-@-webkit-keyframes pulsate {
-    50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff; }
-}
-@keyframes pulsate {
-    50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff; }
-}
-#notification-bell {
-    color: rgb(245,245,245);
-    margin-left: -4px;
-    font-size: 13px;
-    font-weight: bold;
-    text-shadow: 0 -1px rgba(0,0,0,.1);
-    -webkit-animation: pulsate 1.2s linear infinite;
-    animation: pulsate 1.2s linear infinite;
-}
-/*Notification end*/
-
-
-
-
-.support button{
-    width: 227px;
-    height: 40px;
-    border: none;
-    border-radius: 4px;
-}
-.support .line{
-    width: 80%;
-    background: #0F182B;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 19px 16px;
-}
-.support .line:hover{
-    background: #263554;
-}
-
-.support .circle{
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-.support .block{
-    width: 576px;
-    height: 615px;
-    padding: 48px;
-    background: #110D23;
-    border: 1px solid #192233;
-    border-radius: 4px;
-}
-.support .block .box{
-    width: 100%;
+.notifications{
+    width: 330px;
     height: 400px;
+    background: #110D23;
+    border-radius: 5px;
+    position: absolute;
+    right: 105px;
+    top: 60px;
+    padding: 0 16px;
 }
-.support .block .box div{
+.notifications__activitiy{
     width: 100%;
-}
-.support .block .box input{
-    width: 100%;
-    height: 40px;
-    background: #0B071D;
-    border: 1px solid #192233;
-    border-radius: 4px;
-    margin-top: 12px;
-    padding: 11px 16px;
-    color: #fff;
-}
-.support .block .box .input-form-text input{
-    width: 100%;
-    height: 80px;
-    background: #0B071D;
-    border: 1px solid #192233;
-    border-radius: 4px;
-    margin-top: 12px;
-    padding: 11px 16px;
-    color: #fff;
-}
-.support .block .box .input-form-massege input{
-    width: 100%;
-    height: 48px;
-    background: #0B071D;
-    border: 1px solid #192233;
-    border-radius: 4px;
-    margin-top: 12px;
-    padding: 11px 16px;
-    color: #fff;
-}
-.support .block .box button{
-    width: 48px;
-    height: 48px;
-}
+    height: 60px;
+    padding: 10px 22px;
+    background: #0F182B;
+    border-radius: 8px;
+    margin-top: 31px;
 
-
-
-
-.settings .block-img{
-    width: 555px;
-    height: 120px;
-    padding: 28px 24px;
-    background: url(/img/settings/main-img.png)no-repeat center;
-    background-size: cover;
 }
-.settings  .img-user{
-    width: 64px;
-    height: 64px;
-
-    background: #655F81;
-    border-radius: 4px;
-}
-.settings .input-form input{
-    width: 360px;
-    height: 40px;
-    background: #292344;
-    border: 1px solid #192233;
-    border-radius: 4px;
-    margin-top: 12px;
-    padding: 11px 16px;
-    color: #fff;
-}
-.settings .input-form{
-    margin-bottom: 32px;
-}
-.settings button{
-    width: 135px;
-    height: 40px;
-
-    background: #2A8373;
-    border-radius: 4px;
-    border: none;
-    color: #fff;
-}
-.settings .line{
-    width: 360px;
-    height: 55px;
-
-    padding: 20px 24px;
-    margin-bottom: 14px;
-    background: #161C2B;
-    border-radius: 4px;
-}
-.settings .circle{
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-
-
-
 
 
 
 @media screen and (max-width: 1387px) {
     .main-block .cards{
         width: 100%;
-    }
-    .merop .merop-content .main-img{
-        width: 590px;
     }
 }
 @media screen and (max-width: 1313px) {
@@ -1156,7 +805,7 @@ aside .date .circle{
     }
     .img-bottom{
         display: none;
-    }
+    } 
     .payment-blocks{
         display: flex;
         justify-content: space-around;
@@ -1172,48 +821,24 @@ aside .date .circle{
         margin-top: 38px;
         margin-left: 16px;
     }
-    .merop .merop-content .text{
-        width: 98%;
-    }
-}
-@media screen and (max-width: 1213px){
-    .merop .merop-content .main-img{
-        width: 490px;
-    }
-}
-@media screen and (max-width: 1115px){
-    .merop .merop-content .main-img{
-        width: 390px;
-    }
 }
 @media screen and (max-width: 992px) {
-    header{
-        position: fixed;
-    }
-    main{
-        margin-top: 125px;
-        padding: 0 16px;
-    }
     .main-content{
-        margin: 0px 0px 0 0px;
+        margin: 100px 0px 0 0px;
+    }
+    aside{
+        margin-top: 100px;
     }
     .payment-block{
         padding: 130px 16px 0 16px;
     }
-    .payment .box {
-        margin-top: 215px;
-        margin-left: 16px;
+    .header_width{
+        position: fixed;
     }
-    .activity{
-        margin-top: 130px;
-        padding-left: 16px;
+    .notifications{
+        right: 0;
     }
-    .activity .activity-line{
-        width: 98%;
-    }
-    .merop .merop-content .main-img{
-        width: 100%;
-    }
+
 }
 @media screen and (max-width: 768px) {
     aside{
@@ -1225,6 +850,9 @@ aside .date .circle{
     }
     main{
         width: 100%;
+    }
+    .main-content{
+        margin: 100px 0px 0 0px;
     }
     .before{
         padding: 0px 16px 0 24px;
@@ -1248,23 +876,13 @@ aside .date .circle{
     .payment .block-img{
         width: 100%;
     }
-    .payment .box .banner {
-        right: 151px;
-    }
     .payment .box {
         width: 94%;
+        margin-top: 215px;
+        margin-left: 16px;
     }
-    .activity .activity-line{
-        width: 98%;
-    }
-    .activity .activity-line .hiden{
-        display: block;
-    }
-    .activity .activity-line .hiden2{
-        display: none;
-    }
-    .support .block {
-        width: 540px;
+    .payment .box .banner {
+        right: 151px;
     }
 }
 @media screen and (max-width: 575px){
@@ -1285,16 +903,10 @@ aside .date .circle{
         padding: 24px 16px;
         margin-top: 32px;
     }
-    .activity .activity-line{
-        height: 67px;
-    }
-    .merop .cards{
+    .notifications{
         width: 100%;
-        margin-right: 0;
-    }
-    .support .block {
-        width: 100%;
-        padding: 40px 16px;
+        top: 95px;
+        overflow-y: scroll;
     }
 }
 @media screen and (max-width: 400px){
@@ -1312,14 +924,7 @@ aside .date .circle{
     }
     .before .cards li{
         width: 100%;
-    }
-    .before{
-        padding: 0px;
-    }
-    .merop .merop-content .banner{
-        width: 100%;
-        margin-right: 0;
-    }
+    }    
 }
 
 

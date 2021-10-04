@@ -1,12 +1,7 @@
 <?php
 use common\models\User;
 $this->title = "Мои балансы";
-$user = User::findOne(Yii::$app->user->identity['id']);
 
-if(!Yii::$app->user->isGuest){
-    $user = \common\models\User::findOne(Yii::$app->user->identity['id']);
-}
-$withdraws = \common\models\Actions::find()->where(['user_id'=>$user['id']])->orderBy('id desc')->limit(4)->all();
 
 ?>
 <main class="payment">
