@@ -65,7 +65,7 @@ $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
         <a href="/"><img src="/img/logo.svg" alt=""></a>
     </div>
     <div class="top center">
-        <div class="top-item center mr-3"><img src="/img/setting.svg" alt=""></div>
+        <div class="top-item center mr-3"><a href="/profile/settings"><img src="/img/setting.svg" alt=""></a></div>
         <div class="top-item center mr-3">
             <a href="" id="notification-button"><img src="/img/bell.svg" alt="">
                 <?if(sizeof($actions) > 0):?>
