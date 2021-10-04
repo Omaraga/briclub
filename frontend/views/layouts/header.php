@@ -3,8 +3,9 @@ use common\models\MatrixRef;
 use common\models\User;
 use common\models\UserPlatforms;
 
-$menu = Yii::$app->controller->action->id;
+$action = Yii::$app->controller->action->id;
 $controller = Yii::$app->controller->id;
+$route = $controller.'/'.$action;
 $user = User::findOne(Yii::$app->user->identity['id']);
 $actions = \common\models\Actions::find()->where(['user_id' => $user->id])->all();
 $activated = false;
@@ -13,18 +14,19 @@ if ($user->activ == 1){
 }
 
 $menuItems = [];
-array_push($menuItems, ['name' => 'Профиль', 'icon' => '<i class="fa fa-home" aria-hidden="true"></i>', 'url' => '/', 'access' => false]);
-array_push($menuItems, ['name' => 'Портфель', 'icon' => '<i class="fa fa-suitcase" aria-hidden="true"></i>', 'url' => '/', 'access' => true]);
-array_push($menuItems, ['name' => 'Подарки', 'icon' => '<i class="fa fa-gift" aria-hidden="true"></i>', 'url' => '/', 'access' => true]);
-array_push($menuItems, ['name' => 'Активность', 'icon' => '<i class="fa fa-exchange" aria-hidden="true"></i>', 'url' => '/', 'access' => true]);
-array_push($menuItems, ['name' => 'Система', 'icon' => '<i class="fa fa-life-ring" aria-hidden="true"></i>', 'url' => '/', 'access' => true]);
-array_push($menuItems, ['name' => 'Основатели', 'icon' => '<i class="fa fa-user" aria-hidden="true"></i>', 'url' => '/', 'access' => true]);
-array_push($menuItems, ['name' => 'Статистика', 'icon' => '<i class="fa fa-line-chart" aria-hidden="true"></i>', 'url' => '/', 'access' => true]);
-array_push($menuItems, ['name' => 'Мероприятия', 'icon' => '<i class="fa fa-medium" aria-hidden="true"></i>', 'url' => '/', 'access' => false]);
-array_push($menuItems, ['name' => 'Документы', 'icon' => '<i class="fa fa-file-text" aria-hidden="true"></i>', 'url' => '/', 'access' => false]);
-array_push($menuItems, ['name' => 'Техподдержка', 'icon' => '<i class="fa fa-wrench" aria-hidden="true"></i>', 'url' => '/', 'access' => false]);
+array_push($menuItems, ['name' => 'Профиль', 'icon' => '<i class="fa fa-home" aria-hidden="true"></i>', 'url' => '/', 'access' => false, 'route' => ['main/index']]);
+array_push($menuItems, ['name' => 'Портфель', 'icon' => '<i class="fa fa-suitcase" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['main/port']]);
+array_push($menuItems, ['name' => 'Подарки', 'icon' => '<i class="fa fa-gift" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['main/gifts']]);
+array_push($menuItems, ['name' => 'Активность', 'icon' => '<i class="fa fa-exchange" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['profile/actions']]);
+array_push($menuItems, ['name' => 'Система', 'icon' => '<i class="fa fa-life-ring" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['system/index']]);
+array_push($menuItems, ['name' => 'Основатели', 'icon' => '<i class="fa fa-user" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['system/members']]);
+array_push($menuItems, ['name' => 'Статистика', 'icon' => '<i class="fa fa-line-chart" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['system/statistic']]);
+array_push($menuItems, ['name' => 'Мероприятия', 'icon' => '<i class="fa fa-medium" aria-hidden="true"></i>', 'url' => '/', 'access' => false, 'route' => ['main/events']]);
+array_push($menuItems, ['name' => 'Документы', 'icon' => '<i class="fa fa-file-text" aria-hidden="true"></i>', 'url' => '/main/docs', 'access' => false, 'route' => ['main/docs']]);
+array_push($menuItems, ['name' => 'Техподдержка', 'icon' => '<i class="fa fa-wrench" aria-hidden="true"></i>', 'url' => '/support', 'access' => false, 'route' => ['support/index', 'support/view', 'support/create']]);
 $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
 ?>
+
 <div class="notification">
     <div class="container">
         <div class="row top">
@@ -92,7 +94,7 @@ $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
             <ul class="list">
                 <?foreach ($menuItems as $item):?>
                     <?if(!$item['access'] || ($activated)):?>
-                        <li class="list-item">
+                        <li class="list-item <?=(in_array($route, $item['route']))?'active':''?>">
                             <a class="list-link" href="<?=$item['url'];?>">
                                 <?=$item['icon'];?>
                                 <h6><?=$item['name'];?></h6>
