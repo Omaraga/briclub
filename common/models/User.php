@@ -446,4 +446,22 @@ class User extends ActiveRecord implements IdentityInterface
         return 0;
     }
 
+    /**
+     * @return bool|int|string|null
+     */
+    public function getMembersQuantity(){
+        return \common\models\Referals::find()->where(['parent_id'=>$this->id,'activ'=>1])->andWhere(['>','time_personal',0])->count();
+    }
+
+    /**
+     * @return User|null
+     */
+    public function getParent(){
+        if ($this->parent_id){
+            return User::findOne($this->parent_id);
+        }else{
+            return null;
+        }
+    }
+
 }

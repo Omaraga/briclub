@@ -239,4 +239,5 @@ class Referals extends \yii\db\ActiveRecord
             return false;
         }
     }
+
 }

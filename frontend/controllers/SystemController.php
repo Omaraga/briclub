@@ -1,6 +1,9 @@
 <?php
 
 namespace frontend\controllers;
+use common\models\Referals;
+use common\models\UsersSearchFront;
+use common\models\User;
 use Yii;
 class SystemController extends \yii\web\Controller
 {
@@ -26,6 +29,34 @@ class SystemController extends \yii\web\Controller
      */
     public function actionStatistic(){
         return $this->render('statistic');
+    }
+
+    /**
+     * @return string
+     */
+    public function actionMembers($username = null){
+        $user = Yii::$app->user->identity;
+        $is_child = false;
+        if(!empty($username)){
+            $child = User::find()->where(['username'=>$username])->one();
+            if(!empty($child)){
+                $refs = Referals::find()->where(['user_id'=>$child['id'],'parent_id'=>$user['id']])->all();
+                if(!empty($refs)){
+                    $user = $child;
+                    $is_child = true;
+                }
+
+            }
+        }
+        $searchModel = new UsersSearchFront();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('members', [
+            'searchModel' => $searchModel,
+            'user'=>$user,
+            'dataProvider' => $dataProvider,
+            'is_child' => $is_child,
+        ]);
     }
 
 }
