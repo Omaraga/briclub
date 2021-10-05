@@ -64,85 +64,84 @@ class ProfileController extends Controller
             ],
         ];
     }
-    public function actionIndex()
+    public function actionIndex($tabName = 'personal')
     {
-
         if (\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
+        $model = Yii::$app->user->identity;
+        $changePasswordForm = new \frontend\models\forms\ChangePasswordForm();
+        $changeDataForm = new \frontend\models\forms\ChangeDataForm();
+        $avatarForm = new \frontend\models\forms\AvatarForm();
 
+        $success = false;
+        $premium = \common\models\Premiums::findOne(['user_id' => Yii::$app->user->id]);
+        if ($premium){
 
-        /*$token = "ggpedr4v74usr8j4jg8rdbeh1u";
-        $client = new \yii\httpclient\Client();
-        $response = $client->createRequest()
-            ->setMethod('post')
-            ->setUrl('https://web.rbsuat.com/ab/rest/register.do')
-            ->setData([
-                'token'=>$token,
-                'orderNumber'=>1233213,
-                'amount'=>100,
-                'returnUrl'=>"https://test.gcfond.com/pay/success",
-            ])
-            ->send();
-        echo "<pre>";
-        var_dump($response->data);
-        exit;*/
+            if(isset($_POST['image']))
+            {
+                $data = $_POST['image'];
 
-        $user_db = User::findOne(Yii::$app->user->identity['id']);
+                $image_array_1 = explode(";", $data);
 
-        $activ = null;
-        $refmat = null;
-        $global = null;
-        $start = null;
-        if(!empty($user_db)){
-            if($user_db['activ'] == 1){
-                $activ = true;
+                $image_array_2 = explode(",", $image_array_1[1]);
+
+                $data = base64_decode($image_array_2[1]);
+
+                if ($avatarForm->upload(Yii::$app->user->identity['id'], $data)) {
+                    // file is uploaded successfully
+                    return $this->redirect(Url::toRoute('/profile/settings'));
+                }
             }
-            if($user_db['newmatrix'] == 1){
-                $refmat = true;
-            }
-            if($user_db['global'] == 1){
-                $global = true;
-            }
-            if($user_db['start'] == 1){
-                $start = true;
+
+            if (Yii::$app->request->isPost) {
+                $avatarForm->imageFile = UploadedFile::getInstance($avatarForm, 'imageFile');
+                if ($avatarForm->upload(Yii::$app->user->identity['id'])) {
+                    // file is uploaded successfully
+                    return $this->redirect(Url::toRoute('/profile/settings'));
+                }
             }
         }
 
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->getSession()->setFlash('success', Yii::t('users', 'CHANGES_WERE_SAVED'));
 
-        if(isset(Yii::$app->request->userIP)){
-            if(!empty(Yii::$app->request->userIP)){
+            return $this->redirect(Url::toRoute('/profile/settings'));
+        }
 
-                $user_db->last_ip = Yii::$app->request->userIP;
-                $user_db->save();
+        if ($model->password_hash != '') {
+            $changePasswordForm->scenario = 'requiredOldPassword';
+        }
+
+
+        if ($changePasswordForm->load(Yii::$app->request->post()) && $changePasswordForm->validate()) {
+            $model->setPassword($changePasswordForm->new_password);
+            if ($model->save()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('users', 'NEW_PASSWORD_WAS_SAVED'));
+                return $this->redirect(Url::toRoute('/profile/settings'));
             }
         }
-        if($user_db['b_balans']>0){
-            $children = User::find()->where(['parent_id'=>$user_db['id'],'activ'=>1])->count();
-            if($children>1){
-                $user_db->w_balans = $user_db->w_balans + $user_db->b_balans;
-                $user_db->b_balans = 0;
-                $user_db->save();
+        if ($changeDataForm->load(Yii::$app->request->post()) && $changeDataForm->validate()) {
+            $model->lastname = $changeDataForm->lastname;
+            $model->firstname = $changeDataForm->firstname;
+            $model->phone = $changeDataForm->phone;
+            $model->fio = $changeDataForm->firstname. ' '.$changeDataForm->lastname;
+            //$model->country_id = $сhangeDataForm->country;
 
-                $action_bon = new Actions();
-                $action_bon->time = time();
-                $action_bon->status = 1;
-                $action_bon->sum = $user_db->b_balans;
-                $action_bon->user_id = $user_db['id'];
-                $action_bon->title = "Поздравляем! Вы выполнили условие по количеству личников, ваш баланс доступен к выводу";
-                $action_bon->type = 106;
-                $action_bon->save();
+
+
+            if ($model->save()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('users', 'Новые данные сохранены'));
+                return $this->redirect(Url::toRoute('/profile/settings'));
             }
         }
-        $statisticModel = new \frontend\models\StatisticModel($user_db, 'year', true);
-
-        return $this->render('index',[
-            'activ' => $activ,
-            'refmat' => $refmat,
-            'start' => $start,
-            'global' => $global,
-            'statisticModel' => $statisticModel,
+        return $this->render('settings', [
+            'model' => $model,
+            'changePasswordForm' => $changePasswordForm,
+            'сhangeDataForm' => $changeDataForm,
+            'avatarForm' => $avatarForm,
+            'tabName'=>$tabName,
         ]);
     }
     public function actionGetCourse($program=null)
@@ -206,8 +205,6 @@ class ProfileController extends Controller
                 if($program == 2) {
                     MatrixRef::plusToRefMatrix($user['id'], 1, true, 0, true, null, 1);
                 }
-
-
 
                 Yii::$app->getSession()->setFlash('success', Yii::t('users', 'Поздравляем! Вы активировали программу!'));
                 return $this->redirect('/profile');
@@ -422,44 +419,7 @@ class ProfileController extends Controller
         }
         $this->redirect($ref);
     }
-    public function actionGetnewplatformstart()
-    {
-        if (\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-        $user = User::findOne(Yii::$app->user->id);
-        if ($user['start'] != 1) {
-            return $this->goHome();
-        }
-        if($user){
-            $matrix = MatrixStart::find()->where(['user_id'=>$user['id']])->orderBy('platform_id desc')->one();
-            if(!empty($matrix)){
-                $platform = $matrix['platform_id']+1;
-                $balans = $user['w_balans'];
-                $min_balans = MLevelsStart::findOne($platform)['price'];
-                if($balans >= $min_balans){
-                    $user->w_balans = $user->w_balans - $min_balans;
-                    $user->save();
 
-                    MatrixStart::plusToRefMatrix($user['id'],$platform,false,0,true);
-
-                    Yii::$app->getSession()->setFlash('success', Yii::t('users', 'Поздравляем! Вы купили место на площадке '.$platform.'!'));
-                    $this->redirect('/profile/start');
-                }else{
-                    Yii::$app->getSession()->setFlash('danger', Yii::t('users', 'Недостаточно средств на балансе!'));
-                    $this->redirect('/profile/start');
-                }
-            }else{
-                Yii::$app->getSession()->setFlash('danger', Yii::t('users', 'Ошибка!'));
-                $this->redirect('/profile/start');
-            }
-
-
-        }else{
-            Yii::$app->getSession()->setFlash('danger', Yii::t('users', 'Ошибка!'));
-            return $this->redirect('/profile/start');
-        }
-    }
 
     public function actionWithdraw($system=2)
     {
@@ -614,37 +574,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function actionChildren($username=null)
-    {
-        if (\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-        if(!Yii::$app->user->isGuest){
-            $user = \common\models\User::findOne(Yii::$app->user->identity['id']);
-        }
-        $is_child = false;
-        if(!empty($username)){
-            $child = User::find()->where(['username'=>$username])->one();
-            if(!empty($child)){
-                $refs = Referals::find()->where(['user_id'=>$child['id'],'parent_id'=>$user['id']])->all();
-                if(!empty($refs)){
-                    $user = $child;
-                    $is_child = true;
-                }
-
-            }
-        }
-        $searchModel = new UsersSearchFront();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('children', [
-            'searchModel' => $searchModel,
-            'user'=>$user,
-            'dataProvider' => $dataProvider,
-            'is_child' => $is_child
-        ]);
-
-    }
     public function actionTransfer()
     {
         $model = new TransfersForm();
@@ -854,86 +783,7 @@ class ProfileController extends Controller
     }
 
 
-    public function actionSettings($tabName = 'personal')
-    {
-        if (\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-        $model = Yii::$app->user->identity;
-        $changePasswordForm = new \frontend\models\forms\ChangePasswordForm();
-        $сhangeDataForm = new \frontend\models\forms\ChangeDataForm();
-        $avatarForm = new \frontend\models\forms\AvatarForm();
 
-        $success = false;
-        $premium = \common\models\Premiums::findOne(['user_id' => Yii::$app->user->id]);
-        if ($premium){
-
-            if(isset($_POST['image']))
-            {
-                $data = $_POST['image'];
-
-                $image_array_1 = explode(";", $data);
-
-                $image_array_2 = explode(",", $image_array_1[1]);
-
-                $data = base64_decode($image_array_2[1]);
-
-                if ($avatarForm->upload(Yii::$app->user->identity['id'], $data)) {
-                    // file is uploaded successfully
-                    return $this->redirect(Url::toRoute('/profile/settings'));
-                }
-            }
-
-            if (Yii::$app->request->isPost) {
-                $avatarForm->imageFile = UploadedFile::getInstance($avatarForm, 'imageFile');
-                if ($avatarForm->upload(Yii::$app->user->identity['id'])) {
-                    // file is uploaded successfully
-                    return $this->redirect(Url::toRoute('/profile/settings'));
-                }
-            }
-        }
-
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->getSession()->setFlash('success', Yii::t('users', 'CHANGES_WERE_SAVED'));
-
-            return $this->redirect(Url::toRoute('/profile/settings'));
-        }
-
-        if ($model->password_hash != '') {
-            $changePasswordForm->scenario = 'requiredOldPassword';
-        }
-
-
-        if ($changePasswordForm->load(Yii::$app->request->post()) && $changePasswordForm->validate()) {
-            $model->setPassword($changePasswordForm->new_password);
-            if ($model->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('users', 'NEW_PASSWORD_WAS_SAVED'));
-                return $this->redirect(Url::toRoute('/profile/settings'));
-            }
-        }
-        if ($сhangeDataForm->load(Yii::$app->request->post()) && $сhangeDataForm->validate()) {
-            $model->lastname = $сhangeDataForm->lastname;
-            $model->firstname = $сhangeDataForm->firstname;
-            $model->phone = $сhangeDataForm->phone;
-            $model->fio = $сhangeDataForm->firstname. ' '.$сhangeDataForm->lastname;
-            //$model->country_id = $сhangeDataForm->country;
-
-
-
-            if ($model->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('users', 'Новые данные сохранены'));
-                return $this->redirect(Url::toRoute('/profile/settings'));
-            }
-        }
-        return $this->render('settings', [
-            'model' => $model,
-            'changePasswordForm' => $changePasswordForm,
-            'сhangeDataForm' => $сhangeDataForm,
-            'avatarForm' => $avatarForm,
-            'tabName'=>$tabName,
-        ]);
-    }
 
     public function actionVerification()
     {
@@ -1061,7 +911,7 @@ class ProfileController extends Controller
                 $bill->status = 1;
                 $bill->save(false);
 
-                $ticket->payment_status = Tickets::PAYMENT_PAYED;
+                $ticket->payment_status = Tickets::PAYMENT_STATUS_PAYED;
                 $ticket->save();
 
                 $action = new Actions();

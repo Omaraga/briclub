@@ -78,19 +78,6 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        /*$user = new User();
-        $user->username = 'admin@gcfond.com';
-        $user->email = 'admin@gcfond.com';
-
-        $user->setPassword('Gcfond2020com');
-        $user->generateAuthKey();
-        $user->save();
-        echo "asd";
-        exit;*/
-        /*$user = User::findOne(7574);
-        $user->setPassword('Gcfond2020com');
-        $user->generateAuthKey();
-        $user->save();*/
         $this->layout = 'empty';
         return $this->render('index');
     }
@@ -130,28 +117,7 @@ class SiteController extends Controller
         }
     }
 
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-            }
 
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
 
     public function actionSignup()
     {
