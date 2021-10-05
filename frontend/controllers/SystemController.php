@@ -1,7 +1,10 @@
 <?php
 
 namespace frontend\controllers;
+use common\models\Actions;
+use common\models\ActionTypes;
 use common\models\Referals;
+use common\models\UserRank;
 use common\models\UsersSearchFront;
 use common\models\User;
 use Yii;
@@ -28,7 +31,18 @@ class SystemController extends \yii\web\Controller
      * @return string
      */
     public function actionStatistic(){
-        return $this->render('statistic');
+        $user = Yii::$app->user->identity;
+        $nextrank = UserRank::find()->where(['id'=>($user['rank_id']+1)])->one();
+        $rank = UserRank::find()->where(['id'=>$user['rank_id']])->one();
+        $actionTypes = ActionTypes::findOne(['id'=>7]);
+        $actions = Actions::find()->where(['user_id'=>$user['id']])->andWhere(['type'=>7])->sum('sum');
+        return $this->render('statistic', [
+            'user'=>$user,
+            'nextrank'=>$nextrank,
+            'rank'=>$rank,
+            'actiontypes'=>$actionTypes,
+            'actions'=>$actions,
+        ]);
     }
 
     /**
