@@ -142,4 +142,18 @@ class StatisticModel extends Model
         }
     }
 
+    public static function getHeight($referals){
+        if($referals==0){
+            return '0';
+        }else if($referals<=10){
+            return intval(($referals*4));
+        }else if($referals>10 && $referals<=50){
+            return intval((30*($referals-10))/40)+40;
+        }else if($referals>50 && $referals<=100){
+            return intval((30*($referals-50))/50)+70;
+        }else{
+            return 110;
+        }
+    }
+
 }
