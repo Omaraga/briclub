@@ -54,7 +54,25 @@ class MainController extends \yii\web\Controller
     }
 
     public function actionEvents($id = null){
-
+        $user = Yii::$app->user->identity;
+        $events = Events::find()->all();
+        if(!$id){
+            return $this->render('events', [
+                'user' => $user,
+                'events' => $events,
+            ]);
+        }else{
+            $event = Events::findOne($id);
+            if (!$event){
+                return $this->redirect('/main/events');
+            }
+            return $this->render('event',
+                [
+                    'user' => $user,
+                    'event' =>$event,
+                ]
+            );
+        }
     }
 
     /**

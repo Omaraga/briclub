@@ -1,127 +1,49 @@
+<?$date = $event->getStartDate();?>
+
 <main class="merop blocks-top">
 
     <div class="merop-content">
         <h4 class="w7 mb-4">Мероприятия</h4>
 
-        <div class="around flex-wrap">
-            <a href="#">
-                <div class="cards one">
-                    <div class="info fon-gray-500 center">прошедший</div>
-                    <div class="content rows">
-                        <div class="rows">
-                            <h4 class="w7 mb-1">27</h4>
-                            <h6>Сентябрь</h6>
-                        </div>
-                        <div class="mt-3">
-                            <h6 class="txt-green-100">Онлайн мастер класс</h6>
-                            <h5 class="w7">Инвестируйте в свое будущее</h5>
-                        </div>
-                    </div>
+        <div class="mb-4">
+            <img class="main-img" src="<?=$event->link?>" alt="">
+            <!-- <div class="main-img"></div> -->
+        </div>
+        <div class="info fon-<?=($event->getEventAccessColor($user));?>  center mb-3">
+            <?if ($event->start_time < time()):?>
+                Прошедший
+            <?elseif($event->isEventAccess($user)):?>
+                Доступно
+            <?else:?>
+                Недоступно
+            <?endif;?>
+        </div>
+        <div class="rows mb-4">
+            <h6 class="txt-green-100"><?=$event->getTypeName();?></h6>
+            <h5 class="w7 mb-3 mt-1"><?=$event->title?></h5>
+            <p class="text txt-B8B6"><?=$event->text?></p>
+        </div>
+        <div class="banner-block">
+            <div class="banner banner-one">
+                <div class="d-flex align-items-end mb-3">
+                    <h4 class="mr-2"><?=$date['day'];?></h4>
+                    <p class="mr-2"><?=$date['monthRus'];?></p>
+                    <p class="mr-3"><?=$date['year'];?></p>
+                    <p>18:00</p>
                 </div>
-            </a>
-
-            <a href="#">
-                <div class="cards one">
-                    <div class="info fon-green-200 center">доступно</div>
-                    <div class="content rows">
-                        <div class="rows">
-                            <h4 class="w7 mb-1">27</h4>
-                            <h6>Сентябрь</h6>
-                        </div>
-                        <div class="mt-3">
-                            <h6 class="txt-green-100">Онлайн мастер класс</h6>
-                            <h5 class="w7">Инвестируйте в свое будущее</h5>
-                        </div>
-                    </div>
+                <div class="d-flex align-items-end">
+                    <p class="mr-2">Место:</p>
+                    <p class="mr-3">ZOOM (374387dfv89)</p>
                 </div>
-            </a>
-
-            <a href="#">
-                <div class="cards one">
-                    <div class="info fon-gray-500 center">прошедший</div>
-                    <div class="content rows">
-                        <div class="rows">
-                            <h4 class="w7 mb-1">27</h4>
-                            <h6>Сентябрь</h6>
-                        </div>
-                        <div class="mt-3">
-                            <h6 class="txt-green-100">Онлайн мастер класс</h6>
-                            <h5 class="w7">Инвестируйте в свое будущее</h5>
-                        </div>
-                    </div>
+            </div>
+            <div class="banner banner-one center">
+                    <img src="<?=$event->getSpikers()->img_url;?>" alt="">
+                <div class="rows ml-3">
+                    <h5 class="w7">Спикер</h5>
+                        <h6><?=$event->getSpikers()->fio?></h6>
                 </div>
-            </a>
-
-            <a href="#">
-                <div class="cards one">
-                    <div class="info fon-red-100 center">доступно</div>
-                    <div class="content rows">
-                        <div class="rows">
-                            <h4 class="w7 mb-1">27</h4>
-                            <h6>Сентябрь</h6>
-                        </div>
-                        <div class="mt-3">
-                            <h6 class="txt-green-100">Онлайн мастер класс</h6>
-                            <h5 class="w7">Инвестируйте в свое будущее</h5>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            </div>
         </div>
     </div>
 
-    <aside class="fon-main px-3" id="aside">
-        <div>
-            <h6 class="mb-2">Доступно мне</h6>
-
-            <div class="cardes fon-gray-300 between">
-                <div class="d-flex align-items-center">
-                    <div class="circle fon-gray-200 me-2 mb-1"></div>
-                    <h6>Онлайн мастер класс</h6>
-                </div>
-                <div class="date center rows">
-                    <h6>22.09</h6>
-                    <h6>18:00</h6>
-                    <div class="circle center">1</div>
-                </div>
-            </div>
-
-            <div class="cardes fon-gray-300 between">
-                <div class="d-flex align-items-center">
-                    <div class="circle fon-green-200 me-2 mb-1"></div>
-                    <h6>Онлайн мастер класс</h6>
-                </div>
-                <div class="date center rows">
-                    <h6>22.09</h6>
-                    <h6>18:00</h6>
-                    <div class="circle center">1</div>
-                </div>
-            </div>
-
-            <div class="cardes fon-gray-300 between">
-                <div class="d-flex align-items-center">
-                    <div class="circle fon-green-200 me-2 mb-1"></div>
-                    <h6>Онлайн мастер класс</h6>
-                </div>
-                <div class="date center rows">
-                    <h6>22.09</h6>
-                    <h6>18:00</h6>
-                    <div class="circle center">1</div>
-                </div>
-            </div>
-
-            <div class="cardes fon-gray-300 between">
-                <div class="d-flex align-items-center">
-                    <div class="circle fon-green-200 me-2 mb-1"></div>
-                    <h6>Онлайн мастер класс</h6>
-                </div>
-                <div class="date center rows">
-                    <h6>22.09</h6>
-                    <h6>18:00</h6>
-                    <div class="circle center">1</div>
-                </div>
-            </div>
-        </div>
-
-    </aside>
 </main>
