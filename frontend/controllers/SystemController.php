@@ -8,6 +8,8 @@ use common\models\UserRank;
 use common\models\UsersSearchFront;
 use common\models\User;
 use Yii;
+use yii\helpers\ArrayHelper;
+
 class SystemController extends \yii\web\Controller
 {
     public function beforeAction($action)
@@ -30,18 +32,35 @@ class SystemController extends \yii\web\Controller
     /**
      * @return string
      */
-    public function actionStatistic(){
+    public function actionStatistic($type = "year", $currTab = 1){
         $user = Yii::$app->user->identity;
         $nextrank = UserRank::find()->where(['id'=>($user['rank_id']+1)])->one();
         $rank = UserRank::find()->where(['id'=>$user['rank_id']])->one();
         $actionTypes = ActionTypes::findOne(['id'=>7]);
         $actions = Actions::find()->where(['user_id'=>$user['id']])->andWhere(['type'=>7])->sum('sum');
+
+        $refs = Referals::find()->where(['parent_id'=>$user->id])->asArray()->all();
+        $refsColumn = ArrayHelper::getColumn($refs,'user_id');
+        $structureTotalProfit = Actions::find()->where(['user_id'=>$refsColumn])->sum('sum');
+
+        $refsOwn = Referals::find()->where(['parent_id'=>$user->id])->andWhere(['level'=>1])->asArray()->all();//личники
+        $refsOwnColumn = ArrayHelper::getColumn($refsOwn,'user_id');//личники
+        $structureOwnProfit = Actions::find()->where(['user_id'=>$refsOwnColumn])->sum('sum'); //личники
+        $thisMonth = intval(date("m"));
+        $statisticModel = new \frontend\models\StatisticModel($user, $type);
+
         return $this->render('statistic', [
             'user'=>$user,
             'nextrank'=>$nextrank,
             'rank'=>$rank,
             'actiontypes'=>$actionTypes,
             'actions'=>$actions,
+            'structureTotalProfit'=>$structureTotalProfit,
+            'structureOwnProfit'=>$structureOwnProfit,
+            'statisticModel'=>$statisticModel,
+            'type' => trim($type),
+            'currTab' => intval($currTab),
+            'thisMonth'=>$thisMonth,
         ]);
     }
 
