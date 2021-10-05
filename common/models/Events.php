@@ -140,5 +140,43 @@ class Events extends \yii\db\ActiveRecord
             return [];
         }
     }
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function isEventAccess(User $user){
+        if ($user->rank_id >0){
+            $eventRoles = EventsAndRoles::find()->where(['role_id' => $user->rank_id, 'event_id'=>$this->id])->one();
+            if ($eventRoles){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * @param User $user
+     * @return string
+     */
+    public function getEventAccessColor(User $user){
+        if ($this->start_time < time()){
+            return 'gray-500';
+
+        }else{
+            $eventRoles = EventsAndRoles::find()->where(['role_id' => $user->rank_id, 'event_id'=>$this->id])->one();
+            if ($eventRoles){
+                return 'green-200';
+            }else{
+                return 'red-100';
+            }
+        }
+    }
+
+    public function getSpikers() {
+        return Spikers::findOne($this->spiker_id);
+    }
 
 }
