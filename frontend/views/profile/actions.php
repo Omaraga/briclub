@@ -7,7 +7,9 @@ use yii\data\Pagination;
 use yii\bootstrap4\LinkPager;
 
 $this->title = "Активность";
-$this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css');
+//$this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css');
+
+
 if(!Yii::$app->user->isGuest){
     $user = \common\models\User::findOne(Yii::$app->user->identity['id']);
 }
@@ -101,322 +103,143 @@ function getParams($obj, $class){
 
 
 ?>
+
     <main class="activition activity">
         <div class="container block__main-header">
-            <h1 class="h1">Активность</h1>
+            <h4 class="w7 mb-4">Активность</h4>
 
-            <div class="row">
-                <div class="col-lg-10">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist" data-tab="<?=$tab;?>">
-                        <li class="nav-item">
-                            <a class="nav-link <?=($tab==0)?'active':''?>"  href="/profile/actions">Все</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?=($tab==1)?'active':''?>"  href="/profile/actions?tab=1">Матрицы</a>
-                        </li>
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link" id="token-tab" data-toggle="tab" href="#token" role="tab" aria-controls="profile" aria-selected="false">Токены</a>-->
-<!--                        </li>-->
-                        <li class="nav-item">
-                            <a class="nav-link <?=($tab==2)?'active':''?>"  href="/profile/actions?tab=2">Кураторские</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?=($tab==3)?'active':''?>"   href="/profile/actions?tab=3" >Поступления</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?=($tab==4)?'active':''?>" href="/profile/actions?tab=4" >Переводы</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?=($tab==5)?'active':''?>"  href="/profile/actions?tab=5">Выводы</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content mt-1 block__body" id="myTabContent">
-                        <div class="tab-pane fade <?=($tab==0)?'show active':''?>" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="col-lg-12">
-
-                                <?
-                                $i = 0;
-                                foreach ($actions as $withdraw) {
-                                    $i++;
-                                    $type = \common\models\ActionTypes::findOne($withdraw['type']);
-                                    $class = "any-notificate";
-                                    if($withdraw['type'] == 105 || $withdraw['type'] == 7) {
-                                        $curw = "PV";
-                                    }
-                                    else{
-                                        $curw = "CV";
-                                    }
-                                    $sum = $withdraw['sum'];
-                                    if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
-                                        $curw = "GRC";
-                                        $sum = $withdraw['tokens'];
-                                    }
-                                    $withdrawParams = getParams($withdraw, $class);
-                                    ?>
-                                    <div class="text-left">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <ul class="row list__group text__small">
-                                                    <li class="col-md-1 d-none d-lg-block"><img src="/img/activity/<?=$withdrawParams['img'];?>" alt=""></li>
-                                                    <li class="col-md-3 w5 d-none d-lg-block"><?=$type['title']?></li>
-                                                    <li class="col-md-3 d-none d-lg-block"><?
-                                                        echo $withdraw['title'];
-                                                        if($withdraw['type'] == 3){
-                                                            echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                        }elseif($withdraw['type'] == 4){
-                                                            echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                        }
-                                                        ?></li>
-                                                    <li class="col-md-1 d-none d-lg-block"><?=date("d.m.Y H:i", $withdraw['time'])?></li>
-                                                    <li class="col-md-2 d-none d-lg-block text-end">
-                                                        <div class="d-flex align-item-cente">
-                                                            <div class="circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="col-md-2 w7 d-none d-lg-block green">
-                                                        <?if(!empty($sum)):?>
-
-                                                            <?if($type['minus'] == 1):?>
-                                                                <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                            <?else:?>
-                                                                <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                            <?endif;?>
-
-
-                                                        <?endif;?>
-                                                    </li>
-                                                    <div class="col-md-12 d-md-block d-lg-none">
-                                                        <div class="block__body-mobil">
-                                                            <div class="d-flex align-item-center">
-                                                                <img src="/img/activity/buy.svg" alt="">
-                                                                <div class="text__group ml-3">
-                                                                    <span class="text__small w7"><?=$type['title']?></span>
-                                                                    <span class="text__small"><?
-                                                                        echo $withdraw['title'];
-                                                                        if($withdraw['type'] == 3){
-                                                                            echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                        }elseif($withdraw['type'] == 4){
-                                                                            echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                        }
-                                                                        ?></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="text__group text-end">
-                                                                <span class="green w5"><?if(!empty($sum)):?>
-
-                                                                        <?if($type['minus'] == 1):?>
-                                                                            <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?else:?>
-                                                                            <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?endif;?>
-
-
-                                                        <?endif;?></span>
-                                                                <span><?=date("d.m.Y H:i", $withdraw['time'])?></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                <?}?>
+            <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Все</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-system-tab" data-toggle="pill" href="#pills-system" role="tab" aria-controls="pills-system" aria-selected="false">Система</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-action-tab" data-toggle="pill" href="#pills-action" role="tab" aria-controls="pills-action" aria-selected="false">Акции</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-transfers-tab" data-toggle="pill" href="#pills-transfers" role="tab" aria-controls="pills-transfers" aria-selected="false">Поступления</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="pills-withdraws-tab" data-toggle="pill" href="#pills-withdraws" role="tab" aria-controls="pills-withdraws" aria-selected="false">Выводы</a>
+                </li>
+            </ul>
+            <div class="tab-content mt-1 block__body" id="pills-tabContent">
+                <div class="tab-pane fade <?=($tab==0)?'show active':''?>" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <?
+                $i = 0;
+                foreach ($actions as $withdraw) {
+                    $i++;
+                    $type = \common\models\ActionTypes::findOne($withdraw['type']);
+                    $class = "any-notificate";
+                    if($withdraw['type'] == 105 || $withdraw['type'] == 7) {
+                        $curw = "PV";
+                    }
+                    else{
+                        $curw = "CV";
+                    }
+                    $sum = $withdraw['sum'];
+                    if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
+                        $curw = "GRC";
+                        $sum = $withdraw['tokens'];
+                    }
+                    $withdrawParams = getParams($withdraw, $class);
+                    ?>
+                    <div class="activity-line between">
+                        <div class="flex-line">
+                            <img src="/img/payment/arrow-green.svg" alt="">
+                            <div class="rows ml-3">
+                            <ul class="row list__group text__small">
+                                <p class="txt-mini"><?=$type['title']?></p>
+                                <p class="txt-6A7 hiden">Баланс PV</p>
                             </div>
                         </div>
-                        <div class="tab-pane fade <?=($tab==1)?'show active':''?>" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="col-lg-12">
-                                <?
-                                $i = 0;
-                                foreach ($actions as $withdraw) {
-                                    if($withdraw['type'] == 1 or $withdraw['type'] == 8 or $withdraw['type'] == 7 or $withdraw['type'] == 77 or $withdraw['type'] == 88 or $withdraw['type'] == 9 or $withdraw['type'] == 10 or $withdraw['type'] == 11){
-                                        $i++;
-                                        $type = \common\models\ActionTypes::findOne($withdraw['type']);
-                                        $class = "any-notificate";
-                                        if($withdraw['type'] == 105 || $withdraw['type'] == 7) {
-                                            $curw = "PV";
-                                        }
-                                        else{
-                                            $curw = "CV";
-                                        }
-                                        $sum = $withdraw['sum'];
-                                        if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
-                                            $curw = "GRC";
-                                            $sum = $withdraw['tokens'];
-                                        }
-                                        $withdrawParams = getParams($withdraw, $class);
-                                        ?>
-                                        <div class="text-left">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <ul class="row list__group text__small">
-                                                        <li class="col-md-1 d-none d-lg-block"><img src="/img/activity/<?=$withdrawParams['img'];?>" alt=""></li>
-                                                        <li class="col-md-3 w5 d-none d-lg-block"><?=$type['title']?></li>
-                                                        <li class="col-md-3 d-none d-lg-block"><?
-                                                            echo $withdraw['title'];
-                                                            if($withdraw['type'] == 3){
-                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }elseif($withdraw['type'] == 4){
-                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }
-                                                            ?></li>
-                                                        <li class="col-md-1 d-none d-lg-block"><?=date("d.m.Y H:i", $withdraw['time'])?></li>
-                                                        <li class="col-md-2 d-none d-lg-block text-end">
-                                                            <div class="d-flex align-item-cente">
-                                                                <div class="circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="col-md-2 w5 d-none d-lg-block green">
-                                                            <?if(!empty($sum)):?>
-
-                                                                <?if($type['minus'] == 1):?>
-                                                                    <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?else:?>
-                                                                    <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?endif;?>
-
-
-                                                            <?endif;?>
-                                                        </li>
-                                                        <div class="col-md-12 d-md-block d-lg-none">
-                                                            <div class="block__body-mobil">
-                                                                <div class="d-flex align-item-center">
-                                                                    <img src="/img/activity/buy.svg" alt="">
-                                                                    <div class="text__group ml-3">
-                                                                        <span class="text__small w7"><?=$type['title']?></span>
-                                                                        <span class="text__small"><?
-                                                                            echo $withdraw['title'];
-                                                                            if($withdraw['type'] == 3){
-                                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }elseif($withdraw['type'] == 4){
-                                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }
-                                                                            ?></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="text__group text-end">
-                                                                <span class="green w5"><?if(!empty($sum)):?>
-
-                                                                        <?if($type['minus'] == 1):?>
-                                                                            <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?else:?>
-                                                                            <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?endif;?>
-
-
-                                                        <?endif;?></span>
-                                                                    <span><?=date("d.m.Y H:i", $withdraw['time'])?></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?}?>
-                                <?}?>
-
-
+                        <div class="flex-line">
+                            <p class="txt-mini hiden2"><?
+                            echo $withdraw['title'];
+                            if($withdraw['type'] == 3){
+                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
+                            }elseif($withdraw['type'] == 4){
+                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
+                            }
+                            ?></p>
+                        </div>
+                        <div class="flex-line">
+                            <p class="txt-mini hiden2"><?=date("d.m.Y H:i", $withdraw['time'])?></p>
+                        </div>
+                        <div class="flex-line">
+                            <p class="txt-mini mr-4 hiden2"><img src="/img/payment/circle-<?=$withdrawParams['color'];?>.svg"><?=$withdrawParams['text'];?></p>
+                            <div class="text-right">
+                                <h6 class="txt-green-100">CV <span>
+                                <?if(!empty($sum)):?>
+                                    <?=$sum?>
+                                <?endif;?>
+                                </span></h6>
+                                <p class="txt-6A7 hiden"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="token" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="col-lg-12">
-
-                                <?
-                                $i = 0;
-                                foreach ($actions as $withdraw) {
-                                    if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62){
-                                        $i++;
-                                        $type = \common\models\ActionTypes::findOne($withdraw['type']);
-                                        $class = "any-notificate";
-                                        if($withdraw['type'] == 105 || $withdraw['type'] == 7) {
-                                            $curw = "PV";
-                                        }
-                                        else{
-                                            $curw = "CV";
-                                        }
-                                        $sum = $withdraw['sum'];
-                                        if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
-                                            $curw = "GRC";
-                                            $sum = $withdraw['tokens'];
-                                        }
-                                        $withdrawParams = getParams($withdraw, $class);
-                                        ?>
-                                        <div class="text-left">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <ul class="row list__group text__small">
-                                                        <li class="col-md-1 d-none d-lg-block"><img src="/img/activity/<?=$withdrawParams['img'];?>" alt=""></li>
-                                                        <li class="col-md-3 w5 d-none d-lg-block"><?=$type['title']?></li>
-                                                        <li class="col-md-3 d-none d-lg-block"><?
-                                                            echo $withdraw['title'];
-                                                            if($withdraw['type'] == 3){
-                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }elseif($withdraw['type'] == 4){
-                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }
-                                                            ?></li>
-                                                        <li class="col-md-1 d-none d-lg-block"><?=date("d.m.Y H:i", $withdraw['time'])?></li>
-                                                        <li class="col-md-2 d-none d-lg-block text-end">
-                                                            <div class="d-flex align-item-cente">
-                                                                <div class="circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="col-md-2 w5 d-none d-lg-block green">
-                                                            <?if(!empty($sum)):?>
-
-                                                                <?if($type['minus'] == 1):?>
-                                                                    <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?else:?>
-                                                                    <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?endif;?>
-
-
-                                                            <?endif;?>
-                                                        </li>
-                                                        <div class="col-md-12 d-md-block d-lg-none">
-                                                            <div class="block__body-mobil">
-                                                                <div class="d-flex align-item-center">
-                                                                    <img src="/img/activity/buy.svg" alt="">
-                                                                    <div class="text__group ml-3">
-                                                                        <span class="text__small w7"><?=$type['title']?></span>
-                                                                        <span class="text__small"><?
-                                                                            echo $withdraw['title'];
-                                                                            if($withdraw['type'] == 3){
-                                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }elseif($withdraw['type'] == 4){
-                                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }
-                                                                            ?></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="text__group text-end">
-                                                                <span class="green w5"><?if(!empty($sum)):?>
-
-                                                                        <?if($type['minus'] == 1):?>
-                                                                            <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?else:?>
-                                                                            <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?endif;?>
-
-
-                                                        <?endif;?></span>
-                                                                    <span><?=date("d.m.Y H:i", $withdraw['time'])?></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?}?>
-                                <?}?>
-
-
+                    </div>
+                    <?}?>
+                </div>
+                <div class="tab-pane fade <?=($tab==1)?'show active':''?>" id="pills-system" role="tabpanel" aria-labelledby="system-tab">
+                    <?
+                    $i = 0;
+                    foreach ($actions as $withdraw) {
+                        if($withdraw['type'] == 1 or $withdraw['type'] == 8 or $withdraw['type'] == 7 or $withdraw['type'] == 77 or $withdraw['type'] == 88 or $withdraw['type'] == 9 or $withdraw['type'] == 10 or $withdraw['type'] == 11){
+                            $i++;
+                            $type = \common\models\ActionTypes::findOne($withdraw['type']);
+                            $class = "any-notificate";
+                            if($withdraw['type'] == 105 || $withdraw['type'] == 7) {
+                                $curw = "PV";
+                            }
+                            else{
+                                $curw = "CV";
+                            }
+                            $sum = $withdraw['sum'];
+                            if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
+                                $curw = "GRC";
+                                $sum = $withdraw['tokens'];
+                            }
+                            $withdrawParams = getParams($withdraw, $class);
+                            ?>
+                    <div class="activity-line between">
+                        <div class="flex-line">
+                            <img src="/img/payment/arrow-green.svg" alt="">
+                            <div class="rows ml-3">
+                                <p class="txt-mini"><?=$type['title']?></p>
+                                <p class="txt-6A7 hiden">Баланс PV</p>
                             </div>
                         </div>
-                        <div class="tab-pane fade <?=($tab==2)?'show active':''?>" id="binars" role="tabpanel" aria-labelledby="binars-tab">
-                            <div class="col-lg-12">
+                        <div class="flex-line">
+                            <p class="txt-mini hiden2"><?
+                                echo $withdraw['title'];
+                                if($withdraw['type'] == 3){
+                                    echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
+                                }elseif($withdraw['type'] == 4){
+                                    echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
+                                }
+                                ?>
+                            </p>
+                        </div>
+                        <div class="flex-line">
+                            <p class="txt-mini hiden2"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
+                        </div>
+                        <div class="flex-line align-items-center">
+                            <p class="txt-mini mr-4 hiden2 circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></p>
+                            <div class="text-right">
+                                <h6 class="txt-green-100">CV <span > <?if(!empty($sum)):?><?=$sum?><?endif;?></span></h6>
+                                <p class="txt-6A7 hiden"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <?}?>
+                    <?}?>
+
+
+
+                        </div>
+                <div class="tab-pane fade <?=($tab==2)?'show active':''?>" id="pills-action" role="tabpanel" aria-labelledby="action-tab">
 
                                 <?
                                 $i = 0;
@@ -433,388 +256,167 @@ function getParams($obj, $class){
                                         }
                                         $withdrawParams = getParams($withdraw, $class);
                                         ?>
-                                        <div class="text-left">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <ul class="row list__group text__small">
-                                                        <li class="col-md-1 d-none d-lg-block"><img src="/img/activity/<?=$withdrawParams['img'];?>" alt=""></li>
-                                                        <li class="col-md-3 w5 d-none d-lg-block"><?=$type['title']?></li>
-                                                        <li class="col-md-3 d-none d-lg-block"><?
-                                                            echo $withdraw['title'];
-                                                            if($withdraw['type'] == 3){
-                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }elseif($withdraw['type'] == 4){
-                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }
-                                                            ?></li>
-                                                        <li class="col-md-1 d-none d-lg-block"><?=date("d.m.Y H:i", $withdraw['time'])?></li>
-                                                        <li class="col-md-2 d-none d-lg-block text-end">
-                                                            <div class="d-flex align-item-cente">
-                                                                <div class="circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="col-md-2 w5 d-none d-lg-block green">
-                                                            <?if(!empty($sum)):?>
 
-                                                                <?if($type['minus'] == 1):?>
-                                                                    <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?else:?>
-                                                                    <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?endif;?>
-
-
-                                                            <?endif;?>
-                                                        </li>
-                                                        <div class="col-md-12 d-md-block d-lg-none">
-                                                            <div class="block__body-mobil">
-                                                                <div class="d-flex align-item-center">
-                                                                    <img src="/img/activity/buy.svg" alt="">
-                                                                    <div class="text__group ml-3">
-                                                                        <span class="text__small w7"><?=$type['title']?></span>
-                                                                        <span class="text__small"><?
-                                                                            echo $withdraw['title'];
-                                                                            if($withdraw['type'] == 3){
-                                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }elseif($withdraw['type'] == 4){
-                                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }
-                                                                            ?></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="text__group text-end">
-                                                                <span class="green w5"><?if(!empty($sum)):?>
-
-                                                                        <?if($type['minus'] == 1):?>
-                                                                            <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?else:?>
-                                                                            <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?endif;?>
-
-
-                                                        <?endif;?></span>
-                                                                    <span><?=date("d.m.Y H:i", $withdraw['time'])?></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?}?>
-                                <?}?>
-
-
+                    <div class="activity-line between">
+                        <div class="flex-line">
+                            <img src="/img/payment/arrow-red.svg" alt="">
+                            <div class="rows ml-3">
+                                <p class="txt-mini"><?=$type['title']?></p>
+                                <p class="txt-6A7 hiden">Баланс PV</p>
                             </div>
                         </div>
-                        <div class="tab-pane fade <?=($tab==3)?'show active':''?>" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                            <div class="col-lg-12">
-
-                                <?
-                                $i = 0;
-                                foreach ($actions as $withdraw) {
-                                    if($withdraw['type'] == 4 or $withdraw['type'] == 5 or $withdraw['type'] == 6){
-                                        $i++;
-                                        $curw = "CV";
-                                        $sum = $withdraw['sum'];
-                                        if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
-                                            $curw = "GRC";
-                                            $sum = $withdraw['tokens'];
-                                        }
-                                        $type = \common\models\ActionTypes::findOne($withdraw['type']);
-                                        $class = "any-notificate";
-                                        $withdrawParams = getParams($withdraw, $class);
-
-                                        ?>
-
-                                        <div class="text-left">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <ul class="row list__group text__small">
-                                                        <li class="col-md-1 d-none d-lg-block"><img src="/img/activity/<?=$withdrawParams['img'];?>" alt=""></li>
-                                                        <li class="col-md-3 w5 d-none d-lg-block"><?=$type['title']?></li>
-                                                        <li class="col-md-3 d-none d-lg-block"><?
-                                                            echo $withdraw['title'];
-                                                            if($withdraw['type'] == 3){
-                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }elseif($withdraw['type'] == 4){
-                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }
-                                                            ?></li>
-                                                        <li class="col-md-1 d-none d-lg-block"><?=date("d.m.Y H:i", $withdraw['time'])?></li>
-                                                        <li class="col-md-2 d-none d-lg-block text-end">
-                                                            <div class="d-flex align-item-cente">
-                                                                <div class="circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="col-md-2 w5 d-none d-lg-block green">
-                                                            <?if(!empty($sum)):?>
-
-                                                                <?if($type['minus'] == 1):?>
-                                                                    <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?else:?>
-                                                                    <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?endif;?>
-
-
-                                                            <?endif;?>
-                                                        </li>
-                                                        <div class="col-md-12 d-md-block d-lg-none">
-                                                            <div class="block__body-mobil">
-                                                                <div class="d-flex align-item-center">
-                                                                    <img src="/img/activity/buy.svg" alt="">
-                                                                    <div class="text__group ml-3">
-                                                                        <span class="text__small w7"><?=$type['title']?></span>
-                                                                        <span class="text__small"><?
-                                                                            echo $withdraw['title'];
-                                                                            if($withdraw['type'] == 3){
-                                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }elseif($withdraw['type'] == 4){
-                                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }
-                                                                            ?></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="text__group text-end">
-                                                                <span class="green w5"><?if(!empty($sum)):?>
-
-                                                                        <?if($type['minus'] == 1):?>
-                                                                            <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?else:?>
-                                                                            <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?endif;?>
-
-
-                                                        <?endif;?></span>
-                                                                    <span><?=date("d.m.Y H:i", $withdraw['time'])?></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?}?>
-                                <?}?>
+                        <div class="flex-line">
+                            <p class="txt-mini hiden2"><?
+                            echo $withdraw['title'];
+                            if($withdraw['type'] == 3){
+                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
+                            }elseif($withdraw['type'] == 4){
+                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
+                            }
+                                ?></p>
+                        </div>
+                        <div class="flex-line">
+                            <p class="txt-mini hiden2"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
+                        </div>
+                        <div class="flex-line align-items-center">
+                            <p class="txt-mini mr-4 hiden2 circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></p>
+                            <div class="text-right">
+                                <h6 class="txt-green-100">CV <span ><?if(!empty($sum)):?><?=$sum?><?endif;?></span></h6>
+                                <p class="txt-6A7 hiden"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></p>
                             </div>
                         </div>
-                        <div class="tab-pane fade <?=($tab==4)?'show active':''?>" id="transfers" role="tabpanel" aria-labelledby="transfers-tab">
-                            <div class="col-lg-12">
-
-                                <?
-                                $i = 0;
-                                foreach ($actions as $withdraw) {
-                                    if($withdraw['type'] == 3 ){
-                                        $i++;
-                                        $type = \common\models\ActionTypes::findOne($withdraw['type']);
-                                        $class = "any-notificate";
-                                        $curw = "CV";
-                                        $sum = $withdraw['sum'];
-                                        if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
-                                            $curw = "GRC";
-                                            $sum = $withdraw['tokens'];
-                                        }
-                                        $withdrawParams = getParams($withdraw, $class);
-                                        ?>
-                                        <div class="text-left">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <ul class="row list__group text__small">
-                                                        <li class="col-md-1 d-none d-lg-block"><img src="/img/activity/<?=$withdrawParams['img'];?>" alt=""></li>
-                                                        <li class="col-md-3 w5 d-none d-lg-block"><?=$type['title']?></li>
-                                                        <li class="col-md-3 d-none d-lg-block"><?
-                                                            echo $withdraw['title'];
-                                                            if($withdraw['type'] == 3){
-                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }elseif($withdraw['type'] == 4){
-                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                            }
-                                                            ?></li>
-                                                        <li class="col-md-1 d-none d-lg-block"><?=date("d.m.Y H:i", $withdraw['time'])?></li>
-                                                        <li class="col-md-2 d-none d-lg-block text-end">
-                                                            <div class="d-flex align-item-cente">
-                                                                <div class="circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="col-md-2 w5 d-none d-lg-block green">
-                                                            <?if(!empty($sum)):?>
-
-                                                                <?if($type['minus'] == 1):?>
-                                                                    <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?else:?>
-                                                                    <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                <?endif;?>
-
-
-                                                            <?endif;?>
-                                                        </li>
-                                                        <div class="col-md-12 d-md-block d-lg-none">
-                                                            <div class="block__body-mobil">
-                                                                <div class="d-flex align-item-center">
-                                                                    <img src="/img/activity/buy.svg" alt="">
-                                                                    <div class="text__group ml-3">
-                                                                        <span class="text__small w7"><?=$type['title']?></span>
-                                                                        <span class="text__small"><?
-                                                                            echo $withdraw['title'];
-                                                                            if($withdraw['type'] == 3){
-                                                                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }elseif($withdraw['type'] == 4){
-                                                                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
-                                                                            }
-                                                                            ?></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="text__group text-end">
-                                                                <span class="green w5">
-                                                                    <?if(!empty($sum)):?>
-
-                                                                        <?if($type['minus'] == 1):?>
-                                                                            <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?else:?>
-                                                                            <span> <?=$sum?> <span class=""><?=$curw?></span></span>
-                                                                        <?endif;?>
-
-
-                                                                    <?endif;?></span>
-                                                                    <span><?=date("d.m.Y H:i", $withdraw['time'])?></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?}?>
-                                <?}?>
-
-
-                            </div>
-                        </div>
-                        <div class="tab-pane fade <?=($tab==5)?'show active':''?>" id="withdraws" role="tabpanel" aria-labelledby="withdraws-tab">
-                            <div class="col-lg-12">
-                                <?
-                                $i = 0;
-                                foreach ($withdraws as $withdraw) {
-                                    $i++;
-                                    $class = "transaction-notificate output";
-                                    //$type = \common\models\ActionTypes::findOne($withdraw['type']);
-                                    $withdrawParams = getParams($withdraw, $class);
-                                    $curw = "PV"; // вывод только через pv
-                                    $sum = $withdraw['sum'];
-//                                    if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
-//                                        $curw = "GRC";
-//                                        $sum = $withdraw['tokens'];
-//                                    }
-                                    ?>
-
-                                    <div class="text-left">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <ul class="row list__group text__small">
-                                                    <li class="col-md-1 d-none d-lg-block"><img src="/img/activity/<?=$withdrawParams['img'];?>" alt=""></li>
-                                                    <li class="col-md-3 w5 d-none d-lg-block">
-
-                                                    <span>Счет:</span><span><?=$withdraw['account']?></span>
-                                                    <span>Комиссия:</span><span><?=$withdraw['fee']?></span>
-                                                    <span>На вывод:</span><span><?=$withdraw['sum2']?></span>
-
-                                                    </li>
-                                                    <li class="col-md-3 d-none d-lg-block">
-                                                        <span>Система:</span><span>
-                                                            <?
-                                                            if($withdraw['system_id'] == 1){
-                                                                echo "Advcash";
-                                                            }elseif($withdraw['system_id'] == 2){
-                                                                echo "Perfect Money";
-                                                            }elseif($withdraw['system_id'] == 3){
-                                                                echo "Payeer";
-                                                            } ?>
-                                                        </span>
-                                                    </li>
-                                                    <li class="col-md-1 d-none d-lg-block"><?=date("d.m.Y H:i", $withdraw['time'])?></li>
-                                                    <li class="col-md-2 d-none d-lg-block text-end">
-                                                        <div class="d-flex align-item-cente">
-                                                            <div class="circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="col-md-2 w5 d-none d-lg-block green">
-                                                        <?if(!empty($sum)):?>
-
-
-                                                                <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-
-
-
-                                                        <?endif;?>
-                                                    </li>
-                                                    <li><?
-                                                        if($withdraw['status'] == 3){?>
-                                                            <a class="btn btn-primary" href="" data-toggle="modal"  data-target="#cancel<?=$withdraw['id']?>Modal">Отменить</a>
-                                                            <div class="modal fade" id="cancel<?=$withdraw['id']?>Modal" tabindex="-1" role="dialog" aria-labelledby="cance<?=$withdraw['id']?>ModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog ">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-body">
-                                                                            <p>Вы действительно хотите отменить вывод?</p>
-                                                                            <p>
-                                                                                <a href="/profile/withdrawcancel?id=<?=$withdraw['id']?>" class="btn btn-success">Да </a>
-                                                                                <button class="btn btn-danger" data-dismiss="modal">Нет </button>
-                                                                            </p>
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        <?}?>
-                                                    </li>
-                                                    <div class="col-md-12 d-md-block d-lg-none">
-                                                        <div class="block__body-mobil">
-                                                            <div class="d-flex align-item-center">
-                                                                <img src="/img/activity/buy.svg" alt="">
-                                                                <div class="text__group ml-3">
-                                                                    <span class="text__small w7">
-                                                                        <span>Счет:</span><span><?=$withdraw['account']?></span>
-                                                                        <span>Комиссия:</span><span><?=$withdraw['fee']?></span>
-                                                                        <span>На вывод:</span><span><?=$withdraw['sum2']?></span>
-                                                                    </span>
-                                                                    <span class="text__small">
-                                                                        <?
-                                                                        if($withdraw['system_id'] == 1){
-                                                                            echo "Advcash";
-                                                                        }elseif($withdraw['system_id'] == 2){
-                                                                            echo "Perfect Money";
-                                                                        }elseif($withdraw['system_id'] == 3){
-                                                                            echo "Payeer";
-                                                                        }
-                                                                        ?>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="text__group text-end">
-                                                                <span class="green w5">
-                                                                    <?if(!empty($sum)):?>
-
-
-                                                                            <span>- <?=$sum?> <span class=""><?=$curw?></span></span>
-
-
-
-                                                                    <?endif;?></span>
-                                                                <span><?=date("d.m.Y H:i", $withdraw['time'])?></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <??>
-                                <?}?>
-                            </div>
-                        </div>
-
                     </div>
+
+
+                                    <?}?>
+                                <?}?>
+
+
+
+                        </div>
+                <div class="tab-pane fade <?=($tab==3)?'show active':''?>" id="pills-transfers" role="tabpanel" aria-labelledby="transfers-tab">
+                    <?
+                    $i = 0;
+                    foreach ($actions as $withdraw) {
+                        if($withdraw['type'] == 4 or $withdraw['type'] == 5 or $withdraw['type'] == 6){
+                            $i++;
+                            $type = \common\models\ActionTypes::findOne($withdraw['type']);
+                            $class = "any-notificate";
+                            $curw = "CV";
+                            $sum = $withdraw['sum'];
+                            if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
+                                $curw = "GRC";
+                                $sum = $withdraw['tokens'];
+                            }
+                            $withdrawParams = getParams($withdraw, $class);
+                            ?>
+                    <div class="activity-line between">
+                        <div class="flex-line">
+                            <img src="/img/payment/arrow-green.svg" alt="">
+                            <div class="rows ml-3">
+                                <p class="txt-mini"><?=$type['title']?></p>
+                                <p class="txt-6A7 hiden">Баланс PV</p>
+                            </div>
+                        </div>
+                        <div class="flex-line">
+                            <? echo $withdraw['title'];
+                            if($withdraw['type'] == 3){
+                                echo " пользователю ".\common\models\User::findOne($withdraw['user2_id'])['username'];
+                            }elseif($withdraw['type'] == 4){
+                                echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
+                            }?>
+                        </div>
+                        <div class="flex-line">
+                            <p class="txt-mini hiden2"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
+                        </div>
+                        <div class="flex-line align-items-center">
+                            <p class="txt-mini mr-4 hiden2 circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></p>
+                            <div class="text-right">
+                                <h6 class="txt-green-100">CV <span ><?if(!empty($sum)):?>
+                                <?=$sum?>
+                                <?endif;?>
+                                </span></h6>
+                                <p class="txt-6A7 hiden"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <?}?>
+                    <?}?>
+                </div>
+                <div class="tab-pane fade <?=($tab==4)?'show active':''?>" id="pills-withdraws" role="tabpanel" aria-labelledby="withdraws-tab">
+                <?
+                    $i = 0;
+                    foreach ($withdraws as $withdraw) {
+                    $i++;
+                    $class = "transaction-notificate output";
+                    //$type = \common\models\ActionTypes::findOne($withdraw['type']);
+                    $withdrawParams = getParams($withdraw, $class);
+                    $curw = "PV"; // вывод только через pv
+                    $sum = $withdraw['sum'];
+//                  if($withdraw['type'] == 55 or $withdraw['type'] == 56 or $withdraw['type'] == 57 or $withdraw['type'] == 58 or $withdraw['type'] == 59 or $withdraw['type'] == 60 or $withdraw['type'] == 61 or $withdraw['type'] == 62 or $withdraw['type'] == 63){
+//                  $curw = "GRC";
+//                  $sum = $withdraw['tokens'];
+//                  }
+                    ?>
+                    <div class="activity-line between">
+                    <div class="flex-line">
+                        <img src="/img/payment/arrow-red.svg" alt="">
+                        <div class="rows ml-3">
+                            <span>Счет:</span><span><?=$withdraw['account']?></span>
+                            <span>Комиссия:</span><span><?=$withdraw['fee']?></span>
+                            <span>На вывод:</span><span><?=$withdraw['sum2']?></span>
+                        </div>
+                    </div>
+                    <div class="flex-line">
+                        <span>Система:</span>
+                        <span>
+                            <?
+                            if($withdraw['system_id'] == 1){
+                                echo "Advcash";
+                            }elseif($withdraw['system_id'] == 2){
+                                echo "Perfect Money";
+                            }elseif($withdraw['system_id'] == 3){
+                                echo "Payeer";
+                            } ?>
+                        </span>
+                    </div>
+                    <div class="flex-line">
+                        <p class="txt-mini hiden2"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
+                    </div>
+                    <div class="flex-line align-items-center">
+                        <p class="txt-mini mr-4 hiden2 circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></p>
+                        <div class="text-right">
+                            <h6 class="txt-green-100">CV <span > <?if(!empty($sum)):?><?=$sum?><?endif;?></span></h6>
+                            <p class="txt-6A7 hiden">27.09.2021 <span>17:45</span></p>
+                        </div>
+                    </div>
+                    <div class="flex-line">
+                        <?
+                        if($withdraw['status'] == 3){?>
+                            <a class="btn btn-primary" href="" data-toggle="modal"  data-target="#cancel<?=$withdraw['id']?>Modal">Отменить</a>
+                            <div class="modal fade" id="cancel<?=$withdraw['id']?>Modal" tabindex="-1" role="dialog" aria-labelledby="cance<?=$withdraw['id']?>ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Вы действительно хотите отменить вывод?</p>
+                                            <p>
+                                                <a href="/profile/withdrawcancel?id=<?=$withdraw['id']?>" class="btn btn-success">Да </a>
+                                                <button class="btn btn-danger" data-dismiss="modal">Нет </button>
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        <?}?>
+                    </div>
+                </div>
+
+
+                                <?}?>
+                            </div>
+
                     <br>
                     <br>
                     <?
@@ -829,7 +431,6 @@ function getParams($obj, $class){
             </div>
 
 
-        </div>
     </main>
 
 <?
