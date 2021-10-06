@@ -61,7 +61,11 @@ $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
     </div>
 </div>
 <header class="between">
-    <div class="logo">
+    <div class="logo center flex-line">
+        <div class="burger center d-block d-lg-none" id="isOpenside">
+            <img src="/img/burgerOpen.png" alt="" id="imgOpen">
+            <img src="/img/burgerClose.png" alt="" id="imgClose">
+        </div>
         <a href="/"><img src="/img/logo.svg" alt=""></a>
     </div>
     <div class="top center">
@@ -81,7 +85,7 @@ $this->registerJsFile('/js/mobile.js',['depends'=>'yii\web\JqueryAsset']);
     </div>
 </header>
 <div class="d-flex">
-    <div class="sidebar txt-white d-none d-lg-block">
+    <div class="sidebar txt-white d-none d-lg-block" id="sidebar">
         <div class="user-block">
             <div class="user-img center">
                 <h3 class="w7"><?=mb_substr($user['firstname'],0 , 1)?></h3>

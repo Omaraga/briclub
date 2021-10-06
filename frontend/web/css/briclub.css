@@ -377,12 +377,25 @@ button{
 }
 
 
+
+#imgClose{
+    display: none;
+}
+.sidebar::-webkit-scrollbar {
+    width: 0!important;
+}
 .sidebar{
     min-width: 240px;
     height: 100vh;
 
     padding-top: 10px;
     overflow-y: auto;
+}
+.burger{
+    width: 32px;
+    height: 32px;
+    margin-right: 32px;
+    cursor: pointer;
 }
 .sidebar .user-block{
     display: flex;
@@ -1340,13 +1353,19 @@ aside .date .circle{
     header{
         position: fixed;
     }
-    .sidebar{
-        width: 240px;
-        position: absolute;
+    .sidebarActive{
+        width: 255px;
+        position: fixed;
         left: 0;
-        top: 85px;
+        top: 100px;
         background: #0B071D;
-        z-index: 1;
+        z-index: 10;
+        display: block!important;
+        padding-top: 50px;
+    }
+    .sidebar .user-img{
+        width: 70px;
+        height: 70px;
     }
     main{
         margin-top: 125px;
@@ -1512,6 +1531,9 @@ aside .date .circle{
     }
     .statistic .block-main .block-content .bar-block .bars{
         margin: 0 2px;
+    }
+    .sidebarActive{
+        width: 100%;
     }
 }
 

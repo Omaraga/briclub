@@ -1,3 +1,25 @@
+const burgerOpen = document.getElementById('isOpenside');
+const sidebar = document.getElementById('sidebar');
+const imgClose = document.getElementById('imgClose');
+const imgOpen = document.getElementById('imgOpen');
+let isOpen = true
+
+burgerOpen.addEventListener('click', function() {
+    if(isOpen){
+        sidebar.classList.add('sidebarActive')
+        imgClose.style.display = 'flex';
+        imgOpen.style.display = 'none';
+        isOpen = false
+    }else{
+        sidebar.classList.remove('sidebarActive')
+        imgClose.style.display = 'none';
+        imgOpen.style.display = 'flex';
+        isOpen = true
+    }
+})
+
+
+
 $('.focus').click(function(e){
     e.preventDefault()
     let isShow = parseInt($(this).attr('attr-show'))
@@ -51,6 +73,8 @@ if (width < 575){
 else{
     type = "ytWidgetDesk";
 }
+
+
 var script = document.createElement("script");
 script.setAttribute("src", "https://translate.yandex.net/website-widget/v1/widget.js?widgetId=" + type + "&pageLang=ru&widgetTheme=light&autoMode=false");
                 
