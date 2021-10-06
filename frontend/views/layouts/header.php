@@ -15,12 +15,12 @@ if ($user->activ == 1){
 
 $menuItems = [];
 array_push($menuItems, ['name' => 'Профиль', 'icon' => '<i class="fa fa-home" aria-hidden="true"></i>', 'url' => '/', 'access' => false, 'route' => ['main/index']]);
-array_push($menuItems, ['name' => 'Портфель', 'icon' => '<i class="fa fa-suitcase" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['main/port']]);
+array_push($menuItems, ['name' => 'Портфель', 'icon' => '<i class="fa fa-suitcase" aria-hidden="true"></i>', 'url' => '/profile/portfolio', 'access' => true, 'route' => ['main/port']]);
 array_push($menuItems, ['name' => 'Подарки', 'icon' => '<i class="fa fa-gift" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['main/gifts']]);
 array_push($menuItems, ['name' => 'Активность', 'icon' => '<i class="fa fa-exchange" aria-hidden="true"></i>', 'url' => '/profile/actions', 'access' => true, 'route' => ['profile/actions']]);
 array_push($menuItems, ['name' => 'Система', 'icon' => '<i class="fa fa-life-ring" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['system/index']]);
 array_push($menuItems, ['name' => 'Основатели', 'icon' => '<i class="fa fa-user" aria-hidden="true"></i>', 'url' => '/system/members', 'access' => true, 'route' => ['system/members']]);
-array_push($menuItems, ['name' => 'Статистика', 'icon' => '<i class="fa fa-line-chart" aria-hidden="true"></i>', 'url' => '/', 'access' => true, 'route' => ['system/statistic']]);
+array_push($menuItems, ['name' => 'Статистика', 'icon' => '<i class="fa fa-line-chart" aria-hidden="true"></i>', 'url' => '/system/statistics', 'access' => true, 'route' => ['system/statistic']]);
 array_push($menuItems, ['name' => 'Мероприятия', 'icon' => '<i class="fa fa-medium" aria-hidden="true"></i>', 'url' => '/main/events', 'access' => false, 'route' => ['main/events']]);
 array_push($menuItems, ['name' => 'Документы', 'icon' => '<i class="fa fa-file-text" aria-hidden="true"></i>', 'url' => '/main/docs', 'access' => false, 'route' => ['main/docs']]);
 array_push($menuItems, ['name' => 'Техподдержка', 'icon' => '<i class="fa fa-wrench" aria-hidden="true"></i>', 'url' => '/support', 'access' => false, 'route' => ['support/index', 'support/view', 'support/create']]);
