@@ -39,6 +39,7 @@ a{text-decoration: none!important;}
 ul{
     list-style: none;
     padding: 0;
+    margin-bottom: 0;
 }
 
 
@@ -817,8 +818,8 @@ aside .date .circle{
 
 .activity-line{
     width: 90%;
-    height: 56px;
-    padding: 22px 30px;
+    height: auto;
+    padding: 16px 30px;
     background: #0F182A;
 }
 .activity-line:hover{
@@ -831,6 +832,16 @@ aside .date .circle{
 .activity .activity-line .hiden2{
     display: block;
 }
+.activity .activity-item{
+    width: 120px;
+    text-align: center;
+}
+.activity .flex-line{
+    width: 35%;
+    text-align: left;
+}
+
+
 
 
 
@@ -904,6 +915,7 @@ aside .date .circle{
     background: rgba(17, 13, 35, 0.9);
     border-radius: 8px;
     padding: 10px;
+    margin-top: 85px;
 }
 .merop .merop-content .text{
     width: 590px;
@@ -1185,6 +1197,9 @@ aside .date .circle{
     .merop .merop-content .text{
         width: 98%;
     }
+    .activity-line{
+        width: 98%;
+    }
 }
 @media screen and (max-width: 1213px){
     .merop .merop-content .main-img{
@@ -1202,6 +1217,14 @@ aside .date .circle{
 @media screen and (max-width: 992px) {
     header{
         position: fixed;
+    }
+    .sidebar{
+        width: 240px;
+        position: absolute;
+        left: 0;
+        top: 85px;
+        background: #0B071D;
+        z-index: 1;
     }
     main{
         margin-top: 125px;
@@ -1223,6 +1246,11 @@ aside .date .circle{
     }
     .activity .activity-line{
         width: 98%;
+        height: auto;
+        padding: 10px 24px;
+    }
+    .activity .none{
+        display: none;
     }
     .merop .merop-content .main-img{
         width: 100%;
@@ -1276,6 +1304,12 @@ aside .date .circle{
     .activity .activity-line .hiden2{
         display: none;
     }
+    .activity .activity-item{
+        width: 150px;
+    }
+    .activity .flex-line {
+        width: 50%;
+    }
     .support .block {
         width: 540px;
     }
@@ -1301,12 +1335,12 @@ aside .date .circle{
         padding: 24px 16px;
         margin-top: 32px;
     }
-    .activity .activity-line{
-        height: 67px;
-    }
     .merop .cards{
         width: 100%;
         margin-right: 0;
+    }
+    .merop a{
+        width: 100%;
     }
     .support{
         padding-left: 16px;
@@ -1317,6 +1351,9 @@ aside .date .circle{
     }
     .support .line{
         height: 100px;
+    }
+    .activity .activity-line{
+        width: 100%;
     }
 }
 @media screen and (max-width: 400px){

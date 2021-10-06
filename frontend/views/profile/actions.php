@@ -105,7 +105,7 @@ function getParams($obj, $class){
 ?>
 
     <main class="activition activity">
-        <div class="container block__main-header">
+        <div class="block__main-header">
             <h4 class="w7 mb-4">Активность</h4>
 
             <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
@@ -150,12 +150,12 @@ function getParams($obj, $class){
                         <div class="flex-line">
                             <img src="/img/payment/arrow-green.svg" alt="">
                             <div class="rows ml-3">
-                            <ul class="row list__group text__small">
+                            <ul class="list__group text__small">
                                 <p class="txt-mini"><?=$type['title']?></p>
                                 <p class="txt-6A7 hiden">Баланс PV</p>
                             </div>
                         </div>
-                        <div class="flex-line">
+                        <div class="flex-line hiden2">
                             <p class="txt-mini hiden2"><?
                             echo $withdraw['title'];
                             if($withdraw['type'] == 3){
@@ -165,11 +165,13 @@ function getParams($obj, $class){
                             }
                             ?></p>
                         </div>
-                        <div class="flex-line">
+                        <div class="activity-item hiden2">
                             <p class="txt-mini hiden2"><?=date("d.m.Y H:i", $withdraw['time'])?></p>
                         </div>
-                        <div class="flex-line">
-                            <p class="txt-mini mr-4 hiden2"><img src="/img/payment/circle-<?=$withdrawParams['color'];?>.svg"><?=$withdrawParams['text'];?></p>
+                        <div class="activity-item hiden2">
+                            <p class="txt-mini hiden2"><img src="/img/payment/circle-<?=$withdrawParams['color'];?>.svg"><?=$withdrawParams['text'];?></p>
+                        </div>
+                        <div class="activity-item">
                             <div class="text-right">
                                 <h6 class="txt-green-100">CV <span>
                                 <?if(!empty($sum)):?>
@@ -211,7 +213,7 @@ function getParams($obj, $class){
                                 <p class="txt-6A7 hiden">Баланс PV</p>
                             </div>
                         </div>
-                        <div class="flex-line">
+                        <div class="flex-line hiden2">
                             <p class="txt-mini hiden2"><?
                                 echo $withdraw['title'];
                                 if($withdraw['type'] == 3){
@@ -222,11 +224,13 @@ function getParams($obj, $class){
                                 ?>
                             </p>
                         </div>
-                        <div class="flex-line">
+                        <div class="activity-item hiden2">
                             <p class="txt-mini hiden2"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
                         </div>
-                        <div class="flex-line align-items-center">
+                        <div class="activity-item hiden2">
                             <p class="txt-mini mr-4 hiden2 circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></p>
+                        </div>
+                        <div class="activity-item">
                             <div class="text-right">
                                 <h6 class="txt-green-100">CV <span > <?if(!empty($sum)):?><?=$sum?><?endif;?></span></h6>
                                 <p class="txt-6A7 hiden"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
@@ -275,10 +279,10 @@ function getParams($obj, $class){
                             }
                                 ?></p>
                         </div>
-                        <div class="flex-line">
+                        <div class="activity-item">
                             <p class="txt-mini hiden2"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
                         </div>
-                        <div class="flex-line align-items-center">
+                        <div class="activity-item">
                             <p class="txt-mini mr-4 hiden2 circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></p>
                             <div class="text-right">
                                 <h6 class="txt-green-100">CV <span ><?if(!empty($sum)):?><?=$sum?><?endif;?></span></h6>
@@ -326,10 +330,10 @@ function getParams($obj, $class){
                                 echo " от пользователя ".\common\models\User::findOne($withdraw['user2_id'])['username'];
                             }?>
                         </div>
-                        <div class="flex-line">
+                        <div class="activity-item">
                             <p class="txt-mini hiden2"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
                         </div>
-                        <div class="flex-line align-items-center">
+                        <div class="activity-item">
                             <p class="txt-mini mr-4 hiden2 circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></p>
                             <div class="text-right">
                                 <h6 class="txt-green-100">CV <span ><?if(!empty($sum)):?>
@@ -367,7 +371,7 @@ function getParams($obj, $class){
                             <span>На вывод:</span><span><?=$withdraw['sum2']?></span>
                         </div>
                     </div>
-                    <div class="flex-line">
+                    <div class="flex-line hiden2">
                         <span>Система:</span>
                         <span>
                             <?
@@ -380,17 +384,19 @@ function getParams($obj, $class){
                             } ?>
                         </span>
                     </div>
-                    <div class="flex-line">
+                    <div class="activity-item hiden2">
                         <p class="txt-mini hiden2"><?=date("d.m.Y", $withdraw['time'])?><span class="ml-3"><?=date("H:i", $withdraw['time'])?></span></p>
                     </div>
-                    <div class="flex-line align-items-center">
-                        <p class="txt-mini mr-4 hiden2 circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></p>
+                    <div class="activity-item">
+                        <p class="txt-mini mr-4 hiden2 circle__<?=$withdrawParams['color'];?>"><?=$withdrawParams['text'];?></p>    
+                    </div>
+                    <div class="activity-item hiden2">
                         <div class="text-right">
                             <h6 class="txt-green-100">CV <span > <?if(!empty($sum)):?><?=$sum?><?endif;?></span></h6>
                             <p class="txt-6A7 hiden">27.09.2021 <span>17:45</span></p>
                         </div>
                     </div>
-                    <div class="flex-line">
+                    <div class="activity-item">
                         <?
                         if($withdraw['status'] == 3){?>
                             <a class="btn btn-primary" href="" data-toggle="modal"  data-target="#cancel<?=$withdraw['id']?>Modal">Отменить</a>
