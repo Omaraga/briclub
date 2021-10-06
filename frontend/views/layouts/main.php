@@ -35,7 +35,10 @@ AppAsset::register($this);
         <?= $content ?>
 <?php echo $this->render('footer'); ?>
 
-
+    <div class="tab-bottom flex-line tab-bottom-bg between">
+        <button class="text-white active" id="tabBtn1">Профиль</button>
+        <button class="text-white" id="tabBtn2">Доступно мне</button>
+    </div>
 
 <?php $this->endBody() ?>
 </body>

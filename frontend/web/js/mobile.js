@@ -2,7 +2,24 @@ const burgerOpen = document.getElementById('isOpenside');
 const sidebar = document.getElementById('sidebar');
 const imgClose = document.getElementById('imgClose');
 const imgOpen = document.getElementById('imgOpen');
-let isOpen = true
+const tabBtn1 = document.getElementById('tabBtn1');
+const tabBtn2 = document.getElementById('tabBtn2');
+const aside = document.getElementById('aside');
+const main = document.getElementById('main');
+let isOpen = true;
+
+tabBtn1.addEventListener('click', function() {
+    tabBtn2.classList.remove('active')
+    tabBtn1.classList.add('active')
+    aside.classList.remove('asideOpen')
+    main.style.display = "block"
+})
+tabBtn2.addEventListener('click', function() {
+    tabBtn1.classList.remove('active')
+    tabBtn2.classList.add('active') 
+    aside.classList.add('asideOpen') 
+    main.style.display = "none"
+})
 
 burgerOpen.addEventListener('click', function() {
     if(isOpen){
