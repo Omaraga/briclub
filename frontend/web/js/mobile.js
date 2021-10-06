@@ -18,8 +18,6 @@ burgerOpen.addEventListener('click', function() {
     }
 })
 
-
-
 $('.focus').click(function(e){
     e.preventDefault()
     let isShow = parseInt($(this).attr('attr-show'))
