@@ -446,6 +446,16 @@ class User extends ActiveRecord implements IdentityInterface
         return 0;
     }
 
+    public function getRank()
+    {
+        $rank = UserRank::find()->where(['id' => $this->rank_id])->one();
+        if ($rank){
+            return $rank;
+        }else{
+            return null;
+        }
+    }
+
     /**
      * @return bool|int|string|null
      */
