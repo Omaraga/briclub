@@ -10,26 +10,26 @@ $this->title = 'Техподдержка';
     <a href="/support/create"><button class="fon-btn-blue-100 mb-4 text-white">Создать новый запрос</button></a>
 
     <?foreach ($tickets as $ticket):?>
-        <a class="line txt-mini row" href="/support/view?id=<?=$ticket->id;?>" style="color: #fff;">
+        <a class="line txt-mini" href="/support/view?id=<?=$ticket->id;?>" style="color: #fff;">
             <?if($ticket->status == Tickets::STATUS_CLOSE):?>
-                <div class="flex-line txt-green-200 col">
+                <div class="flex-line txt-green-200">
                     <div class="circle mr-2 fon-green-200"></div>
                     <p>Завершен</p>
                 </div>
             <?elseif($ticket->status == Tickets::STATUS_ANSWERED):?>
-                <div class="flex-line txt-blue col">
+                <div class="flex-line txt-blue">
                     <div class="circle mr-2 fon-blue-100"></div>
                     <p>Отвечен</p>
                 </div>
             <?else:?>
-                <div class="flex-line txt-yallow col">
+                <div class="flex-line txt-yallow">
                     <div class="circle mr-2 fon-yallow-100"></div>
                     <p>В обработке</p>
                 </div>
             <?endif;?>
-            <p class="col">Номер: <?=$ticket->id;?></p>
-            <p class="col">Тема: <?=$ticket->title;?></p>
-            <p class="col"><?=date('d.m.Y H:i', $ticket->time)?></p>
+            <p class="">Номер: <?=$ticket->id;?></p>
+            <p class="">Тема: <?=$ticket->title;?></p>
+            <p class=""><?=date('d.m.Y H:i', $ticket->time)?></p>
             </a>
         </a>
     <?endforeach;?>

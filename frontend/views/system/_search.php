@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
             'data-pjax' => 1
         ],
     ]); ?>
-    <div class="col-12">
+    <div>
         <div class="row">
             <div class="col-md-4">
                 <?= $form->field($model, 'context')->textInput(['placeholder' => 'Логин, email, ФИО, телефон','id'=>'username','class'=>'form-control','autocomplete'=>'off'])->label('Поиск'); ?>

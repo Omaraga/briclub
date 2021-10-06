@@ -148,13 +148,13 @@ if($selRank->id > $user->rank_id){
                     </div>
 
                     <?if(!$futureSel):?>
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-12">
                             <h6 class="w5 activity-title">Мероприятия</h6>
                         </div>
                         <?foreach ($events as $event):?>
                             <?$date = $event->getStartDate();?>
-                            <div class="col-6 mb-4">
+                            <div class="col mb-4">
                                 <div class="cards mx-auto">
                                     <div class="activity fon-main one" style="background: url('<?=$event->getImg();?>') no-repeat center; background-size: contain;">
                                         <div class="activity-block">
