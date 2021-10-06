@@ -72,18 +72,135 @@ $this->registerJsFile('/js/referal.js',['depends'=>'yii\web\JqueryAsset']);
         .mobile-item{
             cursor:pointer;
         }
-
+        .mobile-item span{
+            color: #fff;
+        }
+        thead th{
+            border-left: none!important;
+            border-right: none!important;
+            border-top: none!important;
+            border-bottom: 1px solid #263554!important;
+            text-align: center;
+        }
+        tbody td{
+            border-left: none!important;
+            border-right: none!important;
+            border-top: none!important;
+            border-bottom: 1px solid #263554!important;
+            vertical-align: middle;
+            text-align: center;
+        }
+        thead th a{
+            color: #fff;
+        }
+        tbody td a{
+            color: #fff;
+        }
+        tbody tr:hover{
+            background: #263554;
+            border-radius: 4px 4px 0px 0px;
+        }
+        .table-bordered{
+            border: none;
+            background: #0F182A;
+            border-radius: 4px;
+            color: #fff;
+        }
+        #myReferal td.mobile, thead .mobile{
+            display: none;
+            text-align: left;
+        }
+        .mobile-info-block{
+            background: #263554;
+            color: #fff;
+        }
+        .content p{
+            margin-bottom: 8px;
+        }
+        .form-group input{
+            background: #0F182B;
+            border: 1px solid #192233;
+            border-radius: 4px;
+            color: #fff!important;
+        }
+        .form-group input:focus{
+            background: #0F182B;
+        }
+        .form-group select{
+            background: #0F182B;
+            border: 1px solid #192233;
+            border-radius: 4px;
+            color: #fff;
+        }
+        .form-group select:focus{
+            background: #0F182B;
+        }
+        select option{
+            color: #fff;
+        }
+        #ui-datepicker-div{
+            background: #0F182B;
+            color: #fff;
+            border: 1px solid #263554!important;
+        }
+        .ui-datepicker-calendar td a{
+            background: #263554!important;
+            color: #fff!important;
+            border: 1px solid #263554!important;
+        }
+        .ui-datepicker-header{
+            background: #263554;
+            color: #fff;
+            border: 1px solid #263554!important;
+        }
+        .form-group a{
+            color: #fff;
+        }.form-group{
+            margin-bottom: 1.5rem;
+        }
+        .summary{
+            margin-bottom: 24px;
+        }
+        .pagination a{
+            background: #263554!important;
+            border: 1px solid #263554!important;
+            color: #fff!important;
+        }
+        .pagination .disabled span{
+            background: #263554!important;
+            border: 1px solid #263554!important;
+            color: #fff!important;
+        }
+        .pagination .active a{
+            background: #007bff!important;
+        }
+        @media screen and (max-width: 575px){
+            #myReferal td, #myReferal th {
+                display: none;
+                border: none;
+                margin-top: 0.5rem;
+                background: #0F182A;
+                border-radius: 4px;
+            }
+            #myReferal td:hover{
+                background: #263554;
+            }
+            #myReferal td.mobile {
+                display: block;
+                color: #747474;
+            }
+        }
     </style>
     <main class="cours" id="myReferal">
-        <div class="container">
-            <div class="row">
+        <div>
+            <div>
                 <div class="d-flex justify-content-between flex-column flex-wrap align-items-start hgroup">
-                    <h1 class="h1">Основатели <?if($is_child){echo $user['username'];}?></h1>
+                    <h1 class="h1 mb-5">Основатели <?if($is_child){echo $user['username'];}?></h1>
                     <?$parent = $user->getParent();?>
                     <?if($parent):?>
                         <p>Наставник: <?=$parent['username']?></p>
                     <?endif;?>
-                    <p>Всего в системе основателей: <?=($user->getMembersQuantity())?></p>
+                    <p class="mb-4">Всего в системе основателей: <?=($user->getMembersQuantity())?></p>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -102,8 +219,8 @@ $this->registerJsFile('/js/referal.js',['depends'=>'yii\web\JqueryAsset']);
         <div class="mobile-info-block">
             <h4 id="refs-name" style="margin-bottom: 1.5rem">ФИО</h4>
             <div class="content">
-                <p><i class="fas fa-envelope"></i><span id="refs-email" class="ml-2">  email@mail.ru</span></p>
-                <p><i class="fas fa-child mr-2"></i>Спонсор: <span id="refs-parent" class=""></span></p>
+                <p><i class="fa fa-envelope"></i><span id="refs-email" class="ml-2">  email@mail.ru</span></p>
+                <p><i class="fa fa-child mr-2"></i>Наставник: <span id="refs-parent" class=""></span></p>
                 <p ><i class="fas fa-network-wired"></i><span id="refs-level" class="ml-2">1</span></p>
                 <p ><i class="fa fa-calendar mr-2" aria-hidden="true"></i>Дата регистрации:<span class="ml-2" id="refs-date"></span></p>
                 <p ><i class="fa fa-calendar mr-2" aria-hidden="true"></i>Дата активации:<span class="ml-2" id="refs-date-activate"></span></p>

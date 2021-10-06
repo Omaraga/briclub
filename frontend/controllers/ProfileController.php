@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\BriTokens;
 use common\models\Insurances;
 use common\models\Acts;
 use common\models\Bills;
@@ -56,7 +57,7 @@ class ProfileController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','block','unblock','withdrawcancel', 'get-course','verification','favorites','settings','courses','structure','actions','withdraw','activ','transfer','withdraws','perfect','bonus','bonus-global','refs','refs-global','matrix','children','getnewplatform','getnewplatformstart','tickets','documents','global','start', 'promo', 'pay-bill', 'user-bills', 'view-document','statistic', 'theme', 'delete-avatar', 'upload-avatar', 'convert', 'insurance','insurance-change-status','upload-file', 'payment', 'balance'],
+                        'actions' => ['index','block','unblock','withdrawcancel', 'get-course','verification','favorites','settings','courses','structure','actions','withdraw','activ','transfer','withdraws','perfect','bonus','bonus-global','refs','refs-global','matrix','children','getnewplatform','getnewplatformstart','tickets','documents','global','start', 'promo', 'pay-bill', 'user-bills', 'view-document','statistic', 'theme', 'delete-avatar', 'upload-avatar', 'convert', 'insurance','insurance-change-status','upload-file', 'payment', 'balance', 'portfolio'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -1161,6 +1162,22 @@ class ProfileController extends Controller
         return $this->render('balance', [
             'user'=>$user,
             'withdraws'=>$withdraws,
+        ]);
+    }
+
+    public function actionPortfolio(){
+        $user=Yii::$app->user->identity;
+        if (\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $rank = $user->getRank();
+        $bri = $user->getBalance('bri');
+        $grc = $user->getBalance('grc');
+        return $this->render('portfolio', [
+            'user'=>$user,
+            'rank'=>$rank,
+            'bri'=>$bri,
+            'grc'=>$grc
         ]);
     }
 
